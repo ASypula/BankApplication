@@ -20,13 +20,13 @@ CREATE TABLE addresses (
     address_id              INTEGER NOT NULL,
     street                  VARCHAR2(30) NOT NULL,
     apartment_no            INTEGER NOT NULL,
-    bank_branches_branch_id INTEGER NOT NULL,
-    cities_city_id          INTEGER NOT NULL
+    bank_branches_f_id 	    INTEGER NOT NULL,
+    cities_f_id          INTEGER NOT NULL
 );
 
 CREATE UNIQUE INDEX addresses__idx ON
     addresses (
-        bank_branches_branch_id
+        bank_branches_f_id
     ASC );
 
 ALTER TABLE addresses ADD CONSTRAINT addresses_pk PRIMARY KEY ( address_id );
@@ -40,8 +40,8 @@ CREATE TABLE bank_accounts (
     interest_rate         NUMBER(5, 2),
     accum_period          INTEGER,
     installment_size      NUMBER(14, 2),
-    account_types_type_id INTEGER NOT NULL,
-    clients_client_id     INTEGER NOT NULL
+    account_types_f_id INTEGER NOT NULL,
+    clients_f_id     INTEGER NOT NULL
 );
 
 ALTER TABLE bank_accounts ADD CONSTRAINT bank_accounts_pk PRIMARY KEY ( account_id );
@@ -49,13 +49,13 @@ ALTER TABLE bank_accounts ADD CONSTRAINT bank_accounts_pk PRIMARY KEY ( account_
 CREATE TABLE bank_branches (
     branch_id            INTEGER NOT NULL,
     employees_no         INTEGER NOT NULL,
-    addresses_address_id INTEGER NOT NULL,
+    addresses_f_id INTEGER NOT NULL,
     opening_hours_id     INTEGER NOT NULL
 );
 
 CREATE UNIQUE INDEX bank_branches__idx ON
     bank_branches (
-        addresses_address_id
+        addresses_f_id
     ASC );
 
 ALTER TABLE bank_branches ADD CONSTRAINT bank_branches_pk PRIMARY KEY ( branch_id );
@@ -72,8 +72,8 @@ CREATE TABLE cards (
     expiration_date          DATE NOT NULL,
     hashed_ccv               CHAR(64) NOT NULL,
     hashed_pin               CHAR(64) NOT NULL,
-    card_types_type_id       INTEGER NOT NULL,
-    bank_accounts_account_id INTEGER NOT NULL
+    card_types_f_id       INTEGER NOT NULL,
+    bank_accounts_f_id INTEGER NOT NULL
 );
 
 ALTER TABLE cards ADD CONSTRAINT cards_pk PRIMARY KEY ( card_id );
@@ -87,8 +87,8 @@ ALTER TABLE cities ADD CONSTRAINT cities_pk PRIMARY KEY ( city_id );
 
 CREATE TABLE clients (
     client_id             INTEGER NOT NULL,
-    personal_data_data_id INTEGER NOT NULL,
-    employees_employee_id INTEGER NOT NULL
+    personal_data_f_id INTEGER NOT NULL,
+    employees_f_id INTEGER NOT NULL
 );
 
 ALTER TABLE clients ADD CONSTRAINT clients_pk PRIMARY KEY ( client_id );
@@ -96,8 +96,8 @@ ALTER TABLE clients ADD CONSTRAINT clients_pk PRIMARY KEY ( client_id );
 CREATE TABLE employees (
     employee_id               INTEGER NOT NULL,
     salary                    NUMBER(7, 2) NOT NULL,
-    professions_profession_id INTEGER NOT NULL,
-    personal_data_data_id     INTEGER NOT NULL
+    professions_f_id INTEGER NOT NULL,
+    personal_data_f_id     INTEGER NOT NULL
 );
 
 ALTER TABLE employees ADD CONSTRAINT employees_pk PRIMARY KEY ( employee_id );
@@ -129,7 +129,7 @@ CREATE TABLE personal_data (
     pesel                VARCHAR2(11) NOT NULL,
     phone_no             VARCHAR2(9) NOT NULL,
     hashed_pswd          VARCHAR2(64) NOT NULL,
-    addresses_address_id INTEGER NOT NULL
+    addresses_f_id INTEGER NOT NULL
 );
 
 ALTER TABLE personal_data ADD CONSTRAINT personal_data_pk PRIMARY KEY ( data_id );
@@ -143,15 +143,15 @@ CREATE TABLE professions (
 
 ALTER TABLE professions ADD CONSTRAINT professions_pk PRIMARY KEY ( profession_id );
 
-CREATE TABLE transactin_history (
+CREATE TABLE transaction_history (
     transaction_id           INTEGER NOT NULL,
     amount                   NUMBER(14, 2) NOT NULL,
     "Date"                   DATE NOT NULL,
-    bank_accounts_account_id INTEGER NOT NULL,
-    transaction_type_type_id INTEGER NOT NULL
+    bank_accounts_f_id INTEGER NOT NULL,
+    transaction_type_f_id INTEGER NOT NULL
 );
 
-ALTER TABLE transactin_history ADD CONSTRAINT transactin_history_pk PRIMARY KEY ( transaction_id );
+ALTER TABLE transaction_history ADD CONSTRAINT transaction_history_pk PRIMARY KEY ( transaction_id );
 
 CREATE TABLE transaction_type (
     type_id   INTEGER NOT NULL,
@@ -161,23 +161,23 @@ CREATE TABLE transaction_type (
 ALTER TABLE transaction_type ADD CONSTRAINT transaction_type_pk PRIMARY KEY ( type_id );
 
 ALTER TABLE addresses
-    ADD CONSTRAINT addresses_bank_branches_fk FOREIGN KEY ( bank_branches_branch_id )
+    ADD CONSTRAINT addresses_bank_branches_fk FOREIGN KEY ( bank_branches_f_id )
         REFERENCES bank_branches ( branch_id );
 
 ALTER TABLE addresses
-    ADD CONSTRAINT addresses_cities_fk FOREIGN KEY ( cities_city_id )
+    ADD CONSTRAINT addresses_cities_fk FOREIGN KEY ( cities_f_id )
         REFERENCES cities ( city_id );
 
 ALTER TABLE bank_accounts
-    ADD CONSTRAINT bank_accounts_account_types_fk FOREIGN KEY ( account_types_type_id )
+    ADD CONSTRAINT bank_accounts_account_types_fk FOREIGN KEY ( account_types_f_id )
         REFERENCES account_types ( type_id );
 
 ALTER TABLE bank_accounts
-    ADD CONSTRAINT bank_accounts_clients_fk FOREIGN KEY ( clients_client_id )
+    ADD CONSTRAINT bank_accounts_clients_fk FOREIGN KEY ( clients_f_id )
         REFERENCES clients ( client_id );
 
 ALTER TABLE bank_branches
-    ADD CONSTRAINT bank_branches_addresses_fk FOREIGN KEY ( addresses_address_id )
+    ADD CONSTRAINT bank_branches_addresses_fk FOREIGN KEY ( addresses_f_id )
         REFERENCES addresses ( address_id );
 
 ALTER TABLE bank_branches
@@ -185,42 +185,42 @@ ALTER TABLE bank_branches
         REFERENCES opening_hours ( id );
 
 ALTER TABLE cards
-    ADD CONSTRAINT cards_bank_accounts_fk FOREIGN KEY ( bank_accounts_account_id )
+    ADD CONSTRAINT cards_bank_accounts_fk FOREIGN KEY ( bank_accounts_f_id )
         REFERENCES bank_accounts ( account_id )
             ON DELETE CASCADE;
 
 ALTER TABLE cards
-    ADD CONSTRAINT cards_card_types_fk FOREIGN KEY ( card_types_type_id )
+    ADD CONSTRAINT cards_card_types_fk FOREIGN KEY ( card_types_f_id )
         REFERENCES card_types ( type_id );
 
 ALTER TABLE clients
-    ADD CONSTRAINT clients_employees_fk FOREIGN KEY ( employees_employee_id )
+    ADD CONSTRAINT clients_employees_fk FOREIGN KEY ( employees_f_id )
         REFERENCES employees ( employee_id );
 
 ALTER TABLE clients
-    ADD CONSTRAINT clients_personal_data_fk FOREIGN KEY ( personal_data_data_id )
+    ADD CONSTRAINT clients_personal_data_fk FOREIGN KEY ( personal_data_f_id )
         REFERENCES personal_data ( data_id );
 
 ALTER TABLE employees
-    ADD CONSTRAINT employees_personal_data_fk FOREIGN KEY ( personal_data_data_id )
+    ADD CONSTRAINT employees_personal_data_fk FOREIGN KEY ( personal_data_f_id )
         REFERENCES personal_data ( data_id );
 
 ALTER TABLE employees
-    ADD CONSTRAINT employees_professions_fk FOREIGN KEY ( professions_profession_id )
+    ADD CONSTRAINT employees_professions_fk FOREIGN KEY ( professions_f_id )
         REFERENCES professions ( profession_id );
 
 ALTER TABLE personal_data
-    ADD CONSTRAINT personal_data_addresses_fk FOREIGN KEY ( addresses_address_id )
+    ADD CONSTRAINT personal_data_addresses_fk FOREIGN KEY ( addresses_f_id )
         REFERENCES addresses ( address_id );
 
 --  ERROR: FK name length exceeds maximum allowed length(30) 
-ALTER TABLE transactin_history
-    ADD CONSTRAINT transactin_history_bank_accounts_fk FOREIGN KEY ( bank_accounts_account_id )
+ALTER TABLE transaction_history
+    ADD CONSTRAINT transaction_hist_bank_acc_fk FOREIGN KEY ( bank_accounts_f_id )
         REFERENCES bank_accounts ( account_id );
 
 --  ERROR: FK name length exceeds maximum allowed length(30) 
-ALTER TABLE transactin_history
-    ADD CONSTRAINT transactin_history_transaction_type_fk FOREIGN KEY ( transaction_type_type_id )
+ALTER TABLE transaction_history
+    ADD CONSTRAINT transaction_hist_trans_type_fk FOREIGN KEY ( transaction_type_f_id )
         REFERENCES transaction_type ( type_id )
             ON DELETE CASCADE;
 
