@@ -1,0 +1,123 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="21362335-1E0B-C4B1-C833-3281352AD218" name="CARDS">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>E02C2A2D-A192-3287-DF13-6EE64DA90174</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="CARD ID" id="5E303346-3E30-942E-EF3F-FAAEBA2E1549">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>9ABFECE1-88A9-92ED-C6C4-B626ED9F66AA</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+</Attribute>
+<Attribute name="EXPIRATION DATE" id="FABB0485-5A43-47E8-DE61-B82F9FE39959">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>378435BA-2FA4-AEC2-4513-D329872C3C53</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="HASHED CCV" id="9E2E06E8-CE25-6F86-BCF8-097D050801F7">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>13A7FD24-D54C-633A-0343-FD35C8B1EB39</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>64 BYTE</dataTypeSize>
+<ownDataTypeParameters>64 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="HASHED PIN" id="CEF2793D-5F8D-774A-10E3-112A5874E000">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>F454971F-D67E-6516-CE02-B3D1BC2C289D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>64 BYTE</dataTypeSize>
+<ownDataTypeParameters>64 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CARD TYPES F ID" id="C68D26ED-2B12-494B-5465-26B2A394AEB3">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>5796A332-BE55-44EC-2F38-A71995E7742D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<referedAttribute>404AB4DC-E89E-5167-4C47-A93E292DE6EE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="BANK ACCOUNTS F ID" id="D6CDE28B-54A8-B827-2CE4-156F88D0067B">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>C5F66ABA-148B-6786-CD20-CF1516A87C1E</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<referedAttribute>960AAA5C-B30D-B286-45EF-E1A856303BDB</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1AA27A98-9AE2-BC15-B0B1-CD2EA9A586F7" name="CARDS PK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>00788585-B6BD-3F14-51A9-CD06A7EBF0AF</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>5E303346-3E30-942E-EF3F-FAAEBA2E1549</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

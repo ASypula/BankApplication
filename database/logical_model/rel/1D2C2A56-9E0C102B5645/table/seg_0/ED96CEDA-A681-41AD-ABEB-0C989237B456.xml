@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ED96CEDA-A681-41AD-ABEB-0C989237B456" name="TRANSACTION_HISTORY">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>F972DA1A-BDA4-1316-A8A3-4EBA27DAFDB1</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TRANSACTION_ID" id="4E3EDC1F-29FF-4104-3F23-5F3D18547FC0">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>D11B964F-E51B-C926-620F-B8FD7CC6EF9B</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<ownDataTypeParameters>,*,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AMOUNT" id="1935781A-BBEA-2BC2-A179-F614FABF6F11">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>1F0CD5C6-5C0D-D787-1994-D6114A6E436D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>14</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,14,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Date" id="C43848F1-DC4E-E18A-CDE4-3B26B0FEF3BA">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>646C0C9A-C56D-B5E6-5EF4-6FA13A281879</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BANK_ACCOUNTS_ACCOUNT_ID" id="C5531CC8-5915-F890-5DD7-E828180B78FC">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>72811658-C5DF-6BFD-B36E-17BD6B1DF9F6</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B83F0B7B-9CFB-7EB8-B392-75AD818A39BC" referredColumn="4D407CB6-CC80-6E78-9B5C-41C113AE8A36"/>
+</associations>
+</Column>
+<Column name="TRANSACTION_TYPE_TYPE_ID" id="C587EE1E-DFBD-7E6C-96D0-45F768AFE77F">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>D85267CD-93CA-83EF-50FD-CA678A1FE0CA</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1D76A3DB-CDA4-D894-F69C-14E230600F59" referredColumn="F6E20FBB-252E-CB38-D66A-58CBC16E6037"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="62B64345-7A24-1AA0-1B0C-A8252DCB2A35" name="TRANSACTION_HISTORY_PK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>CA4EAAED-4C4A-3C39-8EED-8C67A0E56BEB</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4E3EDC1F-29FF-4104-3F23-5F3D18547FC0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B14743CF-DCAC-BEEE-9A85-5070808B8202" name="TRANSACTION_HISTORY_BANK_ACCOUNTS_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>465CB341-34CB-8212-1A95-39815349F31C</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C5531CC8-5915-F890-5DD7-E828180B78FC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="810D26A2-CDD1-DC65-3109-81132724A08F" name="TRANSACTION_HISTORY_TRANSACTION_TYPE_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>F3CB1BD1-B9CE-4D84-C16B-6BE78C028AF7</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C587EE1E-DFBD-7E6C-96D0-45F768AFE77F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

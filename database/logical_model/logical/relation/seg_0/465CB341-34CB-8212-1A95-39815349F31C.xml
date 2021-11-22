@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="TRANSACTION_HIST_BANK_ACC_FK" directorySegmentName="seg_0" id="465CB341-34CB-8212-1A95-39815349F31C">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>518E6840-168C-CA98-F69E-43CBA604B2D0</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<sourcePk>64701E3F-CC64-523E-D459-320E0549907C</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>10B7BB98-9687-1B80-BCED-1FE8CB5D0CB9</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F972DA1A-BDA4-1316-A8A3-4EBA27DAFDB1</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

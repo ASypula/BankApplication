@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="02B96FE0-503C-CC21-956E-290586A96450" name="PROFESSIONS">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>BB2811AE-7932-A670-D4D8-24AE4FD6CE91</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PROFESSION_ID" id="0A1F5332-1E9F-EDA0-809E-71A213E961B3">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>09E548E8-B37D-65BC-7235-BF29195EC6BB</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="06A70D62-765A-68AB-BA17-9AD28F50A2D1">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>F35A037F-6E7D-EE13-57B5-562F08097922</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MIN_SALARY" id="4C5C87B4-FC87-F34F-060A-F92347DE72E7">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>B60DDB7E-38B3-E6C2-6146-3B5CDEE53A92</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MAX_SALARY" id="04778E1E-60EE-2606-2F19-BABEADBD0A78">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>BD36A28E-7D16-5D0C-6612-C15E7FD3920F</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DB7AE333-B543-FBAE-543D-573B5E9278C1" name="PROFESSIONS_PK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>2F3692AF-C500-A996-3A6A-68341D7B246D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0A1F5332-1E9F-EDA0-809E-71A213E961B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

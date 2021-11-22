@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="ADDRESSES_CITIES_FK" directorySegmentName="seg_0" id="7A054DCE-C4EE-DFA4-854D-847A10179F28">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>8A147533-0C5F-3711-C423-0D708F740E49</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<sourcePk>58836382-FCB2-AC3F-E683-DE012674C679</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>located in</nameOnSource>
+<nameOnTarget>has address</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4FEE8871-F31B-E6EC-A0BA-39674649DFC2</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F0C0BB62-774C-36D7-1893-ACA1352E992F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

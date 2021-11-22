@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="BANK_ACCOUNTS_ACCOUNT_TYPES_FK" directorySegmentName="seg_0" id="F237790F-8373-1864-8A23-3DFC3D4573EB">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>E2D526A2-8308-D3D8-9516-597E7011F388</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<sourcePk>50CE6029-87B6-E29A-7E9E-1C046A92740D</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>is assigned</nameOnSource>
+<nameOnTarget>has type</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A4F6DC60-7715-A64B-0485-F9BCF7040FF3</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>10B7BB98-9687-1B80-BCED-1FE8CB5D0CB9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

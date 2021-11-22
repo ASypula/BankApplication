@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="EMPLOYEES_PROFESSIONS_FK" directorySegmentName="seg_0" id="7BD2FF58-3B99-993A-0CED-F868486B67B1">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>59A7F09B-5821-888A-7E4A-38C392AC44A1</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<sourcePk>2F3692AF-C500-A996-3A6A-68341D7B246D</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>can have workers as</nameOnSource>
+<nameOnTarget>works as</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>BB2811AE-7932-A670-D4D8-24AE4FD6CE91</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>0F961BCB-F999-5387-9D42-7AF9987A4E61</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

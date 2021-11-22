@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7F53DDF5-7892-0898-A72E-4D761E71EDDD" containerWithKeyObject="02C5DD3D-4C14-C1A8-82FC-1DC3A76B37E1" localFKIndex="A0650999-64DD-3D12-8E0B-3014536DFC97" name="CARDS_CARD_TYPES_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>5796A332-BE55-44EC-2F38-A71995E7742D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<referredTableLongName>CARD_TYPES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>03702ACE-F034-AC9B-3F14-6D582B44C0DA</referredTableID>
+<keyObject>7315014C-5B45-9193-97BE-23F631C88432</keyObject>
+<referredKeyID>7315014C-5B45-9193-97BE-23F631C88432</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>TYPE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

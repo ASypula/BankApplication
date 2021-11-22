@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E7B67BF1-0E1C-3036-ED48-4E13FDAD7C76" name="BANK_BRANCHES">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>D75D41D9-A407-E42C-BA8C-64A825DBD369</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BRANCH_ID" id="3E9BCF15-6D16-4FC8-7726-E402F0D73FBA">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>ED6BE09A-ED8A-CB4A-6DC3-8EBCC0EB1F4A</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMPLOYEES_NO" id="81C629B9-FF71-2C4E-3B9F-6FFF399D5735">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>2A280B00-C744-2A03-696E-F4175A72F846</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ADDRESSES_ADDRESS_ID" id="598B669B-4C1F-9E10-A3BB-8A38BAAB987C">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>1E3736C2-AFAC-DF21-0DA8-FF15AF5D2F34</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="714ED0D6-D22E-B9BA-80CD-727E5533966C" referredColumn="095C9AFB-2544-AA81-56FD-9DC0CA2C459C"/>
+</associations>
+</Column>
+<Column name="OPENING_HOURS_ID" id="52E8260B-C488-ECB6-2F2E-152458913300">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>5E5B2DB4-14D0-F86F-08BD-631246BDD906</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DC017B52-8E0F-EC4E-9129-EDBECED2C798" referredColumn="B61299B0-F9D0-5A2F-3BFF-53869B49D56A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DD48A465-F6B0-5CAA-2137-CCE8F10E0692" name="BANK_BRANCHES_PK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>651CC096-13E3-6AF7-9B61-399312DDFE23</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3E9BCF15-6D16-4FC8-7726-E402F0D73FBA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="57E7E868-203F-9EDB-ACDE-9AEB2B394E40" name="BANK_BRANCHES__IDX">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>EBA4B74A-EDF3-207C-F2DE-799012DF4FFD</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="598B669B-4C1F-9E10-A3BB-8A38BAAB987C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7D414F8C-F2B1-94E3-0CF1-29FECB691CD1" name="BANK_BRANCHES_ADDRESSES_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>EBA4B74A-EDF3-207C-F2DE-799012DF4FFD</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="598B669B-4C1F-9E10-A3BB-8A38BAAB987C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="73739848-54F0-C3C8-725A-39E6673CEDDD" name="BANK_BRANCHES_OPENING_HOURS_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>530C83BF-258D-CC02-13D2-0C7C5F303E9F</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="52E8260B-C488-ECB6-2F2E-152458913300"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

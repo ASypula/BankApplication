@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="DC017B52-8E0F-EC4E-9129-EDBECED2C798" containerWithKeyObject="E7B67BF1-0E1C-3036-ED48-4E13FDAD7C76" localFKIndex="73739848-54F0-C3C8-725A-39E6673CEDDD" name="BANK_BRANCHES_OPENING_HOURS_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>530C83BF-258D-CC02-13D2-0C7C5F303E9F</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<referredTableLongName>OPENING_HOURS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>B47A8090-3618-1792-5255-CB689762349F</referredTableID>
+<keyObject>510389A8-55AA-AA6E-2A30-093C34078A4A</keyObject>
+<referredKeyID>510389A8-55AA-AA6E-2A30-093C34078A4A</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

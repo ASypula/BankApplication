@@ -1,0 +1,119 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8A5FE8A1-1E83-5944-D125-8B51AD43A5BC" name="EMPLOYEES">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>0F961BCB-F999-5387-9D42-7AF9987A4E61</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EMPLOYEE_ID" id="6EA470A9-EB44-6E4F-8043-FEC0DAD293B0">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>784E11E6-0B76-BA7B-778E-8F6EB5E29F2D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SALARY" id="B419A666-E0D9-8C81-C352-5D9DC64B4A5D">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>36C3DC27-FCF2-5233-E078-898074D4F588</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROFESSIONS_PROFESSION_ID" id="AEECF5DA-740C-76AD-08F7-6162E2BA7433">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>DC48C285-9992-F21D-ADC3-D99554C9061B</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="10814263-AC3C-4E90-5C0D-5D04CF5E1EC6" referredColumn="0A1F5332-1E9F-EDA0-809E-71A213E961B3"/>
+</associations>
+</Column>
+<Column name="PERSONAL_DATA_DATA_ID" id="B268FA35-33CB-4018-853B-C34DF4B96C7F">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>74204F2B-50DF-734A-1FEB-5A42BCDCD522</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="759B3002-B2A2-A6A5-1F93-6451256A5E87" referredColumn="B50DA2A1-1892-DC38-091E-EEF56251FD5E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F85D5697-116D-2887-55E7-3369F46E097E" name="EMPLOYEES_PK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>43D95DB1-15AE-7414-7E1E-C08690D8E870</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6EA470A9-EB44-6E4F-8043-FEC0DAD293B0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5B4A8DEA-0DB1-B655-E42F-ECDA041AD98B" name="EMPLOYEES__IDX">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>1C0C6A66-F7DD-676E-72F1-6BF00660AE5D</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="B268FA35-33CB-4018-853B-C34DF4B96C7F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C6BDE043-FEF8-8EA5-7203-06F7978F4D56" name="EMPLOYEES_PERSONAL_DATA_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>1C0C6A66-F7DD-676E-72F1-6BF00660AE5D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B268FA35-33CB-4018-853B-C34DF4B96C7F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2A853B8A-7D20-C530-9DFC-1315CC27D451" name="EMPLOYEES_PROFESSIONS_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>7BD2FF58-3B99-993A-0CED-F868486B67B1</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AEECF5DA-740C-76AD-08F7-6162E2BA7433"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

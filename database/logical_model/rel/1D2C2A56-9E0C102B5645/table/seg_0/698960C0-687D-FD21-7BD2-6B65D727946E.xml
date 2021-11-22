@@ -1,0 +1,205 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="698960C0-687D-FD21-7BD2-6B65D727946E" name="PERSONAL_DATA">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>60E5B3C6-9671-C6A7-BCB1-59C6A63DEE3B</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DATA_ID" id="B50DA2A1-1892-DC38-091E-EEF56251FD5E">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>4DCA622E-4619-0578-CAF0-79C950436C56</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NAME" id="D170C141-6019-2329-7C85-295C5C204B54">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>31F6AE99-38DE-546C-8FD2-CF9CF0C1FB8B</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SURNAME" id="F05DF300-AAB1-A27C-11EE-E087C584133D">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>D96405EA-4F17-79C8-0C02-07DB4B689B55</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PESEL" id="C653632E-40AE-10E3-AF5C-803718FD91C3">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>21E03BC5-3C35-8DED-22A2-C5D7EC7385A9</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11 BYTE</dataTypeSize>
+<ownDataTypeParameters>11 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHONE_NO" id="0863FA2B-83B6-3CEB-BDBD-215DB8F4F4A1">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>B9047F5A-DEE0-B2C1-BD3F-4FE7DB809FCF</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 BYTE</dataTypeSize>
+<ownDataTypeParameters>9 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HASHED_PSWD" id="4E3E683D-23A8-6D1B-AA1E-1772FF88C4D9">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>799BF330-3F54-FCA3-59D7-703E3EEA7CCE</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>64 BYTE</dataTypeSize>
+<ownDataTypeParameters>64 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ADDRESSES_ADDRESS_ID" id="29A3427C-4C1E-7314-90C7-A19E27B048B1">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>809470E3-C52E-CF17-CFF6-A0A34DC64918</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8ED2D2B4-3C83-0479-3408-67D189851D5D" referredColumn="095C9AFB-2544-AA81-56FD-9DC0CA2C459C"/>
+</associations>
+</Column>
+<Column name="EMPLOYEES_EMPLOYEE_ID" id="D79891E1-3485-5D08-EE74-56F29531F932">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>C67526CE-D41E-8A77-9CE1-D4F1D7495C00</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="92046797-F782-2495-45F7-5611BADC95FC" referredColumn="6EA470A9-EB44-6E4F-8043-FEC0DAD293B0"/>
+</associations>
+</Column>
+<Column name="CLIENTS_CLIENT_ID" id="E9B8C982-601C-330B-6ADB-4DC68D0E9DD5">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>93D86751-A9A7-4B4D-B3C7-3E58B46FAC58</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B51A604B-C830-F93E-18DA-A163C8351925" referredColumn="75C654E8-1476-D74B-0EBD-EBC1B99904D9"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B8A1EF19-8744-72CD-2563-4430AAF0B590" name="PERSONAL_DATA_PK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>7F60EE45-B078-E5B5-C2D9-33BBB1D9E91D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B50DA2A1-1892-DC38-091E-EEF56251FD5E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7120473D-8CD5-EC1D-78D6-3DB8CE94EA2D" name="PERSONAL_DATA__IDX">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>3C8533E9-05EB-334D-7F3C-3660AD3EA1CD</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="E9B8C982-601C-330B-6ADB-4DC68D0E9DD5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FBF6F8D2-BBC8-BDF5-5969-F5A10C4EE889" name="PERSONAL_DATA__IDXv1">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>1C0C6A66-F7DD-676E-72F1-6BF00660AE5D</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="D79891E1-3485-5D08-EE74-56F29531F932"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A97C618D-A720-4A52-F7DD-F79672A4791F" name="PERSONAL_DATA_CLIENTS_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>3C8533E9-05EB-334D-7F3C-3660AD3EA1CD</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E9B8C982-601C-330B-6ADB-4DC68D0E9DD5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="01FE73B8-8F71-2A9C-A0BE-D01CA1D04ABB" name="PERSONAL_DATA_EMPLOYEES_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>1C0C6A66-F7DD-676E-72F1-6BF00660AE5D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D79891E1-3485-5D08-EE74-56F29531F932"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8C0C6F85-0E56-A8CB-D67B-EAB8157AACEF" name="PERSONAL_DATA_ADDRESSES_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>2489B695-A01F-141F-B2C9-F7DE1B444653</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="29A3427C-4C1E-7314-90C7-A19E27B048B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="BANK_BRANCHES_OPENING_HOURS_FK" directorySegmentName="seg_0" id="530C83BF-258D-CC02-13D2-0C7C5F303E9F">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>1BF3BCFA-F7ED-5B6F-0FD4-9BF982E5675F</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<sourcePk>4471D61F-37A3-A0FB-E46F-476350388A0D</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>is open at</nameOnSource>
+<nameOnTarget>availability</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>98991957-CF27-CF02-6787-A05771F09F63</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D75D41D9-A407-E42C-BA8C-64A825DBD369</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2D35463A-612B-F412-70C1-CA3256EA3049" name="CLIENTS">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>09314BD4-978B-B8A0-FA2F-668F4B3F6F3B</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CLIENT_ID" id="75C654E8-1476-D74B-0EBD-EBC1B99904D9">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>A4C14C35-68D2-AEB2-DD56-434544A0016C</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PERSONAL_DATA_DATA_ID" id="161D7424-194E-6600-DB1A-DF28AD05FA3C">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>8D1F8C5B-A52E-FC1E-0CDE-A1872C83874B</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="71C5421C-8480-CA8E-6154-3A5A7FA9DA44" referredColumn="B50DA2A1-1892-DC38-091E-EEF56251FD5E"/>
+</associations>
+</Column>
+<Column name="EMPLOYEES_EMPLOYEE_ID" id="82757A13-ED3B-AC8C-EBF6-81A0A6175A8E">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>8237A817-6EF8-EF7D-4E3B-3C3CE3F40E7F</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9F1ABFC4-C886-D3BD-2653-58022CF15F05" referredColumn="6EA470A9-EB44-6E4F-8043-FEC0DAD293B0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E8B20AA4-7A46-C2EA-FD28-A6463472379E" name="CLIENTS_PK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>A037E545-AA16-AA9E-6C0B-E64607566800</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="75C654E8-1476-D74B-0EBD-EBC1B99904D9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="70C36FFF-A8BB-6FE7-03AE-24D3C36AE9A2" name="CLIENTS__IDX">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>3C8533E9-05EB-334D-7F3C-3660AD3EA1CD</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="161D7424-194E-6600-DB1A-DF28AD05FA3C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="163A4E7F-E872-7C4A-05B1-84F01E26C2F2" name="CLIENTS_EMPLOYEES_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>C655607F-EA82-7D86-8C15-6F9EAB57E537</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="82757A13-ED3B-AC8C-EBF6-81A0A6175A8E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="59F785CC-FEFF-0840-B6CE-D0369A7DD774" name="CLIENTS_PERSONAL_DATA_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>3C8533E9-05EB-334D-7F3C-3660AD3EA1CD</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="161D7424-194E-6600-DB1A-DF28AD05FA3C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

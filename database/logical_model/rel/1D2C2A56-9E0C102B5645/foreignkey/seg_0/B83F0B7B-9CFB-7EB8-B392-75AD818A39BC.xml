@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B83F0B7B-9CFB-7EB8-B392-75AD818A39BC" containerWithKeyObject="ED96CEDA-A681-41AD-ABEB-0C989237B456" localFKIndex="B14743CF-DCAC-BEEE-9A85-5070808B8202" name="TRANSACTION_HISTORY_BANK_ACCOUNTS_FK">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 16:22:07 UTC</createdTime>
+<generatorID>465CB341-34CB-8212-1A95-39815349F31C</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<referredTableLongName>BANK_ACCOUNTS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>414876C9-2052-4B4B-317E-30894EFA3859</referredTableID>
+<keyObject>B4264862-105B-C144-9AC9-EC429B15C921</keyObject>
+<referredKeyID>B4264862-105B-C144-9AC9-EC429B15C921</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ACCOUNT_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

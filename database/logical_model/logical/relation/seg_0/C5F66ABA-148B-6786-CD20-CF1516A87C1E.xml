@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="CARDS_BANK_ACCOUNTS_FK" directorySegmentName="seg_0" id="C5F66ABA-148B-6786-CD20-CF1516A87C1E">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>87D81B1A-255B-3F14-2CBC-9F9C3ED63CEE</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<sourcePk>64701E3F-CC64-523E-D459-320E0549907C</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>has</nameOnSource>
+<nameOnTarget>belongs</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>10B7BB98-9687-1B80-BCED-1FE8CB5D0CB9</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>21362335-1E0B-C4B1-C833-3281352AD218</targetEntity>
+<transferable>true</transferable>
+<deleteRule>CASCADE</deleteRule>
+</Relation>

@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="TRANSACTION_HIST_TRANS_TYPE_FK" directorySegmentName="seg_0" id="F3CB1BD1-B9CE-4D84-C16B-6BE78C028AF7">
+<createdBy>Ola</createdBy>
+<createdTime>2021-11-22 15:40:57 UTC</createdTime>
+<generatorID>E7B57863-ABD0-99F4-D766-8D924CE90142</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+</engineerTo>
+<sourcePk>83406DA3-DBAB-0903-C320-122B59F27CC0</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>has type</nameOnSource>
+<nameOnTarget>is assigned</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0F76098B-9EFC-F653-6137-6C9A64BCFAEB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F972DA1A-BDA4-1316-A8A3-4EBA27DAFDB1</targetEntity>
+<transferable>true</transferable>
+<deleteRule>CASCADE</deleteRule>
+</Relation>
