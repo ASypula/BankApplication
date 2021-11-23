@@ -45,7 +45,7 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>*</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
 </Attribute>
 <Attribute name="EMPLOYEES F ID" id="8237A817-6EF8-EF7D-4E3B-3C3CE3F40E7F">
 <createdBy>Ola</createdBy>
@@ -61,7 +61,7 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>*</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -70,8 +70,9 @@
 <createdTime>2021-11-22 15:40:57 UTC</createdTime>
 <generatorID>C0E46C23-7BFC-26A9-F450-E92AE4DB6DB2</generatorID>
 <ownerDesignName>logical_model</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

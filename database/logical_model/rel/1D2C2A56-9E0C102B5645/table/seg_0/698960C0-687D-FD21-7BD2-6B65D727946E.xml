@@ -91,45 +91,11 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>*</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="8ED2D2B4-3C83-0479-3408-67D189851D5D" referredColumn="095C9AFB-2544-AA81-56FD-9DC0CA2C459C"/>
-</associations>
-</Column>
-<Column name="EMPLOYEES_EMPLOYEE_ID" id="D79891E1-3485-5D08-EE74-56F29531F932">
-<createdBy>Ola</createdBy>
-<createdTime>2021-11-22 16:22:07 UTC</createdTime>
-<generatorID>C67526CE-D41E-8A77-9CE1-D4F1D7495C00</generatorID>
-<ownerDesignName>logical_model</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>*</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="92046797-F782-2495-45F7-5611BADC95FC" referredColumn="6EA470A9-EB44-6E4F-8043-FEC0DAD293B0"/>
-</associations>
-</Column>
-<Column name="CLIENTS_CLIENT_ID" id="E9B8C982-601C-330B-6ADB-4DC68D0E9DD5">
-<createdBy>Ola</createdBy>
-<createdTime>2021-11-22 16:22:07 UTC</createdTime>
-<generatorID>93D86751-A9A7-4B4D-B3C7-3E58B46FAC58</generatorID>
-<ownerDesignName>logical_model</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>*</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="B51A604B-C830-F93E-18DA-A163C8351925" referredColumn="75C654E8-1476-D74B-0EBD-EBC1B99904D9"/>
 </associations>
 </Column>
 </columns>
@@ -144,50 +110,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="B50DA2A1-1892-DC38-091E-EEF56251FD5E"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="7120473D-8CD5-EC1D-78D6-3DB8CE94EA2D" name="PERSONAL_DATA__IDX">
-<createdBy>Ola</createdBy>
-<createdTime>2021-11-22 16:22:07 UTC</createdTime>
-<ownerDesignName>logical_model</ownerDesignName>
-<indexState>Unique Plain Index</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<relationGeneratorID>3C8533E9-05EB-334D-7F3C-3660AD3EA1CD</relationGeneratorID>
-<indexColumnUsage>
-<colUsage columnID="E9B8C982-601C-330B-6ADB-4DC68D0E9DD5"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="FBF6F8D2-BBC8-BDF5-5969-F5A10C4EE889" name="PERSONAL_DATA__IDXv1">
-<createdBy>Ola</createdBy>
-<createdTime>2021-11-22 16:22:07 UTC</createdTime>
-<ownerDesignName>logical_model</ownerDesignName>
-<indexState>Unique Plain Index</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<relationGeneratorID>1C0C6A66-F7DD-676E-72F1-6BF00660AE5D</relationGeneratorID>
-<indexColumnUsage>
-<colUsage columnID="D79891E1-3485-5D08-EE74-56F29531F932"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="A97C618D-A720-4A52-F7DD-F79672A4791F" name="PERSONAL_DATA_CLIENTS_FK">
-<createdBy>Ola</createdBy>
-<createdTime>2021-11-22 16:22:07 UTC</createdTime>
-<generatorID>3C8533E9-05EB-334D-7F3C-3660AD3EA1CD</generatorID>
-<ownerDesignName>logical_model</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="E9B8C982-601C-330B-6ADB-4DC68D0E9DD5"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="01FE73B8-8F71-2A9C-A0BE-D01CA1D04ABB" name="PERSONAL_DATA_EMPLOYEES_FK">
-<createdBy>Ola</createdBy>
-<createdTime>2021-11-22 16:22:07 UTC</createdTime>
-<generatorID>1C0C6A66-F7DD-676E-72F1-6BF00660AE5D</generatorID>
-<ownerDesignName>logical_model</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="D79891E1-3485-5D08-EE74-56F29531F932"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="8C0C6F85-0E56-A8CB-D67B-EAB8157AACEF" name="PERSONAL_DATA_ADDRESSES_FK">

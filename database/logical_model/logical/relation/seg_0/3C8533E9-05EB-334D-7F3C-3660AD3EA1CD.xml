@@ -12,7 +12,7 @@
 <identifying>false</identifying>
 <nameOnSource>has</nameOnSource>
 <nameOnTarget>is defined by</nameOnTarget>
-<optionalSource>false</optionalSource>
+<optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>60E5B3C6-9671-C6A7-BCB1-59C6A63DEE3B</sourceEntity>

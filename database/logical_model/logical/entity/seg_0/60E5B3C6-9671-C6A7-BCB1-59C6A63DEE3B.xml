@@ -115,39 +115,7 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>*</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="EMPLOYEE ID" id="C67526CE-D41E-8A77-9CE1-D4F1D7495C00">
-<createdBy>Ola</createdBy>
-<createdTime>2021-11-22 15:50:48 UTC</createdTime>
-<generatorID>1C0C6A66-F7DD-676E-72F1-6BF00660AE5D</generatorID>
-<ownerDesignName>logical_model</ownerDesignName>
-<engineerTo>
-<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
-</engineerTo>
-<referedAttribute>784E11E6-0B76-BA7B-778E-8F6EB5E29F2D</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>*</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="CLIENT ID" id="93D86751-A9A7-4B4D-B3C7-3E58B46FAC58">
-<createdBy>Ola</createdBy>
-<createdTime>2021-11-22 15:50:53 UTC</createdTime>
-<generatorID>3C8533E9-05EB-334D-7F3C-3660AD3EA1CD</generatorID>
-<ownerDesignName>logical_model</ownerDesignName>
-<engineerTo>
-<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
-</engineerTo>
-<referedAttribute>A4C14C35-68D2-AEB2-DD56-434544A0016C</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>*</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -156,8 +124,9 @@
 <createdTime>2021-11-22 15:40:57 UTC</createdTime>
 <generatorID>15822079-7BAB-5B8F-21C9-10F04CEB0551</generatorID>
 <ownerDesignName>logical_model</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="true"/>
+<item key="1D2C2A56-6B47-63B2-98B1-9E0C102B5645" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

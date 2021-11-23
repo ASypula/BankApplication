@@ -63,13 +63,28 @@ INSERT INTO professions VALUES (408, 'manager', 15000, 30000);
 commit;
 
 -- table PERSONAL DATA
---INSERT INTO personal_data VALUES (7001, 'Anna', 'Kowalska', '00148677354', '423756877', 'pwd', 1004, 5003, 6001);
+INSERT INTO personal_data VALUES (7002, 'Bartosz', 'Nowak', '05148377354', '487756971', 'pwd', 1002);
+INSERT INTO personal_data VALUES (7003, 'Anna', 'Kowalska', '00148671354', '223756877', 'pwd', 1003);
+INSERT INTO personal_data VALUES (7004, 'Celina', 'Makowska', '70345671354', '175756877', 'pwd', 1006);
+INSERT INTO personal_data VALUES (7005, 'Darek', 'Malinowski', '70345678897', '225346877', 'pwd', 1005);
+INSERT INTO personal_data VALUES (7006, 'Daria', 'Malinowska', '70145623297', '708346247', 'pwd', 1005);
+INSERT INTO personal_data VALUES (7007, 'Ewelina', 'Kasprzak', '24335623497', '900346247', 'pwd', 1001);
+INSERT INTO personal_data VALUES (7008, 'Eryk', 'Konieczny', '70115623465', '717566247', 'pwd', 1007);
+commit;
 
+-- table EMPLOYEES
+INSERT INTO employees VALUES (6001, 4500, 401, 7002);
+INSERT INTO employees VALUES (6002, 5700, 401, 7006);
+
+-- table CLIENTS
+INSERT INTO clients VALUES (5001, 6001, 7001);
+INSERT INTO clients VALUES (5002, 6002, 7003);
+INSERT INTO clients VALUES (5003, 6001, 7004);
+INSERT INTO clients VALUES (5004, 6001, 7005);
+INSERT INTO clients VALUES (5005, 6002, 7007);
+INSERT INTO clients VALUES (5006, 6001, 7008);
 
 -- table CARDS
 -- table BANK_BRANCHES
 -- table BANK_ACCOUNTS
--- table CLIENTS
--- table EMPLOYEES
--- table PERSONAL DATA
 -- table TRANSACTION_HISTORY
