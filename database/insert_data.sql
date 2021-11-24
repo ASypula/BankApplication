@@ -25,6 +25,9 @@ INSERT INTO addresses VALUES (1011, 'Szczesliwa', 27, 1003);
 INSERT INTO addresses VALUES (1012, 'Prosta', 5, 1001);
 INSERT INTO addresses VALUES (1013, 'Prosta', 6, 1001);
 
+INSERT INTO addresses VALUES (1101, 'Zwirowa', 46, 1001);
+INSERT INTO addresses VALUES (1102, 'Polna', 77, 1001);
+INSERT INTO addresses VALUES (1103, 'Brukowa', 68, 1002);
 commit;
 
 -- table ACCOUNT_TYPES
@@ -63,6 +66,7 @@ INSERT INTO professions VALUES (408, 'manager', 15000, 30000);
 commit;
 
 -- table PERSONAL DATA
+INSERT INTO personal_data VALUES (7001, 'Beata', 'Jablonska', '46548379354', '486756114', 'pwd', 1002);
 INSERT INTO personal_data VALUES (7002, 'Bartosz', 'Nowak', '05148377354', '487756971', 'pwd', 1002);
 INSERT INTO personal_data VALUES (7003, 'Anna', 'Kowalska', '00148671354', '223756877', 'pwd', 1003);
 INSERT INTO personal_data VALUES (7004, 'Celina', 'Makowska', '70345671354', '175756877', 'pwd', 1006);
@@ -77,14 +81,35 @@ INSERT INTO employees VALUES (6001, 4500, 401, 7002);
 INSERT INTO employees VALUES (6002, 5700, 401, 7006);
 
 -- table CLIENTS
-INSERT INTO clients VALUES (5001, 6001, 7001);
-INSERT INTO clients VALUES (5002, 6002, 7003);
-INSERT INTO clients VALUES (5003, 6001, 7004);
-INSERT INTO clients VALUES (5004, 6001, 7005);
-INSERT INTO clients VALUES (5005, 6002, 7007);
-INSERT INTO clients VALUES (5006, 6001, 7008);
+INSERT INTO clients VALUES (5001, 7001, 6001);
+INSERT INTO clients VALUES (5002, 7003, 6002);
+INSERT INTO clients VALUES (5003, 7004, 6001);
+INSERT INTO clients VALUES (5004, 7005, 6001);
+INSERT INTO clients VALUES (5005, 7007, 6002);
+INSERT INTO clients VALUES (5006, 7008, 6001);
+
+-- table BANK_BRANCHES
+INSERT INTO bank_branches VALUES (4001, 2, 1101, 102);
+INSERT INTO bank_branches VALUES (4002, 2, 1102, 101);
+INSERT INTO bank_branches VALUES (4003, 1, 1103, 103);
+commit;
+
+-- dalsze niesprawdzone :( wina sql'a
+-- table BANK_ACCOUNTS
+INSERT INTO bank_accounts VALUES (9001, 20000, 1, TO_DATE('06-08-2000', 'DD-MM-YYYY'), null, 3, null, null, 2006, 5001);
+INSERT INTO bank_accounts VALUES (9002, 80000, 2, TO_DATE('06-02-1980', 'DD-MM-YYYY'), TO_DATE('06-02-2022', 'DD-MM-YYYY'), 4, null, null, 2002, 5001);
+INSERT INTO bank_accounts VALUES (9003, 15600, 1, TO_DATE('09-05-2009', 'DD-MM-YYYY'), null, 2, null, null, 2001, 5002);
 
 -- table CARDS
--- table BANK_BRANCHES
--- table BANK_ACCOUNTS
+INSERT INTO cards VALUES (901, TO_DATE('06-06-2023', 'DD-MM-YYYY'), 'hash', 'hash', 3001, 9001);
+INSERT INTO cards VALUES (902, TO_DATE('01-01-2023', 'DD-MM-YYYY'), 'hash', 'hash', 3002, 9001);
+INSERT INTO cards VALUES (903, TO_DATE('11-12-2023', 'DD-MM-YYYY'), 'hash', 'hash', 3002, 9003);
+
 -- table TRANSACTION_HISTORY
+INSERT INTO transaction_history VALUES (10000, 20, TO_DATE('06-06-2021', 'DD-MM-YYYY'), 9001, 4002);
+INSERT INTO transaction_history VALUES (10001, 200, TO_DATE('07-06-2021', 'DD-MM-YYYY'), 9001, 4002);
+INSERT INTO transaction_history VALUES (10002, 50, TO_DATE('07-06-2021', 'DD-MM-YYYY'), 9001, 4001);
+INSERT INTO transaction_history VALUES (10003, 64, TO_DATE('09-06-2021', 'DD-MM-YYYY'), 9001, 4002);
+INSERT INTO transaction_history VALUES (10004, 670, TO_DATE('16-06-2021', 'DD-MM-YYYY'), 9001, 4002);
+
+commit;
