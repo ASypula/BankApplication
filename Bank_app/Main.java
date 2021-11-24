@@ -1,5 +1,6 @@
 
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,7 +25,8 @@ public class Main {
 			}
 			
 			Main.conn = conn;
-			runApplication(); //text app with options
+
+			runApplication();
 
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -35,6 +37,11 @@ public class Main {
 	}
 
 	private static void runApplication() throws SQLException {
+		LoginFrame frame = new LoginFrame();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+		/*
 		Scanner scan = new Scanner(System.in); //temp user imput. Will be replaced in the future
 		appState state = appState.LOGIN;
 		PersonalData client = null;
@@ -78,6 +85,7 @@ public class Main {
 				break;
 			}
 		}
+		*/
 	}
 
 	public static PersonalData login(String login, String password) throws SQLException {
