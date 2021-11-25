@@ -1,5 +1,4 @@
 
-
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -87,16 +86,45 @@ public class Main {
 		}
 		*/
 	}
-
-	public static PersonalData login(String login, String password) throws SQLException {
+	/*private static void testclass() throws SQLException, WrongId {
+		// TODO Auto-generated method stub
+		PersonalData pd = new PersonalData("321");
+		Client cl = new Client("321");
+		System.out.println(pd);
+		System.out.println(cl);
+		System.out.println(cl.getEmployee());
+		System.out.println("bnk accounts:");
+		for (BankAccount b : cl.getBankAccountes()) {
+			System.out.println(b);
+			System.out.println(b.getAccount_type());
+		} 
+		BankAccount b =cl.getBankAccountes().get(0);
+		
+		System.out.println(b);
+		Transaction t1 = new Transaction("345", "1", "82", 1000);
+		t1.insert();
+		for (Transaction t : b.getTransactions()) {
+			System.out.println(t);
+			System.out.println(t.getTransaction_type());
+		}
+		for (Card c : b.getCards()) {
+			System.out.println(c);
+			System.out.println(c.getCard_type());
+		}
+		new Scanner(System.in).nextLine();
+	}*/
+	public static PersonalData login(String login, String password) throws SQLException, WrongId {
 		password = hash(password);
 		Statement statement = Main.conn.createStatement();
 		//searches for personal data with given login and password
-		ResultSet results = statement.executeQuery("SELECT name, surname, pesel, phone_no, addresses_f_id from personal_data where data_id = "+login+" and hashed_pswd = '"+password+"'");
-		if (results.next()) // if not empty
-			return new PersonalData(results);
-		else
-			return null;
+		ResultSet results = statement.executeQuery("SELECT data_id, name, surname, pesel, phone_no, addresses_f_id from personal_data where data_id = "+login+" and hashed_pswd = '"+password+"'");
+		if (results.next()) {
+			try {
+					return new Client(login);
+				} catch (WrongId e) {;}
+			//here can be employee..
+		}
+		return null;
 	}
 	public static String hash(String password) {
 		return password;//here be hash func
