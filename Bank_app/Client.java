@@ -29,7 +29,7 @@ public class Client extends PersonalData {
 	public Client(String data_id) throws SQLException, WrongId {
 		super(data_id);
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("SELECT client_id, EMPLOYEES_F_ID from clients where PERSONAL_DATA_F_ID = "+data_id);
+		ResultSet results = statement.executeQuery("SELECT client_id, employees_employee_id from clients where PERSONAL_DATA_DATA_ID = "+data_id);
 		if (results.next()) { // if not empty
 			this.client_id = results.getString(1);
 			this.employees_id = results.getString(2);
