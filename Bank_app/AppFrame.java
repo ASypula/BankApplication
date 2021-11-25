@@ -9,7 +9,12 @@ public class AppFrame extends JFrame {
 
     private void initialize() {
         this.setSize(400, 400);
-        this.setContentPane(new LoginPanel(this));
         this.setTitle("Casa de PAPel");
+        this.setContentPane(new LoginPanel(this));
+    }
+
+    public void changeToMainClient(PersonalData client) {
+        this.setContentPane(new MainClientPanel(this, client));
+        this.revalidate();
     }
 }

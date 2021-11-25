@@ -4,11 +4,11 @@ import java.sql.SQLException;
 
 public class LoginPanel extends JPanel {
 
-    JFrame parent;
+    AppFrame parent;
     private JTextField usernameTf = null;
     private JPasswordField passwordPf = null;
 
-    public LoginPanel(JFrame mparent) {
+    public LoginPanel(AppFrame mparent) {
         super();
         parent = mparent;
         initialize();
@@ -23,7 +23,7 @@ public class LoginPanel extends JPanel {
         if (client == null)
             wrongLoginDialog();
         else
-            System.out.println(client.getName()+client.getSurname());
+            parent.changeToMainClient(client);
     }
 
     private void wrongLoginDialog() {
