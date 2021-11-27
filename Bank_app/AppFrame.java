@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class AppFrame extends JFrame {
 
@@ -8,12 +9,17 @@ public class AppFrame extends JFrame {
     }
 
     private void initialize() {
-        this.setSize(400, 400);
+        this.setSize(600, 600);
         this.setTitle("Casa de PAPel");
-        this.setContentPane(new LoginPanel(this));
+        changeToLogin();
     }
 
-    public void changeToMainClient(PersonalData client) {
+    public void changeToLogin() {
+        this.setContentPane(new LoginPanel(this));
+        this.revalidate();
+    }
+
+    public void changeToMainClient(Client client) {
         this.setContentPane(new MainClientPanel(this, client));
         this.revalidate();
     }

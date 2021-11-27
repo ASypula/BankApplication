@@ -72,7 +72,6 @@ public class Main {
 		//searches for personal data with given login and password
 		ResultSet results = statement.executeQuery("SELECT data_id, name, surname, pesel, phone_no, addresses_address_id from personal_data where data_id = "+login+" and hashed_pswd = '"+password+"'");
 		if (results.next()) {
-//			return new PersonalData(results);
 			try {
 					return new Client(login);
 				} catch (WrongId e) {;}

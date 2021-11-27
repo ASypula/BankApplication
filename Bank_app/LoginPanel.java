@@ -23,7 +23,7 @@ public class LoginPanel extends JPanel {
         if (client == null)
             wrongLoginDialog();
         else
-            parent.changeToMainClient(client);
+            parent.changeToMainClient((Client) client);
     }
 
     private void wrongLoginDialog() {
