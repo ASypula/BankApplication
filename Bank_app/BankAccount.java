@@ -72,6 +72,38 @@ public class BankAccount {
 	public int getBalance() {
 		return balance;
 	}
+	public boolean transfer(String transaction_id, String transaction_type_f_id,
+			int amount, String bank_accounts_receiver_id) throws SQLException {
+		if (!balanceDec(amount))
+			return false;
+		Transaction t = new Transaction(transaction_id, transaction_type_f_id, getAccount_id(), amount);
+		t.insert();
+		try {
+			BankAccount b = new BankAccount(bank_accounts_receiver_id);
+			b.balanceInc(amount);
+			//t = new Transaction(transaction_id, transaction_type_f_id, bank_accounts_receiver_id, amount);t.insert();
+		} catch (WrongId e) {;}
+		return true;
+	}
+	
+	public BankAccount(String account_id) throws SQLException, WrongId {
+		Statement statement = Main.conn.createStatement();
+		ResultSet results = statement.executeQuery("SELECT account_id, balance, account_no, start_date, end_date, interest_rate, accum_period, installment_size, account_types_type_id, clients_client_id from bank_accounts where account_id = "+account_id);
+		if (results.next()) { // if not empty
+			this.account_id = results.getString(1);
+			this.balance = results.getInt(2);		
+			this.account_no = results.getString(3);
+			this.start_date = results.getDate(4);
+			this.end_date = results.getDate(5);
+			this.interest_rate = results.getInt(6);
+			this.accum_period = results.getInt(7);
+			this.installment_size = results.getInt(8);
+			this.account_types_f_id = results.getString(9);
+			this.clients_f_id = results.getString(10);
+		} else
+			throw new WrongId(account_id);
+	}
+	
 	public void balanceInc(int i) throws SQLException {
 		balance += i;
 		Statement statement = Main.conn.createStatement();
