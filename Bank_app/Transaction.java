@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Transaction {
 	private String transaction_id, transaction_type_f_id, bank_accounts_f_id;
-	Date date;
+	java.sql.Date date;
 	private int amount;
 	static Map<Integer, String> transaction_types = new HashMap<Integer, String>();
 	public Transaction(ResultSet results) throws SQLException {
@@ -29,7 +29,8 @@ public class Transaction {
 	public Transaction(String transaction_id, String transaction_type_f_id, String bank_accounts_f_id,
 			int amount) {
 		this.transaction_id = transaction_id;
-		this.date = new Date(amount);
+		java.util.Date date = new java.util.Date();
+		this.date = new java.sql.Date(date.getTime());
 		this.transaction_type_f_id = transaction_type_f_id;
 		this.bank_accounts_f_id = bank_accounts_f_id;
 		this.amount = amount;
