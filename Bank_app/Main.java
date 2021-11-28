@@ -38,32 +38,14 @@ public class Main {
 		while (true) {}
 	}
 
-	/*private static void testclass() throws SQLException, WrongId {
-		// TODO Auto-generated method stub
-		PersonalData pd = new PersonalData("321");
-		Client cl = new Client("321");
-		System.out.println(pd);
-		System.out.println(cl);
-		System.out.println(cl.getEmployee());
-		System.out.println("bnk accounts:");
-		for (BankAccount b : cl.getBankAccountes()) {
+	/*private static void testtransfer() throws SQLException, WrongId {
+		Client cl = new Client("7001");
+			System.out.println(cl);
+			BankAccount b =cl.getBankAccounts().get(0);
+			BankAccount b2 = new BankAccount("9003");
+			System.out.println(b2);
+			b.transfer("10008", "4002", 101, "9003");
 			System.out.println(b);
-			System.out.println(b.getAccount_type());
-		} 
-		BankAccount b =cl.getBankAccountes().get(0);
-		
-		System.out.println(b);
-		Transaction t1 = new Transaction("345", "1", "82", 1000);
-		t1.insert();
-		for (Transaction t : b.getTransactions()) {
-			System.out.println(t);
-			System.out.println(t.getTransaction_type());
-		}
-		for (Card c : b.getCards()) {
-			System.out.println(c);
-			System.out.println(c.getCard_type());
-		}
-		new Scanner(System.in).nextLine();
 	}*/
 
 	public static PersonalData login(String login, String password) throws SQLException {
