@@ -72,16 +72,16 @@ public class BankAccount {
 	public int getBalance() {
 		return balance;
 	}
-	public void balanceInc(int i) throws SQLException { //database not updating for some reason ??
+	public void balanceInc(int i) throws SQLException {
 		balance += i;
 		Statement statement = Main.conn.createStatement();
-		//statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE account_id = " +account_id);
+		statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE account_id = " +account_id);
 	}
 	public boolean balanceDec(int i) throws SQLException {
 		if (i>balance) return false;
 		balance -= i;
 		Statement statement = Main.conn.createStatement();
-		//statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE account_id = " +account_id);
+		statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE account_id = " +account_id);
 		return true;
 	}
 	public BankAccount(ResultSet results) throws SQLException {

@@ -18,6 +18,36 @@ public class MainClientPanel extends JPanel {
         }
     }
 
+    private void depositButtonClicked(BankAccount account, JLabel accountBalanceLabel) {
+        try {
+//            TODO: add dialog to set amount
+            account.balanceInc(100);
+            accountBalanceLabel.setText(
+                    "Dostępne środki: " +
+                            account.getBalance()
+            );
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void withdrawButtonClicked(BankAccount account, JLabel accountBalanceLabel) {
+        try {
+//            TODO: add dialog to set amount
+            if (account.balanceDec(100)) {
+                accountBalanceLabel.setText(
+                        "Dostępne środki: " +
+                                account.getBalance()
+                );
+            } else {
+                ;
+//                TODO: show dialog about too low balance
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void initialize() throws SQLException {
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -80,32 +110,50 @@ public class MainClientPanel extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
         this.add(info, c);
 
+        int rowsPerAcc = 3;
         java.util.List<BankAccount> accounts = client.getBankAccounts();
         for (int i = 0; i < accounts.size(); i++) {
-            JLabel accountLabel = new JLabel(
+            int finalI = i;
+
+            JLabel accountNrLabel = new JLabel(
+                    "ID konta: " +
+                            accounts.get(i).getAccount_id()
+            );
+            c.gridx = 0;
+            c.gridy = i*rowsPerAcc + 2;
+            c.gridwidth = 4;
+            this.add(accountNrLabel, c);
+
+            JLabel accountBalanceLabel = new JLabel(
                     "Dostępne środki: " +
                             accounts.get(i).getBalance()
             );
-            accountLabel.setFont(new Font("Arial", Font.BOLD, 18));
+            accountBalanceLabel.setFont(new Font("Arial", Font.BOLD, 18));
             c.gridx = 0;
-            c.gridy = (i+1)*2;
+            c.gridy = i*rowsPerAcc + 3;
             c.gridwidth = 4;
-            this.add(accountLabel, c);
+            this.add(accountBalanceLabel, c);
 
             JButton depositButton = new JButton("Wpłać");
+            depositButton.addActionListener(
+                    e -> depositButtonClicked(accounts.get(finalI), accountBalanceLabel)
+            );
             c.gridx = 1;
-            c.gridy = (i+1)*2 + 1;
+            c.gridy = i*rowsPerAcc + 4;
             c.gridwidth = 1;
             this.add(depositButton, c);
 
             JButton withdrawButton = new JButton("Wypłać");
+            withdrawButton.addActionListener(
+                    e -> withdrawButtonClicked(accounts.get(finalI), accountBalanceLabel)
+            );
             c.gridx = 2;
-            c.gridy = (i+1)*2 + 1;
+            c.gridy = i*rowsPerAcc + 4;
             this.add(withdrawButton, c);
 
             JButton transferButton = new JButton("Przelew");
             c.gridx = 3;
-            c.gridy = (i+1)*2 + 1;
+            c.gridy = i*rowsPerAcc + 4;
             this.add(transferButton, c);
         }
     }
