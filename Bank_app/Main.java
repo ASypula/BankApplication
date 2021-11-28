@@ -13,21 +13,14 @@ public class Main {
 		try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@ora4.ii.pw.edu.pl:1521/pdb1.ii.pw.edu.pl",
 				"username", "password")) {
 			if (conn != null) {
-				System.out.println("Connected to the database!");
-			} else {
-				System.out.println("Failed to make connection!");
+				Main.conn = conn;
+				runApplication();
 			}
-			
-			Main.conn = conn;
-
-			runApplication();
-
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("done");
 	}
 
 	private static void runApplication() throws SQLException {
