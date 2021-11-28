@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
 public class MainClientPanel extends JPanel {
@@ -18,34 +19,72 @@ public class MainClientPanel extends JPanel {
         }
     }
 
-    private void depositButtonClicked(BankAccount account, JLabel accountBalanceLabel) {
-        try {
-//            TODO: add dialog to set amount
-            account.balanceInc(100);
-            accountBalanceLabel.setText(
-                    "Dostępne środki: " +
-                            account.getBalance()
-            );
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
+    private void getAmountFromUserAndUpdate(BankAccount account, JLabel accountBalanceLabel, boolean inc) {
+//        if inc is true - deposit; else withdrawal
+        String dialogTitle;
+        if (inc)
+            dialogTitle = "Wpłać na konto";
+        else
+            dialogTitle = "Wypłać z konta";
+        JDialog amountDialog = new JDialog(parent, dialogTitle);
+        amountDialog.setSize(250, 200);
+        amountDialog.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
 
-    private void withdrawButtonClicked(BankAccount account, JLabel accountBalanceLabel) {
-        try {
-//            TODO: add dialog to set amount
-            if (account.balanceDec(100)) {
-                accountBalanceLabel.setText(
-                        "Dostępne środki: " +
-                                account.getBalance()
+        JLabel amountLabel = new JLabel("Kwota:");
+        JTextField amountTf = new JTextField();
+        amountTf.setMaximumSize(new Dimension(150, 25));
+//        TODO: accept only number input
+
+        JButton okButton = new JButton("Zatwierdź");
+        okButton.addActionListener(e -> {
+            try {
+                int amount = Integer.parseInt(amountTf.getText());
+                try {
+                    if (inc)
+                        account.balanceInc(amount);
+                    else
+                        account.balanceDec(amount);
+//                    TODO: show info about too low balance
+                    accountBalanceLabel.setText(
+                            "Dostępne środki: " +
+                                    account.getBalance()
+                    );
+                } catch (SQLException ex) {
+                    System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                }
+                amountDialog.setVisible(false);
+                amountDialog.dispatchEvent(
+                        new WindowEvent(amountDialog, WindowEvent.WINDOW_CLOSING)
                 );
-            } else {
-                ;
-//                TODO: show dialog about too low balance
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+            } catch (NumberFormatException ignored) {}
+        });
+
+        JButton cancelButton = new JButton("Anuluj");
+        cancelButton.addActionListener(e -> {
+            amountDialog.setVisible(false);
+            amountDialog.dispatchEvent(
+                    new WindowEvent(amountDialog, WindowEvent.WINDOW_CLOSING)
+            );
+        });
+
+        c.gridx = 0;
+        c.gridy = 0;
+        amountDialog.add(amountLabel, c);
+        c.gridx = 0;
+        c.gridy = 1;
+        amountDialog.add(amountTf, c);
+        c.gridx = 0;
+        c.gridy = 2;
+        amountDialog.add(okButton, c);
+        c.gridx = 1;
+        c.gridy = 2;
+        amountDialog.add(cancelButton, c);
+        amountDialog.setVisible(true);
     }
 
     private void initialize() throws SQLException {
@@ -136,7 +175,7 @@ public class MainClientPanel extends JPanel {
 
             JButton depositButton = new JButton("Wpłać");
             depositButton.addActionListener(
-                    e -> depositButtonClicked(accounts.get(finalI), accountBalanceLabel)
+                    e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, true)
             );
             c.gridx = 1;
             c.gridy = i*rowsPerAcc + 4;
@@ -145,7 +184,7 @@ public class MainClientPanel extends JPanel {
 
             JButton withdrawButton = new JButton("Wypłać");
             withdrawButton.addActionListener(
-                    e -> withdrawButtonClicked(accounts.get(finalI), accountBalanceLabel)
+                    e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, false)
             );
             c.gridx = 2;
             c.gridy = i*rowsPerAcc + 4;
