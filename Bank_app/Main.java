@@ -4,6 +4,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 //import java.util.Scanner;
 
 public class Main {
@@ -45,6 +47,7 @@ public class Main {
 		password = hash(password);
 		Statement statement = Main.conn.createStatement();
 		//searches for personal data with given login and password
+		// TODO: what if user gives incorrect password?
 		ResultSet results = statement.executeQuery("SELECT data_id, name, surname, pesel, phone_no, addresses_address_id from personal_data where data_id = "+login+" and hashed_pswd = '"+password+"'");
 		if (results.next()) {
 			try {
@@ -54,7 +57,23 @@ public class Main {
 		}
 		return null;
 	}
+
 	public static String hash(String password) {
-		return password;//here be hash func
+		// 
+		password += "bd1";
+		String hashedPassword = null;
+		try {
+		  MessageDigest md = MessageDigest.getInstance("MD5");
+		  md.update(password.getBytes());
+		  byte[] bytes = md.digest();
+		  StringBuilder sb = new StringBuilder();
+		  for (int i = 0; i < bytes.length; i++) {
+			sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+		  }
+		  hashedPassword = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+		  e.printStackTrace();
+		}
+		return hashedPassword;
 	}
 }
