@@ -66,14 +66,14 @@ INSERT INTO professions VALUES (408, 'manager', 15000, 30000);
 commit;
 
 -- table PERSONAL DATA
-INSERT INTO personal_data VALUES (7001, 'Beata', 'Jablonska', '46548379354', '486756114', 'pwd', 1002);
-INSERT INTO personal_data VALUES (7002, 'Bartosz', 'Nowak', '05148377354', '487756971', 'pwd', 1002);
-INSERT INTO personal_data VALUES (7003, 'Anna', 'Kowalska', '00148671354', '223756877', 'pwd', 1003);
-INSERT INTO personal_data VALUES (7004, 'Celina', 'Makowska', '70345671354', '175756877', 'pwd', 1006);
-INSERT INTO personal_data VALUES (7005, 'Darek', 'Malinowski', '70345678897', '225346877', 'pwd', 1005);
-INSERT INTO personal_data VALUES (7006, 'Daria', 'Malinowska', '70145623297', '708346247', 'pwd', 1005);
-INSERT INTO personal_data VALUES (7007, 'Ewelina', 'Kasprzak', '24335623497', '900346247', 'pwd', 1001);
-INSERT INTO personal_data VALUES (7008, 'Eryk', 'Konieczny', '70115623465', '717566247', 'pwd', 1007);
+INSERT INTO personal_data VALUES (7001, 'Beata', 'Jablonska', '46548379354', '486756114', '6bedce9bbf0230f0bd030d7fb646e51b', 1002);
+INSERT INTO personal_data VALUES (7002, 'Bartosz', 'Nowak', '05148377354', '487756971', '5b706a286a4dd856eed4c1da00621892', 1002);
+INSERT INTO personal_data VALUES (7003, 'Anna', 'Kowalska', '00148671354', '223756877', '4997f1bfb16fb9704366c2230700c5f1', 1003);
+INSERT INTO personal_data VALUES (7004, 'Celina', 'Makowska', '70345671354', '175756877', '80dabd6f7ef57febfb984b567694cb91', 1006);
+INSERT INTO personal_data VALUES (7005, 'Darek', 'Malinowski', '70345678897', '225346877', '681e6dcd6cc95afd236931f5480cc437', 1005);
+INSERT INTO personal_data VALUES (7006, 'Daria', 'Malinowska', '70145623297', '708346247', 'c540c89a0488c332f2de7e7e6d5c22ca', 1005);
+INSERT INTO personal_data VALUES (7007, 'Ewelina', 'Kasprzak', '24335623497', '900346247', '4762c4f5f5df5ed4e0d5acb548b07e4b', 1001);
+INSERT INTO personal_data VALUES (7008, 'Eryk', 'Konieczny', '70115623465', '717566247', 'cef3df575a7ae9b017d448b34947af04', 1007);
 commit;
 
 -- table EMPLOYEES
