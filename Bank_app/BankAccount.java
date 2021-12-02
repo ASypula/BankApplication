@@ -88,7 +88,7 @@ public class BankAccount {
 	
 	public BankAccount(String account_id) throws SQLException, WrongId {
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("SELECT account_id, balance, account_no, start_date, end_date, interest_rate, accum_period, installment_size, account_types_type_id, clients_client_id from bank_accounts where account_id = "+account_id);
+		ResultSet results = statement.executeQuery("SELECT bank_account_id, balance, account_no, start_date, end_date, interest_rate, accum_period, installment_size, account_types_type_id, clients_client_id from bank_accounts where account_id = "+account_id);
 		if (results.next()) { // if not empty
 			this.account_id = results.getString(1);
 			this.balance = results.getInt(2);		
@@ -107,13 +107,13 @@ public class BankAccount {
 	public void balanceInc(int i) throws SQLException {
 		balance += i;
 		Statement statement = Main.conn.createStatement();
-		statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE account_id = " +account_id);
+		statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE bank_account_id = " +account_id);
 	}
 	public boolean balanceDec(int i) throws SQLException {
 		if (i>balance) return false;
 		balance -= i;
 		Statement statement = Main.conn.createStatement();
-		statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE account_id = " +account_id);
+		statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE bank_account_id = " +account_id);
 		return true;
 	}
 	public BankAccount(ResultSet results) throws SQLException {
@@ -130,7 +130,7 @@ public class BankAccount {
 	}
 	@Override
 	public String toString() {
-		return "BankAccount [account_id=" + account_id + ", account_types_f_id=" + account_types_f_id
+		return "BankAccount [bank_account_id=" + account_id + ", account_types_f_id=" + account_types_f_id
 				+ ", clients_f_id=" + clients_f_id + ", account_no=" + account_no + ", start_date=" + start_date
 				+ ", end_date=" + end_date + ", interest_rate=" + interest_rate + ", accum_period=" + accum_period
 				+ ", installment_size=" + installment_size + ", balance=" + balance + "]";
