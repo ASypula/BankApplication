@@ -48,7 +48,7 @@ public class Main {
 		Statement statement = Main.conn.createStatement();
 		//searches for personal data with given login and password
 		// TODO: what if user gives incorrect password?
-		ResultSet results = statement.executeQuery("SELECT data_id, name, surname, pesel, phone_no, addresses_address_id from personal_data where data_id = "+login+" and hashed_pswd = '"+password+"'");
+		ResultSet results = statement.executeQuery("SELECT personal_data_id, name, surname, pesel, phone_no, addresses_address_id from " + 			                        "personal_data where personal_data_id = "+login+" and hashed_pswd = '"+password+"'");
 		if (results.next()) {
 			try {
 					return new Client(login);

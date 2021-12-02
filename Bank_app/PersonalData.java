@@ -35,7 +35,8 @@ public class PersonalData {
 	}
 	public PersonalData(String data_id) throws SQLException, WrongId {
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("SELECT name, surname, pesel, phone_no, addresses_address_id from personal_data where data_id = "+data_id);
+		ResultSet results = statement.executeQuery("SELECT name, surname, pesel, phone_no, addresses_address_id from personal_data where "
+		+ "personal_data_id = "+data_id);
 		if (results.next()) { // if not empty
 			this.data_id = data_id;
 			this.name = results.getString(1);
@@ -49,7 +50,7 @@ public class PersonalData {
 	@Override
 	public String toString() {
 		return "PersonalData [name=" + name + ", surname=" + surname + ", pesel=" + pesel + ", phone_no=" + phone_no
-				+ ", addresses_f_id=" + addresses_f_id + ", data_id=" + data_id + "]";
+				+ ", addresses_f_id=" + addresses_f_id + ", personal_data_id=" + data_id + "]";
 	}
 }
 

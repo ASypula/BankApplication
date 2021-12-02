@@ -88,7 +88,7 @@ public class BankAccount {
 	
 	public BankAccount(String account_id) throws SQLException, WrongId {
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("SELECT bank_account_id, balance, account_no, start_date, end_date, interest_rate, accum_period, installment_size, account_types_type_id, clients_client_id from bank_accounts where account_id = "+account_id);
+		ResultSet results = statement.executeQuery("SELECT bank_account_id, balance, account_no, start_date, end_date, interest_rate, accum_period, installment_size, account_types_type_id, clients_client_id from bank_accounts where bank_account_id = "+account_id);
 		if (results.next()) { // if not empty
 			this.account_id = results.getString(1);
 			this.balance = results.getInt(2);		
