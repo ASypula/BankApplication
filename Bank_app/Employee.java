@@ -26,8 +26,7 @@ public class Employee extends PersonalData {
 			this.employees_id = employee_id;
 			this.salary = results.getString(2);
 			this.professions_f_id = results.getString(3);
-			results = statement.executeQuery("SELECT name, surname, pesel, phone_no, addresses_address_id from personal_data where "
-			+ "personal_data_id = "+data_id);
+			results = statement.executeQuery("SELECT name, surname, pesel, phone_no, addresses_address_id from personal_data where personal_data_id = "+data_id);
 			if (results.next()) { // if not empty
 				this.data_id = data_id;
 				this.name = results.getString(1);
