@@ -19,6 +19,73 @@ public class MainClientPanel extends JPanel {
         }
     }
 
+    private void getTransferDetailsAndTransfer(BankAccount account) {
+//        TODO: add seperate class for dialog
+        JDialog transferDialog = new JDialog(parent, "Szczegóły przelewu");
+        transferDialog.setSize(250, 300);
+        transferDialog.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+
+        JLabel receiverLabel = new JLabel("ID konta odbiorcy:");
+        JTextField receiverTf = new JTextField();
+        receiverTf.setMaximumSize(new Dimension(150, 25));
+
+        JLabel amountLabel = new JLabel("Kwota:");
+        JTextField amountTf = new JTextField();
+        amountTf.setMaximumSize(new Dimension(150, 25));
+//        TODO: accept only number input
+
+        JButton okButton = new JButton("Zatwierdź");
+        okButton.addActionListener(e -> {
+            try {
+                int amount = Integer.parseInt(amountTf.getText());
+                try {
+                    account.transfer("1000", "4", amount, receiverTf.getText());
+//                    TODO: unhardcode these values!
+                    parent.changeToMainClient(client);
+                } catch (SQLException ex) {
+                    System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                }
+                transferDialog.setVisible(false);
+                transferDialog.dispatchEvent(
+                        new WindowEvent(transferDialog, WindowEvent.WINDOW_CLOSING)
+                );
+            } catch (NumberFormatException ignored) {}
+        });
+
+        JButton cancelButton = new JButton("Anuluj");
+        cancelButton.addActionListener(e -> {
+            transferDialog.setVisible(false);
+            transferDialog.dispatchEvent(
+                    new WindowEvent(transferDialog, WindowEvent.WINDOW_CLOSING)
+            );
+        });
+
+        c.gridx = 0;
+        c.gridy = 0;
+        transferDialog.add(receiverLabel, c);
+        c.gridx = 0;
+        c.gridy = 1;
+        transferDialog.add(receiverTf, c);
+        c.gridx = 0;
+        c.gridy = 2;
+        transferDialog.add(amountLabel, c);
+        c.gridx = 0;
+        c.gridy = 3;
+        transferDialog.add(amountTf, c);
+        c.gridx = 0;
+        c.gridy = 4;
+        transferDialog.add(okButton, c);
+        c.gridx = 1;
+        c.gridy = 4;
+        transferDialog.add(cancelButton, c);
+        transferDialog.setVisible(true);
+    }
+
     private void getAmountFromUserAndUpdate(BankAccount account, JLabel accountBalanceLabel, boolean inc) {
 //        if inc is true - deposit; else withdrawal
         String dialogTitle;
@@ -191,6 +258,9 @@ public class MainClientPanel extends JPanel {
             this.add(withdrawButton, c);
 
             JButton transferButton = new JButton("Przelew");
+            transferButton.addActionListener(
+                    e -> getTransferDetailsAndTransfer(accounts.get(finalI))
+            );
             c.gridx = 3;
             c.gridy = i*rowsPerAcc + 4;
             this.add(transferButton, c);

@@ -77,7 +77,7 @@ public class BankAccount {
 		if (!balanceDec(amount))
 			return false;
 		Transaction t = new Transaction(transaction_id, transaction_type_f_id, getAccount_id(), amount);
-		t.insert();
+//		t.insert();
 		try {
 			BankAccount b = new BankAccount(bank_accounts_receiver_id);
 			b.balanceInc(amount);

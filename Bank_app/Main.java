@@ -13,7 +13,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@ora4.ii.pw.edu.pl:1521/pdb1.ii.pw.edu.pl",
-				"username", "password")) {
+				"z08", "tcpzjh")) {
 			if (conn != null) {
 				Main.conn = conn;
 				runApplication();
