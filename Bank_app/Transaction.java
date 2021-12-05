@@ -35,6 +35,16 @@ public class Transaction {
 		this.bank_accounts_f_id = bank_accounts_f_id;
 		this.amount = amount;
 	}
+	
+	public Transaction(String transaction_type_f_id, String bank_accounts_f_id,
+			int amount) {
+		this.transaction_id = null;
+		java.util.Date date = new java.util.Date();
+		this.date = new java.sql.Date(date.getTime());
+		this.transaction_type_f_id = transaction_type_f_id;
+		this.bank_accounts_f_id = bank_accounts_f_id;
+		this.amount = amount;
+	}
 
 
 	public String getTransaction_type() throws SQLException {
@@ -49,7 +59,10 @@ public class Transaction {
 	
 	public void insert() throws SQLException { //insert current
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("insert into transaction_history VALUES ("+transaction_id+", "+amount+", DATE '"+date+"', "+bank_accounts_f_id+","+transaction_type_f_id+" )");	
+		if (transaction_id != null)
+		statement.executeQuery("insert into transaction_history VALUES ("+transaction_id+", "+amount+", DATE '"+date+"', "+bank_accounts_f_id+","+transaction_type_f_id+" )");	
+		else //INSERT INTO transaction_history(amount, "Date",BANK_ACCOUNTS_ACCOUNT_ID,TRANSACTION_TYPE_TYPE_ID) VALUES (21,TO_DATE('06-07-2021', 'DD-MM-YYYY'), 1, 2);
+		statement.executeQuery("insert into transaction_history(amount, \"Date\",BANK_ACCOUNTS_ACCOUNT_ID,TRANSACTION_TYPE_TYPE_ID) VALUES ("+amount+", DATE '"+date+"', "+bank_accounts_f_id+","+transaction_type_f_id+" )");	
 	}
 	
 	public String getTransaction_id() {
