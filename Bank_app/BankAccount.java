@@ -72,16 +72,22 @@ public class BankAccount {
 	public int getBalance() {
 		return balance;
 	}
+	public boolean transfer(String transaction_type_f_id,
+			int amount, String bank_accounts_receiver_id) throws SQLException {
+		return transfer(null, transaction_type_f_id, amount, bank_accounts_receiver_id);
+	}
+	
 	public boolean transfer(String transaction_id, String transaction_type_f_id,
 			int amount, String bank_accounts_receiver_id) throws SQLException {
-		if (!balanceDec(amount))
+		if (amount<=0 | !balanceDec(amount) | transaction_id == bank_accounts_receiver_id)
 			return false;
-		Transaction t = new Transaction(transaction_id, transaction_type_f_id, getAccount_id(), amount);
-//		t.insert();
+		Transaction t = new Transaction(transaction_id, transaction_type_f_id, getAccount_id(), -amount);
+		t.insert();
 		try {
 			BankAccount b = new BankAccount(bank_accounts_receiver_id);
 			b.balanceInc(amount);
-			//t = new Transaction(transaction_id, transaction_type_f_id, bank_accounts_receiver_id, amount);t.insert();
+			t = new Transaction(transaction_id, transaction_type_f_id, bank_accounts_receiver_id, amount);
+			t.insert();
 		} catch (WrongId e) {;}
 		return true;
 	}
