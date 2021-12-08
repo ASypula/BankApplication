@@ -36,6 +36,20 @@ public class Client extends PersonalData {
 		} else
 			throw new WrongId(data_id);
 	}
+	public Client(String name,String surname,String pesel,String phone_no
+			,String addresses_address_id) {
+		super(name,surname,pesel,phone_no,addresses_address_id);
+		this.client_id = null;
+		this.employees_id = "1"; //I'm a sad client I don't know how to get my emplotee ;(
+	}
+	public void insert(String unhashed_password) throws SQLException { //for id = null
+		super.insert(unhashed_password);
+		Statement statement = Main.conn.createStatement();
+		statement.executeQuery("INSERT INTO CLIENTS(PERSONAL_DATA_DATA_ID,EMPLOYEES_EMPLOYEE_ID) VALUES("+data_id+","+employees_id+")");
+		ResultSet results = statement.executeQuery("Select CLIENT_ID from CLIENTS where PERSONAL_DATA_DATA_ID =" + data_id);
+		results.next();
+		this.client_id = results.getString(1);
+	}
 
 	@Override
 	public String toString() {
