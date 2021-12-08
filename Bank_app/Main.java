@@ -33,14 +33,15 @@ public class Main {
 		while (true) {}
 	}
 
-	/*private static void testtransfer() throws SQLException, WrongId {
-		Client cl = new Client("7001");
-			System.out.println(cl);
-			BankAccount b =cl.getBankAccounts().get(0);
-			BankAccount b2 = new BankAccount("9003");
-			System.out.println(b2);
-			b.transfer("10008", "4002", 101, "9003");
-			System.out.println(b);
+/*
+//this func is propably too long to exist but it shows how to create new client with address
+	private static void addClient(String city_name, String street, int apartment_no,
+			String name,String surname,String pesel,String phone_no
+			,String addresses_address_id) throws SQLException, WrongId {
+		Address b = new Address(city_name, street, apartment_no);
+		b.insert();
+		Client c1 = new Client(name, surname, pesel, phone_no, b.getAddress_id());
+		c1.insert(c1.getName());//<-password is name
 	}*/
 
 	public static PersonalData login(String login, String password) throws SQLException {
@@ -76,5 +77,12 @@ public class Main {
 		  e.printStackTrace();
 		}
 		return hashedPassword;
+	}
+	public static String capitalize(String str) {
+		if (str.length()>1)
+		str = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+		else
+		str = str.toUpperCase();
+		return str;
 	}
 }
