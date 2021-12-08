@@ -46,6 +46,25 @@ public class PersonalData {
 		} else
 			throw new WrongId(data_id);
 	}
+	public PersonalData(String name,String surname,String pesel,String phone_no
+			,String addresses_address_id) {
+			this.data_id = null;
+			this.name = Main.capitalize(name);
+			this.surname = Main.capitalize(surname);
+			this.pesel=pesel;
+			this.phone_no = phone_no; 
+			this.addresses_f_id = addresses_address_id;
+	}
+	
+	public void insert(String unhashed_password) throws SQLException {
+		String password = Main.hash(unhashed_password);
+		Statement statement = Main.conn.createStatement();
+		statement.executeQuery("INSERT INTO personal_data(NAME,SURNAME,PESEL,PHONE_NO,HASHED_PSWD,ADDRESSES_ADDRESS_ID) VALUES ('"+name+"','"+surname+"','"+pesel+"','"+phone_no+"','"+password+"',"+addresses_f_id+")");
+		ResultSet results = statement.executeQuery("Select PERSONAL_DATA_ID from personal_data where name='"+name+"' and surname='"+surname+"' and pesel = '"+pesel+"' and phone_no = '"+phone_no+"' and hashed_pswd = '"+password+"' and addresses_address_id ="+addresses_f_id);
+		results.next();
+		this.data_id = results.getString(1);
+	}
+	
 	@Override
 	public String toString() {
 		return "PersonalData [name=" + name + ", surname=" + surname + ", pesel=" + pesel + ", phone_no=" + phone_no
