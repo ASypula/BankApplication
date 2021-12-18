@@ -24,9 +24,10 @@ public class Address {
 				+ ", apartment_no=" + apartment_no + "]";
 	}
 	public Address(String address_id) throws SQLException, WrongId {
-		this.address_id=address_id; 
+		this.address_id = address_id;
+		String query = "SELECT  street, city_name, apartment_no FROM v_addresses WHERE address_id = " + address_id;
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("select  street, city_name, apartment_no from v_addresses where address_id = "+address_id);
+		ResultSet results = statement.executeQuery(query);
 		if (results.next()) { // if not empty
 			this.street=results.getString(1);
 			this.city_name= results.getString(2);

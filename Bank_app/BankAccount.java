@@ -22,7 +22,8 @@ public class BankAccount {
 		int i = Integer.parseInt(account_types_f_id);
 		if (!account_types.containsKey(i)) {
 			Statement statement = Main.conn.createStatement();
-			ResultSet results = statement.executeQuery("SELECT * from account_types");	
+			String query = "SELECT * FROM account_types";
+			ResultSet results = statement.executeQuery(query);	
 			while (results.next()) account_types.put(results.getInt(1), results.getString(2));
 		}
 		return account_types.get(i);
@@ -30,7 +31,8 @@ public class BankAccount {
 	
 	public List<Transaction> getTransactions() throws SQLException {
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("SELECT transaction_id, amount, \"Date\", transaction_type_f_id, bank_accounts_f_id from transaction_history where bank_accounts_f_id = "+this.account_id);
+		String query = "SELECT transaction_id, amount, \"Date\", transaction_type_type_id, bank_accounts_id FROM transaction_history WHERE bank_account_id = "+ this.account_id;
+		ResultSet results = statement.executeQuery(query);
 		List<Transaction> accounts = new ArrayList<Transaction>();
 		while (results.next()) {
 			accounts.add(new Transaction(results));
@@ -40,7 +42,8 @@ public class BankAccount {
 	
 	public List<Card> getCards() throws SQLException {
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("SELECT card_id, expiration_date, hashed_ccv, hashed_pin, card_types_f_id, bank_accounts_f_id from cards where bank_accounts_f_id = "+this.account_id);
+		String query = "SELECT card_id, expiration_date, hashed_ccv, hashed_pin, card_types_type_id, bank_accounts_account_id FROM cards WHERE bank_accounts_account_id = "+ this.account_id;
+		ResultSet results = statement.executeQuery(query);
 		List<Card> accounts = new ArrayList<Card>();
 		while (results.next()) {
 			accounts.add(new Card(results));
