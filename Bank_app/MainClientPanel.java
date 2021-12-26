@@ -43,6 +43,7 @@ public class MainClientPanel extends JPanel {
         okButton.addActionListener(e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
+//                TODO: Block negative transfers
                 try {
                     account.transfer("1000", "4", amount, receiverTf.getText());
 //                    TODO: unhardcode these values!
@@ -162,41 +163,11 @@ public class MainClientPanel extends JPanel {
         c.weightx = 0.5;
         c.weighty = 0.5;
 
-        JLabel bankNameLabel = new JLabel("Casa de PAPel", SwingConstants.CENTER);
+        PageButtonsPanel pageButPan = new PageButtonsPanel(parent);
         c.gridx = 0;
         c.gridy = 0;
-        this.add(bankNameLabel, c);
-
-        JButton mainPageButton = new JButton("Główna");
-        c.gridx = 1;
-        c.gridy = 0;
-        this.add(mainPageButton, c);
-
-        JButton cardsButton = new JButton("Karty");
-        c.gridx = 2;
-        c.gridy = 0;
-        this.add(cardsButton, c);
-
-        JButton creditsButton = new JButton("Kredyty");
-        c.gridx = 3;
-        c.gridy = 0;
-        this.add(creditsButton, c);
-
-        JButton depositsButton = new JButton("Lokaty");
-        c.gridx = 4;
-        c.gridy = 0;
-        this.add(depositsButton, c);
-
-        JButton helpButton = new JButton("Pomoc");
-        c.gridx = 5;
-        c.gridy = 0;
-        this.add(helpButton, c);
-
-        JButton logoutButton = new JButton("Wyloguj");
-        logoutButton.addActionListener(e -> parent.changeToLogin());
-        c.gridx = 6;
-        c.gridy = 0;
-        this.add(logoutButton, c);
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        this.add(pageButPan, c);
 
         JLabel accountsLabel = new JLabel("Moje konta");
         c.gridx = 0;

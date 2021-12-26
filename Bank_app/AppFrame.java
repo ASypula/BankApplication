@@ -1,7 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
 import java.sql.SQLException;
 
 public class AppFrame extends JFrame {
+
+    Color bgColor = new Color(252, 245, 245);
 
     public AppFrame() {
         super();
@@ -16,11 +19,13 @@ public class AppFrame extends JFrame {
 
     public void changeToLogin() {
         this.setContentPane(new LoginPanel(this));
+        this.getContentPane().setBackground(bgColor);
         this.revalidate();
     }
 
     public void changeToMainClient(Client client) {
         this.setContentPane(new MainClientPanel(this, client));
+        this.getContentPane().setBackground(bgColor);
         this.revalidate();
     }
 }

@@ -28,8 +28,12 @@ public class LoginPanel extends JPanel {
 
     private void wrongLoginDialog() {
         JDialog wrongLoginDialog = new JDialog(parent, "Błędne dane logowania");
-        wrongLoginDialog.setSize(150, 150);
-        JLabel wrongLoginText = new JLabel("Użytkownk o podanym ID i haśle nie istnieje");
+        wrongLoginDialog.setSize(160, 150);
+        JLabel wrongLoginText = new JLabel(
+                "<html><div style='text-align: center;'>" +
+                        "Użytkownk o podanym<br />ID i haśle<br />nie istnieje</html>",
+                SwingConstants.CENTER
+        );
         wrongLoginDialog.add(wrongLoginText);
         wrongLoginDialog.setVisible(true);
     }
@@ -49,6 +53,7 @@ public class LoginPanel extends JPanel {
         bankNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         bankNameLabel.setMinimumSize(new Dimension(300, 300));
         bankNameLabel.setFont(new Font("Serif", Font.PLAIN, 48));
+        bankNameLabel.setForeground(Color.RED);
 //            TODO: Define font more globally
         this.add(bankNameLabel);
 
