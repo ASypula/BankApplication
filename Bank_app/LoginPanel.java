@@ -32,8 +32,7 @@ public class LoginPanel extends JPanel {
     }
 
     private void wrongLoginDialog() {
-        JDialog wrongLoginDialog = new JDialog(parent, "Błędne dane logowania");
-        wrongLoginDialog.setSize(160, 150);
+        AppDialog wrongLoginDialog = new AppDialog(parent, "Błędne dane logowania");
         JLabel wrongLoginText = new JLabel(
                 "<html><div style='text-align: center;'>" +
                         "Użytkownk o podanym<br />ID i haśle<br />nie istnieje</html>",
@@ -44,10 +43,10 @@ public class LoginPanel extends JPanel {
     }
 
     private void wipDialog() {
-        JDialog wipDialog = new JDialog(parent, "WIP");
+//        TODO: Remove this when no longer necessary
+        AppDialog wipDialog = new AppDialog(parent, "WIP");
         JLabel wip = new JLabel("WIP");
         wipDialog.add(wip);
-        wipDialog.setSize(150, 150);
         wipDialog.setVisible(true);
     }
 
@@ -100,11 +99,13 @@ public class LoginPanel extends JPanel {
         WhiteButton newClientButton = new WhiteButton("Załóż konto: klient");
         newClientButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newClientButton.addActionListener(e -> wipDialog());
+//        TODO: Add adding client
         loginDetPan.add(newClientButton);
 
         WhiteButton newEmployeeButton = new WhiteButton("Załóż konto: pracownik");
         newEmployeeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newEmployeeButton.addActionListener(e -> wipDialog());
+//        TODO: Add adding employee
         loginDetPan.add(newEmployeeButton);
     }
 

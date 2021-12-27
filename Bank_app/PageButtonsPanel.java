@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 
 public class PageButtonsPanel extends JPanel {
 
@@ -18,7 +17,6 @@ public class PageButtonsPanel extends JPanel {
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.FIRST_LINE_START;
         c.weightx = 0.5;
         c.weighty = 0.5;
 

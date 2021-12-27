@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
@@ -21,7 +22,7 @@ public class MainClientPanel extends JPanel {
 
     private void getTransferDetailsAndTransfer(BankAccount account) {
 //        TODO: add seperate class for dialog
-        JDialog transferDialog = new JDialog(parent, "Szczegóły przelewu");
+        AppDialog transferDialog = new AppDialog(parent, "Szczegóły przelewu");
         transferDialog.setSize(250, 300);
         transferDialog.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -31,16 +32,25 @@ public class MainClientPanel extends JPanel {
         c.weighty = 0.5;
 
         JLabel receiverLabel = new JLabel("ID konta odbiorcy:");
+        c.gridx = 0;
+        c.gridy = 0;
+        transferDialog.add(receiverLabel, c);
         JTextField receiverTf = new JTextField();
-        receiverTf.setMaximumSize(new Dimension(150, 25));
+        c.gridx = 0;
+        c.gridy = 1;
+        transferDialog.add(receiverTf, c);
 
         JLabel amountLabel = new JLabel("Kwota:");
-        JTextField amountTf = new JTextField();
-        amountTf.setMaximumSize(new Dimension(150, 25));
-//        TODO: accept only number input
+        c.gridx = 0;
+        c.gridy = 2;
+        transferDialog.add(amountLabel, c);
 
-        WhiteButton okButton = new WhiteButton("Zatwierdź");
-        okButton.addActionListener(e -> {
+        JTextField amountTf = new JTextField();
+        c.gridx = 0;
+        c.gridy = 3;
+        transferDialog.add(amountTf, c);
+
+        ActionListener okActionListener = e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
 //                TODO: Block negative transfers
@@ -56,34 +66,13 @@ public class MainClientPanel extends JPanel {
                         new WindowEvent(transferDialog, WindowEvent.WINDOW_CLOSING)
                 );
             } catch (NumberFormatException ignored) {}
-        });
+        };
 
-        WhiteButton cancelButton = new WhiteButton("Anuluj");
-        cancelButton.addActionListener(e -> {
-            transferDialog.setVisible(false);
-            transferDialog.dispatchEvent(
-                    new WindowEvent(transferDialog, WindowEvent.WINDOW_CLOSING)
-            );
-        });
-
-        c.gridx = 0;
-        c.gridy = 0;
-        transferDialog.add(receiverLabel, c);
-        c.gridx = 0;
-        c.gridy = 1;
-        transferDialog.add(receiverTf, c);
-        c.gridx = 0;
-        c.gridy = 2;
-        transferDialog.add(amountLabel, c);
-        c.gridx = 0;
-        c.gridy = 3;
-        transferDialog.add(amountTf, c);
+        OkCancelButtonsPanel okCanButPan = new OkCancelButtonsPanel(parent, transferDialog, okActionListener);
         c.gridx = 0;
         c.gridy = 4;
-        transferDialog.add(okButton, c);
-        c.gridx = 1;
-        c.gridy = 4;
-        transferDialog.add(cancelButton, c);
+        transferDialog.add(okCanButPan, c);
+
         transferDialog.setVisible(true);
     }
 
@@ -94,7 +83,7 @@ public class MainClientPanel extends JPanel {
             dialogTitle = "Wpłać na konto";
         else
             dialogTitle = "Wypłać z konta";
-        JDialog amountDialog = new JDialog(parent, dialogTitle);
+        AppDialog amountDialog = new AppDialog(parent, dialogTitle);
         amountDialog.setSize(250, 200);
         amountDialog.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -104,12 +93,16 @@ public class MainClientPanel extends JPanel {
         c.weighty = 0.5;
 
         JLabel amountLabel = new JLabel("Kwota:");
-        JTextField amountTf = new JTextField();
-        amountTf.setMaximumSize(new Dimension(150, 25));
-//        TODO: accept only number input
+        c.gridx = 0;
+        c.gridy = 0;
+        amountDialog.add(amountLabel, c);
 
-        WhiteButton okButton = new WhiteButton("Zatwierdź");
-        okButton.addActionListener(e -> {
+        JTextField amountTf = new JTextField();
+        c.gridx = 0;
+        c.gridy = 1;
+        amountDialog.add(amountTf, c);
+
+        ActionListener okActionListener = e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
                 try {
@@ -130,28 +123,13 @@ public class MainClientPanel extends JPanel {
                         new WindowEvent(amountDialog, WindowEvent.WINDOW_CLOSING)
                 );
             } catch (NumberFormatException ignored) {}
-        });
+        };
 
-        WhiteButton cancelButton = new WhiteButton("Anuluj");
-        cancelButton.addActionListener(e -> {
-            amountDialog.setVisible(false);
-            amountDialog.dispatchEvent(
-                    new WindowEvent(amountDialog, WindowEvent.WINDOW_CLOSING)
-            );
-        });
-
-        c.gridx = 0;
-        c.gridy = 0;
-        amountDialog.add(amountLabel, c);
-        c.gridx = 0;
-        c.gridy = 1;
-        amountDialog.add(amountTf, c);
+        OkCancelButtonsPanel okCanButPan = new OkCancelButtonsPanel(parent, amountDialog, okActionListener);
         c.gridx = 0;
         c.gridy = 2;
-        amountDialog.add(okButton, c);
-        c.gridx = 1;
-        c.gridy = 2;
-        amountDialog.add(cancelButton, c);
+        amountDialog.add(okCanButPan, c);
+
         amountDialog.setVisible(true);
     }
 

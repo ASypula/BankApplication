@@ -13,6 +13,7 @@ public class AppFrame extends JFrame {
 
     private void initialize() {
         this.setSize(600, 600);
+        this.setLocationRelativeTo(null);
         this.setTitle("Casa de PAPel");
         changeToLogin();
     }
