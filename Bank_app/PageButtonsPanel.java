@@ -23,38 +23,37 @@ public class PageButtonsPanel extends JPanel {
         c.weighty = 0.5;
 
         JLabel bankNameLabel = new JLabel("Casa de PAPel", SwingConstants.CENTER);
-        bankNameLabel.setFont(new Font("Serif", Font.PLAIN, 16));
-        bankNameLabel.setForeground(Color.RED);
+        bankNameLabel.setFont(new Font("Serif", Font.BOLD, 16));
         c.gridx = 0;
         c.gridy = 0;
         this.add(bankNameLabel, c);
 
-        JButton mainPageButton = new JButton("Główna");
+        WhiteButton mainPageButton = new WhiteButton("Główna");
         c.gridx = 1;
         c.gridy = 0;
         this.add(mainPageButton, c);
 
-        JButton cardsButton = new JButton("Karty");
+        WhiteButton cardsButton = new WhiteButton("Karty");
         c.gridx = 2;
         c.gridy = 0;
         this.add(cardsButton, c);
 
-        JButton creditsButton = new JButton("Kredyty");
+        WhiteButton creditsButton = new WhiteButton("Kredyty");
         c.gridx = 3;
         c.gridy = 0;
         this.add(creditsButton, c);
 
-        JButton depositsButton = new JButton("Lokaty");
+        WhiteButton depositsButton = new WhiteButton("Lokaty");
         c.gridx = 4;
         c.gridy = 0;
         this.add(depositsButton, c);
 
-        JButton helpButton = new JButton("Pomoc");
+        WhiteButton helpButton = new WhiteButton("Pomoc");
         c.gridx = 5;
         c.gridy = 0;
         this.add(helpButton, c);
 
-        JButton logoutButton = new JButton("Wyloguj");
+        WhiteButton logoutButton = new WhiteButton("Wyloguj");
         logoutButton.addActionListener(e -> parent.changeToLogin());
         c.gridx = 6;
         c.gridy = 0;

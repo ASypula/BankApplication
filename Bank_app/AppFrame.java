@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class AppFrame extends JFrame {
 
-    Color bgColor = new Color(252, 245, 245);
+    Color bgColor = new Color(255, 230, 230);
 
     public AppFrame() {
         super();

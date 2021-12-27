@@ -52,8 +52,7 @@ public class LoginPanel extends JPanel {
         JLabel bankNameLabel = new JLabel("Casa de PAPel");
         bankNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         bankNameLabel.setMinimumSize(new Dimension(300, 300));
-        bankNameLabel.setFont(new Font("Serif", Font.PLAIN, 48));
-        bankNameLabel.setForeground(Color.RED);
+        bankNameLabel.setFont(new Font("Serif", Font.BOLD, 48));
 //            TODO: Define font more globally
         this.add(bankNameLabel);
 
@@ -68,7 +67,7 @@ public class LoginPanel extends JPanel {
         passwordPf.setMaximumSize(new Dimension(150, 25));
         this.add(passwordPf);
 
-        JButton loginButton = new JButton("Zaloguj się");
+        WhiteButton loginButton = new WhiteButton("Zaloguj się");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.addActionListener(e -> {
             try {
@@ -79,12 +78,12 @@ public class LoginPanel extends JPanel {
         });
         this.add(loginButton);
 
-        JButton newClientButton = new JButton("Załóż konto: klient");
+        WhiteButton newClientButton = new WhiteButton("Załóż konto: klient");
         newClientButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newClientButton.addActionListener(e -> wipDialog());
         this.add(newClientButton);
 
-        JButton newEmployeeButton = new JButton("Załóż konto: pracownik");
+        WhiteButton newEmployeeButton = new WhiteButton("Załóż konto: pracownik");
         newEmployeeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newEmployeeButton.addActionListener(e -> wipDialog());
         this.add(newEmployeeButton);

@@ -39,7 +39,7 @@ public class MainClientPanel extends JPanel {
         amountTf.setMaximumSize(new Dimension(150, 25));
 //        TODO: accept only number input
 
-        JButton okButton = new JButton("Zatwierdź");
+        WhiteButton okButton = new WhiteButton("Zatwierdź");
         okButton.addActionListener(e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
@@ -58,7 +58,7 @@ public class MainClientPanel extends JPanel {
             } catch (NumberFormatException ignored) {}
         });
 
-        JButton cancelButton = new JButton("Anuluj");
+        WhiteButton cancelButton = new WhiteButton("Anuluj");
         cancelButton.addActionListener(e -> {
             transferDialog.setVisible(false);
             transferDialog.dispatchEvent(
@@ -108,7 +108,7 @@ public class MainClientPanel extends JPanel {
         amountTf.setMaximumSize(new Dimension(150, 25));
 //        TODO: accept only number input
 
-        JButton okButton = new JButton("Zatwierdź");
+        WhiteButton okButton = new WhiteButton("Zatwierdź");
         okButton.addActionListener(e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
@@ -132,7 +132,7 @@ public class MainClientPanel extends JPanel {
             } catch (NumberFormatException ignored) {}
         });
 
-        JButton cancelButton = new JButton("Anuluj");
+        WhiteButton cancelButton = new WhiteButton("Anuluj");
         cancelButton.addActionListener(e -> {
             amountDialog.setVisible(false);
             amountDialog.dispatchEvent(
@@ -211,7 +211,7 @@ public class MainClientPanel extends JPanel {
             c.gridwidth = 4;
             this.add(accountBalanceLabel, c);
 
-            JButton depositButton = new JButton("Wpłać");
+            WhiteButton depositButton = new WhiteButton("Wpłać");
             depositButton.addActionListener(
                     e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, true)
             );
@@ -220,7 +220,7 @@ public class MainClientPanel extends JPanel {
             c.gridwidth = 1;
             this.add(depositButton, c);
 
-            JButton withdrawButton = new JButton("Wypłać");
+            WhiteButton withdrawButton = new WhiteButton("Wypłać");
             withdrawButton.addActionListener(
                     e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, false)
             );
@@ -228,7 +228,7 @@ public class MainClientPanel extends JPanel {
             c.gridy = i*rowsPerAcc + 4;
             this.add(withdrawButton, c);
 
-            JButton transferButton = new JButton("Przelew");
+            WhiteButton transferButton = new WhiteButton("Przelew");
             transferButton.addActionListener(
                     e -> getTransferDetailsAndTransfer(accounts.get(finalI))
             );
