@@ -53,18 +53,20 @@ public class MainClientPanel extends JPanel {
         ActionListener okActionListener = e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
-//                TODO: Block negative transfers
-                try {
-                    account.transfer("1000", "4", amount, receiverTf.getText());
+//                TODO: Block transfers when too low balance, show dialog
+                if (amount > 0) {
+                    try {
+                        account.transfer("1000", "4", amount, receiverTf.getText());
 //                    TODO: unhardcode these values!
-                    parent.changeToMainClient(client);
-                } catch (SQLException ex) {
-                    System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                        parent.changeToMainClient(client);
+                    } catch (SQLException ex) {
+                        System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                    }
+                    transferDialog.setVisible(false);
+                    transferDialog.dispatchEvent(
+                            new WindowEvent(transferDialog, WindowEvent.WINDOW_CLOSING)
+                    );
                 }
-                transferDialog.setVisible(false);
-                transferDialog.dispatchEvent(
-                        new WindowEvent(transferDialog, WindowEvent.WINDOW_CLOSING)
-                );
             } catch (NumberFormatException ignored) {}
         };
 
@@ -105,23 +107,25 @@ public class MainClientPanel extends JPanel {
         ActionListener okActionListener = e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
-                try {
-                    if (inc)
-                        account.balanceInc(amount);
-                    else
-                        account.balanceDec(amount);
+                if (amount > 0) {
+                    try {
+                        if (inc)
+                            account.balanceInc(amount);
+                        else
+                            account.balanceDec(amount);
 //                    TODO: show info about too low balance
-                    accountBalanceLabel.setText(
-                            "Dostępne środki: " +
-                                    account.getBalance()
+                        accountBalanceLabel.setText(
+                                "Dostępne środki: " +
+                                        account.getBalance()
+                        );
+                    } catch (SQLException ex) {
+                        System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                    }
+                    amountDialog.setVisible(false);
+                    amountDialog.dispatchEvent(
+                            new WindowEvent(amountDialog, WindowEvent.WINDOW_CLOSING)
                     );
-                } catch (SQLException ex) {
-                    System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
                 }
-                amountDialog.setVisible(false);
-                amountDialog.dispatchEvent(
-                        new WindowEvent(amountDialog, WindowEvent.WINDOW_CLOSING)
-                );
             } catch (NumberFormatException ignored) {}
         };
 
