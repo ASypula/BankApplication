@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BankAccount {
-	private String account_id, account_types_f_id, clients_f_id, account_no, service_name;
+	private String account_id, account_types_f_id, client_id, account_no, service_name;
 	private Date start_date;
 	private int interest_rate, accum_period, balance;
 	static Map<Integer, String> account_types = new HashMap<Integer, String>();
@@ -51,8 +51,8 @@ public class BankAccount {
 		return accounts;
 	}
 	
-	public String getClients_f_id() {
-		return clients_f_id;
+	public String getClient_id() {
+		return client_id;
 	}
 	public String getAccount_no() {
 		return account_no;
@@ -82,12 +82,12 @@ public class BankAccount {
 			int amount, String bank_accounts_receiver_id) throws SQLException {
 		if (amount<=0 | !balanceDec(amount) | transaction_id == bank_accounts_receiver_id)
 			return false;
-		Transaction t = new Transaction(transaction_id, transaction_type_f_id, getAccount_id(), -amount);
+		Transaction t = new Transaction(transaction_id, transaction_type_f_id, getAccount_id(), -amount, bank_accounts_receiver_id);
 		t.insert();
 		try {
 			BankAccount b = new BankAccount(bank_accounts_receiver_id);
 			b.balanceInc(amount);
-			t = new Transaction(transaction_id, transaction_type_f_id, bank_accounts_receiver_id, amount);
+			t = new Transaction(transaction_id, transaction_type_f_id, bank_accounts_receiver_id, amount, bank_accounts_receiver_id);
 			t.insert();
 		} catch (WrongId e) {;}
 		return true;
@@ -106,7 +106,7 @@ public class BankAccount {
 			this.interest_rate = results.getInt(5);
 			this.accum_period = results.getInt(6);
 			this.account_types_f_id = results.getString(7);
-			this.clients_f_id = results.getString(8);
+			this.client_id = results.getString(8);
 			this.service_name = results.getString(9);
 		} else
 			throw new WrongId(account_id);
@@ -115,14 +115,14 @@ public class BankAccount {
 	public void balanceInc(int i) throws SQLException {
 		balance += i;
 		Statement statement = Main.conn.createStatement();
-		String query = "UPDATE bank_accounts SET balance = " + balance + " WHERE bank_account_id = " + account_id;
+		String query = "UPDATE services_info SET balance = " + balance + " WHERE client_id = " + client_id;
 		statement.executeQuery(query);
 	}
 	public boolean balanceDec(int i) throws SQLException {
 		if (i>balance) return false;
 		balance -= i;
 		Statement statement = Main.conn.createStatement();
-		String query = "UPDATE bank_accounts SET balance = " + balance + " WHERE bank_account_id = " + account_id;
+		String query = "UPDATE services_info SET balance = " + balance + " WHERE client_id = " + client_id;
 		statement.executeQuery(query);
 		return true;
 	}
@@ -134,13 +134,13 @@ public class BankAccount {
 		this.interest_rate = results.getInt(5);
 		this.accum_period = results.getInt(6);
 		this.account_types_f_id = results.getString(7);
-		this.clients_f_id = results.getString(8);
+		this.client_id = results.getString(8);
 		this.service_name = results.getString(9);
 	}
 	@Override
 	public String toString() {
 		return "BankAccount [bank_account_id=" + account_id + ", account_types_f_id=" + account_types_f_id
-				+ ", clients_f_id=" + clients_f_id + ", account_no=" + account_no + ", start_date=" + start_date
+				+ ", client_id=" + client_id + ", account_no=" + account_no + ", start_date=" + start_date
 				+ ", interest_rate=" + interest_rate + ", accum_period=" + accum_period
 				+ ", balance=" + balance + ", service_name=" + service_name + " ]";
 	}
