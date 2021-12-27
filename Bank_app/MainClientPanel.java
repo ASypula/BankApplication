@@ -31,32 +31,17 @@ public class MainClientPanel extends JPanel {
         c.weightx = 0.5;
         c.weighty = 0.5;
 
-        JLabel receiverLabel = new JLabel("ID konta odbiorcy:");
-        c.gridx = 0;
-        c.gridy = 0;
-        transferDialog.add(receiverLabel, c);
         JTextField receiverTf = new JTextField();
-        c.gridx = 0;
-        c.gridy = 1;
-        transferDialog.add(receiverTf, c);
-
-        JLabel amountLabel = new JLabel("Kwota:");
-        c.gridx = 0;
-        c.gridy = 2;
-        transferDialog.add(amountLabel, c);
-
         JTextField amountTf = new JTextField();
-        c.gridx = 0;
-        c.gridy = 3;
-        transferDialog.add(amountTf, c);
 
         ActionListener okActionListener = e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
 //                TODO: Block transfers when too low balance, show dialog
-                if (amount > 0) {
+                String receiver = receiverTf.getText();
+                if (amount > 0 && !receiver.isEmpty()) {
                     try {
-                        account.transfer("1000", "4", amount, receiverTf.getText());
+                        account.transfer("1000", "4", amount, receiver);
 //                    TODO: unhardcode these values!
                         parent.changeToMainClient(client);
                     } catch (SQLException ex) {
@@ -69,6 +54,26 @@ public class MainClientPanel extends JPanel {
                 }
             } catch (NumberFormatException ignored) {}
         };
+
+        JLabel receiverLabel = new JLabel("ID konta odbiorcy:");
+        c.gridx = 0;
+        c.gridy = 0;
+        transferDialog.add(receiverLabel, c);
+
+        receiverTf.addActionListener(okActionListener);
+        c.gridx = 0;
+        c.gridy = 1;
+        transferDialog.add(receiverTf, c);
+
+        JLabel amountLabel = new JLabel("Kwota:");
+        c.gridx = 0;
+        c.gridy = 2;
+        transferDialog.add(amountLabel, c);
+
+        amountTf.addActionListener(okActionListener);
+        c.gridx = 0;
+        c.gridy = 3;
+        transferDialog.add(amountTf, c);
 
         OkCancelButtonsPanel okCanButPan = new OkCancelButtonsPanel(parent, transferDialog, okActionListener);
         c.gridx = 0;
@@ -94,15 +99,7 @@ public class MainClientPanel extends JPanel {
         c.weightx = 0.5;
         c.weighty = 0.5;
 
-        JLabel amountLabel = new JLabel("Kwota:");
-        c.gridx = 0;
-        c.gridy = 0;
-        amountDialog.add(amountLabel, c);
-
         JTextField amountTf = new JTextField();
-        c.gridx = 0;
-        c.gridy = 1;
-        amountDialog.add(amountTf, c);
 
         ActionListener okActionListener = e -> {
             try {
@@ -128,6 +125,16 @@ public class MainClientPanel extends JPanel {
                 }
             } catch (NumberFormatException ignored) {}
         };
+
+        JLabel amountLabel = new JLabel("Kwota:");
+        c.gridx = 0;
+        c.gridy = 0;
+        amountDialog.add(amountLabel, c);
+
+        amountTf.addActionListener(okActionListener);
+        c.gridx = 0;
+        c.gridy = 1;
+        amountDialog.add(amountTf, c);
 
         OkCancelButtonsPanel okCanButPan = new OkCancelButtonsPanel(parent, amountDialog, okActionListener);
         c.gridx = 0;

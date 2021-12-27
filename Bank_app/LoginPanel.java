@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class LoginPanel extends JPanel {
@@ -71,27 +72,30 @@ public class LoginPanel extends JPanel {
         c.weighty = 0.35;
         this.add(loginDetPan, c);
 
-        usernameTf = new JTextField("ID");
-        usernameTf.setAlignmentX(Component.CENTER_ALIGNMENT);
-        usernameTf.setMaximumSize(new Dimension(150, 25));
-//            TODO: Define input field
-        loginDetPan.add(usernameTf);
-
-        passwordPf = new JPasswordField("Hasło");
-        passwordPf.setAlignmentX(Component.CENTER_ALIGNMENT);
-        passwordPf.setMaximumSize(new Dimension(150, 25));
-        loginDetPan.add(passwordPf);
-
-        WhiteButton loginButton = new WhiteButton("Zaloguj się");
-        loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loginButton.addActionListener(e -> {
+        ActionListener loginActionListener = e -> {
             try {
                 loginButtonClickedClient();
             } catch (SQLException ex) {
                 wrongLoginDialog();
 //                TODO: Add try for employee login
             }
-        });
+        };
+
+        usernameTf = new JTextField("ID");
+        usernameTf.setAlignmentX(Component.CENTER_ALIGNMENT);
+        usernameTf.setMaximumSize(new Dimension(150, 25));
+        usernameTf.addActionListener(loginActionListener);
+        loginDetPan.add(usernameTf);
+
+        passwordPf = new JPasswordField("Hasło");
+        passwordPf.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passwordPf.setMaximumSize(new Dimension(150, 25));
+        passwordPf.addActionListener(loginActionListener);
+        loginDetPan.add(passwordPf);
+
+        WhiteButton loginButton = new WhiteButton("Zaloguj się");
+        loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loginButton.addActionListener(loginActionListener);
         loginDetPan.add(loginButton);
 
         loginDetPan.add(Box.createRigidArea(new Dimension(0, 80)));
