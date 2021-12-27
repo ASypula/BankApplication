@@ -14,7 +14,7 @@ public class LoginPanel extends JPanel {
         initialize();
     }
 
-    private void loginButtonClicked() throws SQLException {
+    private void loginButtonClickedClient() throws SQLException {
         String login = usernameTf.getText();
         String pass = String.valueOf(passwordPf.getPassword());
 
@@ -52,46 +52,60 @@ public class LoginPanel extends JPanel {
     }
 
     private void initialize(){
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
 
-        JLabel bankNameLabel = new JLabel("Casa de PAPel");
-        bankNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        bankNameLabel.setMinimumSize(new Dimension(300, 300));
-        bankNameLabel.setFont(new Font("Serif", Font.BOLD, 48));
-//            TODO: Define font more globally
-        this.add(bankNameLabel);
+        JLabel bankNameLabel = new JLabel("Casa de PAPel", SwingConstants.CENTER);
+        bankNameLabel.setFont(new Font("Serif", Font.BOLD, 60));
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weighty = 0.65;
+        this.add(bankNameLabel, c);
+
+        JPanel loginDetPan = new JPanel();
+        loginDetPan.setLayout(new BoxLayout(loginDetPan, BoxLayout.PAGE_AXIS));
+        loginDetPan.setBackground(parent.bgColor);
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weighty = 0.35;
+        this.add(loginDetPan, c);
 
         usernameTf = new JTextField("ID");
         usernameTf.setAlignmentX(Component.CENTER_ALIGNMENT);
         usernameTf.setMaximumSize(new Dimension(150, 25));
 //            TODO: Define input field
-        this.add(usernameTf);
+        loginDetPan.add(usernameTf);
 
         passwordPf = new JPasswordField("Hasło");
         passwordPf.setAlignmentX(Component.CENTER_ALIGNMENT);
         passwordPf.setMaximumSize(new Dimension(150, 25));
-        this.add(passwordPf);
+        loginDetPan.add(passwordPf);
 
         WhiteButton loginButton = new WhiteButton("Zaloguj się");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.addActionListener(e -> {
             try {
-                loginButtonClicked();
+                loginButtonClickedClient();
             } catch (SQLException ex) {
-                System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                wrongLoginDialog();
+//                TODO: Add try for employee login
             }
         });
-        this.add(loginButton);
+        loginDetPan.add(loginButton);
+
+        loginDetPan.add(Box.createRigidArea(new Dimension(0, 80)));
 
         WhiteButton newClientButton = new WhiteButton("Załóż konto: klient");
         newClientButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newClientButton.addActionListener(e -> wipDialog());
-        this.add(newClientButton);
+        loginDetPan.add(newClientButton);
 
         WhiteButton newEmployeeButton = new WhiteButton("Załóż konto: pracownik");
         newEmployeeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newEmployeeButton.addActionListener(e -> wipDialog());
-        this.add(newEmployeeButton);
+        loginDetPan.add(newEmployeeButton);
     }
 
 }
