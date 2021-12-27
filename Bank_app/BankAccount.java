@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 public class BankAccount {
-	private String account_id, account_types_f_id, clients_f_id, account_no;
-	private Date start_date, end_date;
-	private int interest_rate, accum_period, installment_size, balance;
+	private String account_id, account_types_f_id, client_id, account_no, service_name;
+	private Date start_date;
+	private int interest_rate, accum_period, balance;
 	static Map<Integer, String> account_types = new HashMap<Integer, String>();
 	public String getAccount_id() {
 		return account_id;
@@ -51,8 +51,8 @@ public class BankAccount {
 		return accounts;
 	}
 	
-	public String getClients_f_id() {
-		return clients_f_id;
+	public String getClient_id() {
+		return client_id;
 	}
 	public String getAccount_no() {
 		return account_no;
@@ -60,20 +60,18 @@ public class BankAccount {
 	public Date getStart_date() {
 		return start_date;
 	}
-	public Date getEnd_date() {
-		return end_date;
-	}
 	public int getInterest_rate() {
 		return interest_rate;
 	}
 	public int getAccum_period() {
 		return accum_period;
 	}
-	public int getInstallment_size() {
-		return installment_size;
-	}
+
 	public int getBalance() {
 		return balance;
+	}
+	public String getServiceName() {
+		return service_name;
 	}
 	public boolean transfer(String transaction_type_f_id,
 			int amount, String bank_accounts_receiver_id) throws SQLException {
@@ -84,12 +82,12 @@ public class BankAccount {
 			int amount, String bank_accounts_receiver_id) throws SQLException {
 		if (amount<=0 | !balanceDec(amount) | transaction_id == bank_accounts_receiver_id)
 			return false;
-		Transaction t = new Transaction(transaction_id, transaction_type_f_id, getAccount_id(), -amount);
+		Transaction t = new Transaction(transaction_id, transaction_type_f_id, getAccount_id(), -amount, bank_accounts_receiver_id);
 		t.insert();
 		try {
 			BankAccount b = new BankAccount(bank_accounts_receiver_id);
 			b.balanceInc(amount);
-			t = new Transaction(transaction_id, transaction_type_f_id, bank_accounts_receiver_id, amount);
+			t = new Transaction(transaction_id, transaction_type_f_id, bank_accounts_receiver_id, amount, bank_accounts_receiver_id);
 			t.insert();
 		} catch (WrongId e) {;}
 		return true;
@@ -97,18 +95,19 @@ public class BankAccount {
 	
 	public BankAccount(String account_id) throws SQLException, WrongId {
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("SELECT bank_account_id, balance, account_no, start_date, end_date, interest_rate, accum_period, installment_size, account_types_type_id, clients_client_id from bank_accounts where bank_account_id = "+account_id);
+		String query = "SELECT bank_account_id, balance, account_no, start_date, interest, accum_period, account_types_type_id, client_id, name FROM v_bank_accounts where bank_account_id ="
+				+ account_id;
+		ResultSet results = statement.executeQuery(query);
 		if (results.next()) { // if not empty
 			this.account_id = results.getString(1);
 			this.balance = results.getInt(2);		
 			this.account_no = results.getString(3);
 			this.start_date = results.getDate(4);
-			this.end_date = results.getDate(5);
-			this.interest_rate = results.getInt(6);
-			this.accum_period = results.getInt(7);
-			this.installment_size = results.getInt(8);
-			this.account_types_f_id = results.getString(9);
-			this.clients_f_id = results.getString(10);
+			this.interest_rate = results.getInt(5);
+			this.accum_period = results.getInt(6);
+			this.account_types_f_id = results.getString(7);
+			this.client_id = results.getString(8);
+			this.service_name = results.getString(9);
 		} else
 			throw new WrongId(account_id);
 	}
@@ -116,33 +115,34 @@ public class BankAccount {
 	public void balanceInc(int i) throws SQLException {
 		balance += i;
 		Statement statement = Main.conn.createStatement();
-		statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE bank_account_id = " +account_id);
+		String query = "UPDATE services_info SET balance = " + balance + " WHERE client_id = " + client_id;
+		statement.executeQuery(query);
 	}
 	public boolean balanceDec(int i) throws SQLException {
 		if (i>balance) return false;
 		balance -= i;
 		Statement statement = Main.conn.createStatement();
-		statement.executeQuery("UPDATE bank_accounts SET balance = "+balance+" WHERE bank_account_id = " +account_id);
+		String query = "UPDATE services_info SET balance = " + balance + " WHERE client_id = " + client_id;
+		statement.executeQuery(query);
 		return true;
 	}
 	public BankAccount(ResultSet results) throws SQLException {
-			this.account_id = results.getString(1);
-			this.balance = results.getInt(2);		
-			this.account_no = results.getString(3);
-			this.start_date = results.getDate(4);
-			this.end_date = results.getDate(5);
-			this.interest_rate = results.getInt(6);
-			this.accum_period = results.getInt(7);
-			this.installment_size = results.getInt(8);
-			this.account_types_f_id = results.getString(9);
-			this.clients_f_id = results.getString(10);
+		this.account_id = results.getString(1);
+		this.balance = results.getInt(2);		
+		this.account_no = results.getString(3);
+		this.start_date = results.getDate(4);
+		this.interest_rate = results.getInt(5);
+		this.accum_period = results.getInt(6);
+		this.account_types_f_id = results.getString(7);
+		this.client_id = results.getString(8);
+		this.service_name = results.getString(9);
 	}
 	@Override
 	public String toString() {
 		return "BankAccount [bank_account_id=" + account_id + ", account_types_f_id=" + account_types_f_id
-				+ ", clients_f_id=" + clients_f_id + ", account_no=" + account_no + ", start_date=" + start_date
-				+ ", end_date=" + end_date + ", interest_rate=" + interest_rate + ", accum_period=" + accum_period
-				+ ", installment_size=" + installment_size + ", balance=" + balance + "]";
+				+ ", client_id=" + client_id + ", account_no=" + account_no + ", start_date=" + start_date
+				+ ", interest_rate=" + interest_rate + ", accum_period=" + accum_period
+				+ ", balance=" + balance + ", service_name=" + service_name + " ]";
 	}
 	
 }

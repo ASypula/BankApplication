@@ -18,12 +18,17 @@ public class LoginPanel extends JPanel {
         String login = usernameTf.getText();
         String pass = String.valueOf(passwordPf.getPassword());
 
-        PersonalData client = Main.login(login, pass);
+        try {
+            PersonalData client = Main.login(login, pass);
 
-        if (client == null)
+            if (client == null)
+                wrongLoginDialog();
+            else
+                parent.changeToMainClient((Client) client);
+        }
+        catch (SQLException e) {
             wrongLoginDialog();
-        else
-            parent.changeToMainClient((Client) client);
+        }
     }
 
     private void wrongLoginDialog() {
