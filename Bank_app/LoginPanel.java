@@ -8,10 +8,12 @@ public class LoginPanel extends JPanel {
     AppFrame parent;
     private JTextField usernameTf = null;
     private JPasswordField passwordPf = null;
+    private Dictionary dict;
 
     public LoginPanel(AppFrame mparent) {
         super();
         parent = mparent;
+        dict = new Dictionary("Pol");
         initialize();
     }
 
@@ -87,13 +89,13 @@ public class LoginPanel extends JPanel {
         usernameTf.addActionListener(loginActionListener);
         loginDetPan.add(usernameTf);
 
-        passwordPf = new JPasswordField("Hasło");
+        passwordPf = new JPasswordField(dict.getText("pwd"));
         passwordPf.setAlignmentX(Component.CENTER_ALIGNMENT);
         passwordPf.setMaximumSize(new Dimension(150, 25));
         passwordPf.addActionListener(loginActionListener);
         loginDetPan.add(passwordPf);
 
-        WhiteButton loginButton = new WhiteButton("Zaloguj się");
+        WhiteButton loginButton = new WhiteButton(dict.getText("login"));
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.addActionListener(loginActionListener);
         loginDetPan.add(loginButton);

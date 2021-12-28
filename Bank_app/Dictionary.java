@@ -13,7 +13,7 @@ public class Dictionary {
         this.lang = language;
         this.filePath = filePath.substring(0, 21) + language + filePath.substring(21);
         try {
-            Object obj = parser.parse(new FileReader(filePath));
+            Object obj = parser.parse(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
             this.jsonObject = (JSONObject) obj;
         } catch (Exception e) {
             e.printStackTrace();
@@ -21,12 +21,9 @@ public class Dictionary {
     }
 
     public String getText(String textKey) {
-        try {
-            String text = (String) jsonObject.get(textKey);
-            return text;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String text;
+        text = (String) jsonObject.get(textKey);
+        return text;
     }
 }
 
