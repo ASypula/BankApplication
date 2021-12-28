@@ -28,7 +28,8 @@ public class HelpClientPanel extends JPanel {
         c.gridy = 0;
         this.add(pageButPan, c);
 
-        WhiteButton updateInfoButton = new WhiteButton("<html>Zaktualizuj<br />moje dane</html>");
+        WhiteButton updateInfoButton = new WhiteButton("<html>" + dict.getText("update_data_1") +
+        "<br />" + dict.getText("update_data_2") +"</html>");
         updateInfoButton.addActionListener(e -> AppDialog.wipDialog(parent));
         c.fill = GridBagConstraints.NONE;
         c.gridx = 0;
@@ -39,9 +40,9 @@ public class HelpClientPanel extends JPanel {
         c.weighty = 0.5;
 
         JLabel phoneLabel = new JLabel(
-                "<html><center>Pytania? Skontaktuj się z nami już teraz<br />" +
-                "dzwoniąc pod numer <b style='color:red'>123 456 789</b><br />" +
-                "Infolinia czynna 24/7!</center></html>",
+                "<html><center>"+ dict.getText("contact_us_1") +"<br />" +
+                dict.getText("contact_us_2")+" <b style='color:red'>123 456 789</b><br />" +
+                dict.getText("contact_us_3")+"</center></html>",
                 SwingConstants.CENTER);
 //        TODO: Numer przypisanego pracownika?
         phoneLabel.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -50,15 +51,15 @@ public class HelpClientPanel extends JPanel {
         this.add(phoneLabel, c);
 
         JLabel placeLabel = new JLabel(
-                "<html><center>Wolisz się spotkać na żywo z naszym pracownikiem?<br />" +
-                "Znajdź najbliższy punkt:</center></html>",
+                "<html><center>" + dict.getText("real_meeting") + "<br />" +
+                dict.getText("find_closest_place")+ "</center></html>",
                 SwingConstants.CENTER);
         placeLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         c.gridx = 0;
         c.gridy = 3;
         this.add(placeLabel, c);
 
-        WhiteButton findPlaceButton = new WhiteButton("Wyszukaj");
+        WhiteButton findPlaceButton = new WhiteButton(dict.getText("search"));
         findPlaceButton.addActionListener(e -> AppDialog.wipDialog(parent));
 //        TODO: Adres przypisanego pracownika?
         c.fill = GridBagConstraints.NONE;
@@ -71,8 +72,8 @@ public class HelpClientPanel extends JPanel {
         c.anchor = GridBagConstraints.FIRST_LINE_START;
 
         JLabel emailLabel = new JLabel(
-                "<html><center>Uwagi do aplikacji?<br />" +
-                        "Napisz do nas! <b style='color:red'>app@casadepapel.com</b></center></html>",
+                "<html><center>"+ dict.getText("app_comments_1") +"<br />" +
+                dict.getText("app_comments_2") +"<b style='color:red'>app@casadepapel.com</b></center></html>",
                 SwingConstants.CENTER);
         emailLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         c.gridx = 0;
