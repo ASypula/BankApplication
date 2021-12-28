@@ -80,6 +80,13 @@ public class LoginPanel extends JPanel {
         c.gridy = 0;
         this.add(engButton, c);
 
+        WhiteButton japButton = new WhiteButton("Japanese");
+//        TODO: Change "Japanese" to japanese equivalent
+        japButton.addActionListener(e -> changeLanguage("Jap"));
+        c.gridx = 3;
+        c.gridy = 0;
+        this.add(japButton, c);
+
         c.fill = GridBagConstraints.BOTH;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         c.gridwidth = GridBagConstraints.REMAINDER;
