@@ -29,4 +29,28 @@ public class AppFrame extends JFrame {
         this.getContentPane().setBackground(bgColor);
         this.revalidate();
     }
+
+    public void changeToCardsClient(Client client) {
+        this.setContentPane(new CardsClientPanel(this, client));
+        this.getContentPane().setBackground(bgColor);
+        this.revalidate();
+    }
+
+    public void changeToCreditsClient(Client client) {
+        this.setContentPane(new CreditsClientPanel(this, client));
+        this.getContentPane().setBackground(bgColor);
+        this.revalidate();
+    }
+
+    public void changeToDepositsClient(Client client) {
+        this.setContentPane(new DepositsClientPanel(this, client));
+        this.getContentPane().setBackground(bgColor);
+        this.revalidate();
+    }
+
+    public void changeToHelpClient(Client client) {
+        this.setContentPane(new HelpClientPanel(this, client));
+        this.getContentPane().setBackground(bgColor);
+        this.revalidate();
+    }
 }

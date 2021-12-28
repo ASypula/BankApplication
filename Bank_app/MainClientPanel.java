@@ -167,7 +167,7 @@ public class MainClientPanel extends JPanel {
         c.weightx = 0.5;
         c.weighty = 0.5;
 
-        PageButtonsPanel pageButPan = new PageButtonsPanel(parent);
+        PageButtonsPanel pageButPan = new PageButtonsPanel(parent, client);
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = GridBagConstraints.REMAINDER;
