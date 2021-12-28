@@ -54,14 +54,6 @@ public class LoginPanel extends JPanel {
         wrongLoginDialog.setVisible(true);
     }
 
-    private void wipDialog() {
-//        TODO: Remove this when no longer necessary
-        AppDialog wipDialog = new AppDialog(parent, "WIP");
-        JLabel wip = new JLabel("WIP");
-        wipDialog.add(wip);
-        wipDialog.setVisible(true);
-    }
-
     private void initialize(){
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -137,13 +129,13 @@ public class LoginPanel extends JPanel {
 
         WhiteButton newClientButton = new WhiteButton(dict.getText("create_acc_client"));
         newClientButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        newClientButton.addActionListener(e -> wipDialog());
+        newClientButton.addActionListener(e -> AppDialog.wipDialog(parent));
 //        TODO: Add adding client
         loginDetPan.add(newClientButton);
 
         WhiteButton newEmployeeButton = new WhiteButton(dict.getText("create_acc_emp"));
         newEmployeeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        newEmployeeButton.addActionListener(e -> wipDialog());
+        newEmployeeButton.addActionListener(e -> AppDialog.wipDialog(parent));
 //        TODO: Add adding employee
         loginDetPan.add(newEmployeeButton);
     }
