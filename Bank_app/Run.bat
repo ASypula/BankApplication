@@ -1,2 +1,2 @@
-javac -cp ".;Jar_files/*" *.java -encoding utf-8
-java -cp ".;Jar_files/*" Main
+javac -cp ".;JarFiles/*" *.java -encoding utf-8
+java -cp ".;JarFiles/*" Main
