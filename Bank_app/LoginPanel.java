@@ -13,8 +13,15 @@ public class LoginPanel extends JPanel {
     public LoginPanel(AppFrame mparent) {
         super();
         parent = mparent;
-        dict = new Dictionary("Pol");
+        dict = parent.dict;
         initialize();
+    }
+
+    private void changeLanguage(String lang) {
+        parent.lang = lang;
+        parent.dict = new Dictionary(lang);
+        dict = parent.dict;
+        parent.changeToLogin();
     }
 
     private void loginButtonClickedClient() throws SQLException {
@@ -56,21 +63,45 @@ public class LoginPanel extends JPanel {
     private void initialize(){
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.FIRST_LINE_END;
+        c.weighty = 0.05;
+
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 0.9;
+        this.add(Box.createRigidArea(new Dimension(0, 0)), c);
+
+        c.weightx = 0.05;
+
+        WhiteButton polButton = new WhiteButton("Polski");
+        polButton.addActionListener(e -> changeLanguage("Pol"));
+        c.gridx = 1;
+        c.gridy = 0;
+        this.add(polButton, c);
+
+        WhiteButton engButton = new WhiteButton("English");
+        engButton.addActionListener(e -> changeLanguage("Eng"));
+        c.gridx = 2;
+        c.gridy = 0;
+        this.add(engButton, c);
+
         c.fill = GridBagConstraints.BOTH;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.gridwidth = GridBagConstraints.REMAINDER;
 
         JLabel bankNameLabel = new JLabel("Casa de PAPel", SwingConstants.CENTER);
         bankNameLabel.setFont(new Font("Serif", Font.BOLD, 60));
         c.gridx = 0;
-        c.gridy = 0;
-        c.weighty = 0.65;
+        c.gridy = 1;
+        c.weighty = 0.6;
         this.add(bankNameLabel, c);
 
         JPanel loginDetPan = new JPanel();
         loginDetPan.setLayout(new BoxLayout(loginDetPan, BoxLayout.PAGE_AXIS));
         loginDetPan.setBackground(parent.bgColor);
         c.gridx = 0;
-        c.gridy = 1;
+        c.gridy = 2;
         c.weighty = 0.35;
         this.add(loginDetPan, c);
 

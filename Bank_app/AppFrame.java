@@ -5,6 +5,8 @@ import java.sql.SQLException;
 public class AppFrame extends JFrame {
 
     Color bgColor = new Color(255, 230, 230);
+    String lang = "Pol";
+    Dictionary dict = new Dictionary(lang);
 
     public AppFrame() {
         super();
