@@ -20,6 +20,17 @@ public class MainClientPanel extends JPanel {
         }
     }
 
+    private void showTooLowBalanceDialog() {
+        AppDialog lowBalanceDialog = new AppDialog(parent, "Brak środków");
+        JLabel lowBalanceText = new JLabel(
+                "<html><div style='text-align: center;'>" +
+                        "Brak wystarczających środków na koncie<br />do wykonania tej operacji</html>",
+                SwingConstants.CENTER
+        );
+        lowBalanceDialog.add(lowBalanceText);
+        lowBalanceDialog.setVisible(true);
+    }
+
     private void getTransferDetailsAndTransfer(BankAccount account) {
 //        TODO: add seperate class for dialog
         AppDialog transferDialog = new AppDialog(parent, "Szczegóły przelewu");
@@ -39,7 +50,9 @@ public class MainClientPanel extends JPanel {
                 int amount = Integer.parseInt(amountTf.getText());
 //                TODO: Block transfers when too low balance, show dialog
                 String receiver = receiverTf.getText();
-                if (amount > 0 && !receiver.isEmpty()) {
+                if (amount > account.getBalance())
+                    showTooLowBalanceDialog();
+                else if (amount > 0 && !receiver.isEmpty()) {
                     try {
                         account.transfer("1000", "4", amount, receiver);
 //                    TODO: unhardcode these values!
@@ -104,7 +117,9 @@ public class MainClientPanel extends JPanel {
         ActionListener okActionListener = e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
-                if (amount > 0) {
+                if (!inc && amount > account.getBalance())
+                    showTooLowBalanceDialog();
+                else if (amount > 0) {
                     try {
                         if (inc)
                             account.balanceInc(amount);

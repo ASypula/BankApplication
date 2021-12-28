@@ -33,7 +33,7 @@ public class LoginPanel extends JPanel {
     }
 
     private void wrongLoginDialog() {
-        AppDialog wrongLoginDialog = new AppDialog(parent, "Błędne dane logowania");
+        AppDialog wrongLoginDialog = new AppDialog(parent, "Błędne dane");
         JLabel wrongLoginText = new JLabel(
                 "<html><div style='text-align: center;'>" +
                         "Użytkownk o podanym<br />ID i haśle<br />nie istnieje</html>",
