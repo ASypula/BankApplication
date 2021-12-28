@@ -14,7 +14,7 @@ public class MainClientPanel extends JPanel {
         super();
         parent = mparent;
         client = mclient;
-        dict = new Dictionary("Pol");
+        dict = parent.dict;
         try {
             initialize();
         } catch (SQLException ex) {

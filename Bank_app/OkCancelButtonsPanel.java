@@ -9,7 +9,7 @@ public class OkCancelButtonsPanel extends JPanel {
 
     OkCancelButtonsPanel(AppFrame parent, JDialog owner, ActionListener okActionListener) {
         super();
-        dict = new Dictionary("Pol");
+        dict = parent.dict;
 
         this.setBackground(parent.bgColor);
 

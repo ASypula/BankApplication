@@ -5,11 +5,13 @@ public class CreditsClientPanel extends JPanel {
 
     AppFrame parent;
     Client client;
+    private Dictionary dict;
 
     public CreditsClientPanel(AppFrame mparent, Client mclient) {
         super();
         parent = mparent;
         client = mclient;
+        dict = parent.dict;
         initialize();
     }
 
@@ -27,7 +29,7 @@ public class CreditsClientPanel extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
         this.add(pageButPan, c);
 
-        JLabel creditsLabel = new JLabel("Moje kredyty");
+        JLabel creditsLabel = new JLabel(dict.getText("my_credits"));
         c.gridx = 0;
         c.gridy = 1;
         this.add(creditsLabel, c);
