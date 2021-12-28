@@ -48,14 +48,13 @@ public class Main {
 		password = hash(password);
 		Statement statement = Main.conn.createStatement();
 		//searches for personal data with given login and password
-		// TODO: what if user gives incorrect password?
 		ResultSet results = statement.executeQuery("SELECT personal_data_id, name, surname, pesel, phone_no, addresses_address_id "
 				+ "from personal_data where personal_data_id = "+login+" and hashed_pswd = '"+password+"'");
 		if (results.next()) {
 			try {
 					return new Client(login);
 				} catch (WrongId e) {;}
-			//here can be employee..
+			// TODO: here can be employee..
 		}
 		return null;
 	}

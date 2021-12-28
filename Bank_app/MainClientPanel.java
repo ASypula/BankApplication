@@ -32,7 +32,6 @@ public class MainClientPanel extends JPanel {
     }
 
     private void getTransferDetailsAndTransfer(BankAccount account) {
-//        TODO: add seperate class for dialog
         AppDialog transferDialog = new AppDialog(parent, "Szczegóły przelewu");
         transferDialog.setSize(250, 300);
         transferDialog.setLayout(new GridBagLayout());
@@ -48,7 +47,6 @@ public class MainClientPanel extends JPanel {
         ActionListener okActionListener = e -> {
             try {
                 int amount = Integer.parseInt(amountTf.getText());
-//                TODO: Block transfers when too low balance, show dialog
                 String receiver = receiverTf.getText();
                 if (amount > account.getBalance())
                     showTooLowBalanceDialog();
@@ -125,7 +123,6 @@ public class MainClientPanel extends JPanel {
                             account.balanceInc(amount);
                         else
                             account.balanceDec(amount);
-//                    TODO: show info about too low balance
                         accountBalanceLabel.setText(
                                 "Dostępne środki: " +
                                         account.getBalance()
