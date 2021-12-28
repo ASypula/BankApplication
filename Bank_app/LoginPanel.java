@@ -42,7 +42,7 @@ public class LoginPanel extends JPanel {
     }
 
     private void wrongLoginDialog() {
-        AppDialog wrongLoginDialog = new AppDialog(parent, dict.getText("invalid_data"));
+        AppDialog wrongLoginDialog = new AppDialog(parent, dict.getText("invalid_data"), 160, 150);
         JLabel wrongLoginText = new JLabel(
                 "<html><div style='text-align: center;'>" +
                         dict.getText("wrong_login_1")+ "<br />ID "+
@@ -136,14 +136,16 @@ public class LoginPanel extends JPanel {
 
         WhiteButton newClientButton = new WhiteButton(dict.getText("create_acc_client"));
         newClientButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        newClientButton.addActionListener(e -> AppDialog.wipDialog(parent));
-//        TODO: Add adding client
+        newClientButton.addActionListener(e ->
+                new CreateAccountDialog(parent, "Załóż konto: klient", true)
+        );
         loginDetPan.add(newClientButton);
 
         WhiteButton newEmployeeButton = new WhiteButton(dict.getText("create_acc_emp"));
         newEmployeeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        newEmployeeButton.addActionListener(e -> AppDialog.wipDialog(parent));
-//        TODO: Add adding employee
+        newEmployeeButton.addActionListener(e ->
+                new CreateAccountDialog(parent, "Załóż konto: pracownik", false)
+        );
         loginDetPan.add(newEmployeeButton);
     }
 

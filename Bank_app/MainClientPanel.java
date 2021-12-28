@@ -23,7 +23,7 @@ public class MainClientPanel extends JPanel {
     }
 
     private void showTooLowBalanceDialog() {
-        AppDialog lowBalanceDialog = new AppDialog(parent, dict.getText("no_funds"));
+        AppDialog lowBalanceDialog = new AppDialog(parent, dict.getText("no_funds"), 160, 150);
         JLabel lowBalanceText = new JLabel(
                 "<html><div style='text-align: center;'>" +
                         dict.getText("no_funds_acc_1") + "<br /> " +
@@ -35,8 +35,7 @@ public class MainClientPanel extends JPanel {
     }
 
     private void getTransferDetailsAndTransfer(BankAccount account) {
-        AppDialog transferDialog = new AppDialog(parent, dict.getText("transfer_details"));
-        transferDialog.setSize(250, 300);
+        AppDialog transferDialog = new AppDialog(parent, dict.getText("transfer_details"), 250, 300);
         transferDialog.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -104,8 +103,7 @@ public class MainClientPanel extends JPanel {
             dialogTitle = dict.getText("account_deposit");
         else
             dialogTitle = dict.getText("account_withdrawal");
-        AppDialog amountDialog = new AppDialog(parent, dialogTitle);
-        amountDialog.setSize(250, 200);
+        AppDialog amountDialog = new AppDialog(parent, dialogTitle, 250, 200);
         amountDialog.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
