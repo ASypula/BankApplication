@@ -1,4 +1,22 @@
 {
-    "login": "Zaloguj się1",
-    "pwd": "Hasło"
+    "account_id": "ID konta: ",
+    "amount": "Kwota: ",
+    "available_funds": "Dostępne środki: ",
+    "create_acc_client": "Załóż konto: klient",
+    "create_acc_emp": "Załóż konto: pracownik",
+    "deposit": "Wpłać",
+    "history": "Historia",
+    "invalid_data": "Błędne dane",
+    "login": "Zaloguj się",
+    "my_accounts": "Moje konta",
+    "no_funds": "Brak środków",
+    "no_funds_acc_1": "Brak wystarczających środków na koncie",
+    "no_funds_acc_2": "do wykonania tej operacji",
+    "pwd": "Hasło",
+    "transfer": "Przelew",
+    "transfer_details": "Szczegóły przelewu",
+    "withdraw": "Wypłać",
+    "wrong_login_1": "Użytkownk o podanym",
+    "wrong_login_2": "i haśle",
+    "wrong_login_3": "nie istnieje"
 }

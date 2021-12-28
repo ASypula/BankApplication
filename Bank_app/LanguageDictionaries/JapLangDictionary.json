@@ -1,0 +1,7 @@
+{
+    "create_acc_client": "アカウントを作成する: 顧客",
+    "create_acc_emp": "アカウントを作成する: 従業員",
+    "invalid_data": "不正なデータ",
+    "login": "ログインする",
+    "pwd": "パスワード"
+}

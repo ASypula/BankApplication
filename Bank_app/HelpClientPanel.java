@@ -5,11 +5,13 @@ public class HelpClientPanel extends JPanel {
 
     AppFrame parent;
     Client client;
+    private Dictionary dict;
 
     public HelpClientPanel(AppFrame mparent, Client mclient) {
         super();
         parent = mparent;
         client = mclient;
+        dict = new Dictionary("Pol");
         initialize();
     }
 
@@ -27,7 +29,7 @@ public class HelpClientPanel extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
         this.add(pageButPan, c);
 
-        JLabel helpLabel = new JLabel("Moja pomoc");
+        JLabel helpLabel = new JLabel(dict.getText("my_help"));
         c.gridx = 0;
         c.gridy = 1;
         this.add(helpLabel, c);

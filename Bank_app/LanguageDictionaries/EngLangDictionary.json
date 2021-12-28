@@ -1,4 +1,7 @@
 {
+    "create_acc_client": "Create account: client",
+    "create_acc_emp": "Create account: employee",
+    "invalid_data": "Invalid data",
     "login": "Log in",
     "pwd": "Password"
 }

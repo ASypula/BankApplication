@@ -8,11 +8,13 @@ public class MainClientPanel extends JPanel {
 
     AppFrame parent;
     Client client;
+    private Dictionary dict;
 
     public MainClientPanel(AppFrame mparent, Client mclient) {
         super();
         parent = mparent;
         client = mclient;
+        dict = new Dictionary("Pol");
         try {
             initialize();
         } catch (SQLException ex) {
@@ -21,10 +23,11 @@ public class MainClientPanel extends JPanel {
     }
 
     private void showTooLowBalanceDialog() {
-        AppDialog lowBalanceDialog = new AppDialog(parent, "Brak środków");
+        AppDialog lowBalanceDialog = new AppDialog(parent, dict.getText("no_funds"));
         JLabel lowBalanceText = new JLabel(
                 "<html><div style='text-align: center;'>" +
-                        "Brak wystarczających środków na koncie<br />do wykonania tej operacji</html>",
+                        dict.getText("no_funds_acc_1") + "<br /> " +
+                        dict.getText("no_funds_acc_2")+"</html>",
                 SwingConstants.CENTER
         );
         lowBalanceDialog.add(lowBalanceText);
@@ -32,7 +35,7 @@ public class MainClientPanel extends JPanel {
     }
 
     private void getTransferDetailsAndTransfer(BankAccount account) {
-        AppDialog transferDialog = new AppDialog(parent, "Szczegóły przelewu");
+        AppDialog transferDialog = new AppDialog(parent, dict.getText("transfer_details"));
         transferDialog.setSize(250, 300);
         transferDialog.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -66,7 +69,7 @@ public class MainClientPanel extends JPanel {
             } catch (NumberFormatException ignored) {}
         };
 
-        JLabel receiverLabel = new JLabel("ID konta odbiorcy:");
+        JLabel receiverLabel = new JLabel(dict.getText("recipient_id"));
         c.gridx = 0;
         c.gridy = 0;
         transferDialog.add(receiverLabel, c);
@@ -76,7 +79,7 @@ public class MainClientPanel extends JPanel {
         c.gridy = 1;
         transferDialog.add(receiverTf, c);
 
-        JLabel amountLabel = new JLabel("Kwota:");
+        JLabel amountLabel = new JLabel(dict.getText("amount"));
         c.gridx = 0;
         c.gridy = 2;
         transferDialog.add(amountLabel, c);
@@ -98,9 +101,9 @@ public class MainClientPanel extends JPanel {
 //        if inc is true - deposit; else withdrawal
         String dialogTitle;
         if (inc)
-            dialogTitle = "Wpłać na konto";
+            dialogTitle = dict.getText("account_deposit");
         else
-            dialogTitle = "Wypłać z konta";
+            dialogTitle = dict.getText("account_withdrawal");
         AppDialog amountDialog = new AppDialog(parent, dialogTitle);
         amountDialog.setSize(250, 200);
         amountDialog.setLayout(new GridBagLayout());
@@ -124,7 +127,7 @@ public class MainClientPanel extends JPanel {
                         else
                             account.balanceDec(amount);
                         accountBalanceLabel.setText(
-                                "Dostępne środki: " +
+                                dict.getText("available_funds") +
                                         account.getBalance()
                         );
                     } catch (SQLException ex) {
@@ -138,7 +141,7 @@ public class MainClientPanel extends JPanel {
             } catch (NumberFormatException ignored) {}
         };
 
-        JLabel amountLabel = new JLabel("Kwota:");
+        JLabel amountLabel = new JLabel(dict.getText("amount"));
         c.gridx = 0;
         c.gridy = 0;
         amountDialog.add(amountLabel, c);
@@ -170,13 +173,13 @@ public class MainClientPanel extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
         this.add(pageButPan, c);
 
-        JLabel accountsLabel = new JLabel("Moje konta");
+        JLabel accountsLabel = new JLabel(dict.getText("my_accounts"));
         c.gridx = 0;
         c.gridy = 1;
         c.gridwidth = 4;
         this.add(accountsLabel, c);
 
-        JLabel historyLabel = new JLabel("Historia");
+        JLabel historyLabel = new JLabel(dict.getText("history"));
         c.gridx = 5;
         c.gridy = 1;
         c.gridwidth = GridBagConstraints.REMAINDER;
@@ -194,7 +197,7 @@ public class MainClientPanel extends JPanel {
             int finalI = i;
 
             JLabel accountNrLabel = new JLabel(
-                    "ID konta: " +
+                    dict.getText("account_id") +
                             accounts.get(i).getAccount_id()
             );
             c.gridx = 0;
@@ -203,7 +206,7 @@ public class MainClientPanel extends JPanel {
             this.add(accountNrLabel, c);
 
             JLabel accountBalanceLabel = new JLabel(
-                    "Dostępne środki: " +
+                    dict.getText("available_funds")+
                             accounts.get(i).getBalance()
             );
             accountBalanceLabel.setFont(new Font("Arial", Font.BOLD, 18));
@@ -212,7 +215,7 @@ public class MainClientPanel extends JPanel {
             c.gridwidth = 4;
             this.add(accountBalanceLabel, c);
 
-            WhiteButton depositButton = new WhiteButton("Wpłać");
+            WhiteButton depositButton = new WhiteButton(dict.getText("deposit"));
             depositButton.addActionListener(
                     e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, true)
             );
@@ -221,7 +224,7 @@ public class MainClientPanel extends JPanel {
             c.gridwidth = 1;
             this.add(depositButton, c);
 
-            WhiteButton withdrawButton = new WhiteButton("Wypłać");
+            WhiteButton withdrawButton = new WhiteButton(dict.getText("withdraw"));
             withdrawButton.addActionListener(
                     e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, false)
             );
@@ -229,7 +232,7 @@ public class MainClientPanel extends JPanel {
             c.gridy = i*rowsPerAcc + 4;
             this.add(withdrawButton, c);
 
-            WhiteButton transferButton = new WhiteButton("Przelew");
+            WhiteButton transferButton = new WhiteButton(dict.getText("transfer"));
             transferButton.addActionListener(
                     e -> getTransferDetailsAndTransfer(accounts.get(finalI))
             );

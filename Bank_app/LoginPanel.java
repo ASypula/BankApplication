@@ -35,10 +35,12 @@ public class LoginPanel extends JPanel {
     }
 
     private void wrongLoginDialog() {
-        AppDialog wrongLoginDialog = new AppDialog(parent, "Błędne dane");
+        AppDialog wrongLoginDialog = new AppDialog(parent, dict.getText("invalid_data"));
         JLabel wrongLoginText = new JLabel(
                 "<html><div style='text-align: center;'>" +
-                        "Użytkownk o podanym<br />ID i haśle<br />nie istnieje</html>",
+                        dict.getText("wrong_login_1")+ "<br />ID "+
+                        dict.getText("wrong_login_2") + "<br />" +
+                        dict.getText("wrong_login_3") + "</html>",
                 SwingConstants.CENTER
         );
         wrongLoginDialog.add(wrongLoginText);
@@ -102,13 +104,13 @@ public class LoginPanel extends JPanel {
 
         loginDetPan.add(Box.createRigidArea(new Dimension(0, 80)));
 
-        WhiteButton newClientButton = new WhiteButton("Załóż konto: klient");
+        WhiteButton newClientButton = new WhiteButton(dict.getText("create_acc_client"));
         newClientButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newClientButton.addActionListener(e -> wipDialog());
 //        TODO: Add adding client
         loginDetPan.add(newClientButton);
 
-        WhiteButton newEmployeeButton = new WhiteButton("Załóż konto: pracownik");
+        WhiteButton newEmployeeButton = new WhiteButton(dict.getText("create_acc_emp"));
         newEmployeeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newEmployeeButton.addActionListener(e -> wipDialog());
 //        TODO: Add adding employee
