@@ -22,6 +22,9 @@ public class PersonalData {
 	public String getAddresses_f_id() {
 		return addresses_f_id;
 	}
+	public Address getAddress() throws SQLException, WrongId {
+		return new Address(addresses_f_id);
+	}
 	public PersonalData() {
 	}
 	
