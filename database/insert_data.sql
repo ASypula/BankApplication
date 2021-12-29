@@ -121,3 +121,7 @@ INSERT INTO transaction_history VALUES (3, 50, TO_DATE('07-06-2021', 'DD-MM-YYYY
 INSERT INTO transaction_history VALUES (4, 64, TO_DATE('09-06-2021', 'DD-MM-YYYY'), 1, 2);
 INSERT INTO transaction_history VALUES (5, 670, TO_DATE('16-06-2021', 'DD-MM-YYYY'), 1, 2);
 commit;
+
+UPDATE employees SET branch_id=1 WHERE employee_id=1;
+UPDATE employees SET branch_id=3 WHERE employee_id=2;
+commit;
