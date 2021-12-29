@@ -19,7 +19,7 @@ public class AppDialog extends JDialog {
     }
 
     public static void contactEmployeeDialog(AppFrame parent) {
-        AppDialog contactDialog = new AppDialog(parent, "Skontaktuj się", 250, 250);
+        AppDialog contactDialog = new AppDialog(parent, "Skontaktuj się z pracownikiem", 250, 250);
         JLabel contactLabel = new JLabel(
                 "<html><div style='text-align: center;'>" +
                     "Ta operacja nie jest dostępna<br />" +

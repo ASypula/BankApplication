@@ -5,11 +5,13 @@ public class DepositsClientPanel extends JPanel {
 
     AppFrame parent;
     Client client;
+    private Dictionary dict;
 
     public DepositsClientPanel(AppFrame mparent, Client mclient) {
         super();
         parent = mparent;
         client = mclient;
+        dict = parent.dict;
         initialize();
     }
 
