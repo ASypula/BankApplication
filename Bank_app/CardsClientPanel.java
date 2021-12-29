@@ -35,7 +35,7 @@ public class CardsClientPanel extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
         this.add(pageButPan, c);
 
-        JLabel cardsLabel = new JLabel("Moje karty");
+        JLabel cardsLabel = new JLabel(dict.getText("my_cards"));
         c.fill = GridBagConstraints.NONE;
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
@@ -43,7 +43,7 @@ public class CardsClientPanel extends JPanel {
         c.gridwidth = 1;
         this.add(cardsLabel, c);
 
-        WhiteButton newCardButton = new WhiteButton("Zamów nową kartę");
+        WhiteButton newCardButton = new WhiteButton(dict.getText("order_new_card"));
         newCardButton.addActionListener(e -> AppDialog.contactEmployeeDialog(parent));
         c.anchor = GridBagConstraints.EAST;
         c.gridx = 1;
@@ -73,9 +73,8 @@ public class CardsClientPanel extends JPanel {
                 c.weighty = 0.5;
 
                 JLabel cardIdLabel = new JLabel(
-                        "<html>ID karty: <b>" +
-                                card.getCard_id() +
-                                "</b></html>"
+                        "<html>" + dict.getText("card_id") + "<b>" +
+                                card.getCard_id() + "</b></html>"
                 );
                 cardIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -83,9 +82,8 @@ public class CardsClientPanel extends JPanel {
                 cardPanel.add(cardIdLabel, c);
 
                 JLabel cardTypeLabel = new JLabel(
-                        "<html>Typ karty: <b>" +
-                                card.getCard_type() +
-                                "</b></html>"
+                        "<html>" + dict.getText("card_type") + "<b>" +
+                                card.getCard_type() + "</b></html>"
                 );
                 cardTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -93,9 +91,8 @@ public class CardsClientPanel extends JPanel {
                 cardPanel.add(cardTypeLabel, c);
 
                 JLabel expirationDateLabel = new JLabel(
-                        "<html>Karta ważna do: <b>" +
-                                card.getExpiration_date().toString() +
-                                "</b></html>"
+                        "<html>" + dict.getText("card_valid_until") + "<b>" +
+                                card.getExpiration_date().toString() + "</b></html>"
                 );
                 expirationDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -103,9 +100,8 @@ public class CardsClientPanel extends JPanel {
                 cardPanel.add(expirationDateLabel, c);
 
                 JLabel accountNrLabel = new JLabel(
-                        "<html>Numer powiązanego konta: <b>" +
-                                account.getAccount_no() +
-                                "</b></html>"
+                        "<html>" + dict.getText("linked_acc_no") +"<b>" +
+                                account.getAccount_no() + "</b></html>"
                 );
                 accountNrLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -114,7 +110,7 @@ public class CardsClientPanel extends JPanel {
 
                 c.anchor = GridBagConstraints.EAST;
 
-                JLabel currentLabel = new JLabel("Dostępne środki:");
+                JLabel currentLabel = new JLabel(dict.getText("available_funds"));
                 currentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 1;
                 c.gridy = 0;
