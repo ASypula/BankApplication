@@ -7,10 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BankAccount {
-	private String account_id, account_types_f_id, client_id, account_no, service_name;
-	private Date start_date;
-	private int interest_rate, accum_period, balance;
+public class BankAccount extends Account {
+	private String account_id, account_types_f_id, account_no, service_name;
 	static Map<Integer, String> account_types = new HashMap<Integer, String>();
 	public String getAccount_id() {
 		return account_id;
@@ -50,25 +48,8 @@ public class BankAccount {
 		}
 		return accounts;
 	}
-	
-	public String getClient_id() {
-		return client_id;
-	}
 	public String getAccount_no() {
 		return account_no;
-	}
-	public Date getStart_date() {
-		return start_date;
-	}
-	public int getInterest_rate() {
-		return interest_rate;
-	}
-	public int getAccum_period() {
-		return accum_period;
-	}
-
-	public int getBalance() {
-		return balance;
 	}
 	public String getServiceName() {
 		return service_name;
