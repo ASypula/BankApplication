@@ -17,13 +17,39 @@ public class Client extends PersonalData {
 	public Employee getEmployee() throws SQLException, WrongId {
 		return new Employee(this.employees_id);
 	}
+	public List<Loan> getLoans() throws SQLException {
+		Statement statement = Main.conn.createStatement();
+		String query = "SELECT loan_id, end_date, installment, initial_value, balance, start_date, interest_rate, accum_period, client_id FROM v_loans where client_id = "+this.client_id;
+		ResultSet results = statement.executeQuery(query);
+		List<Loan> accounts = new ArrayList<Loan>();
+		while (results.next()) {
+			accounts.add(new Loan(results));
+		}
+		return accounts;
+	}
 	public List<BankAccount> getBankAccounts() throws SQLException {
 		Statement statement = Main.conn.createStatement();
 		String query = "SELECT bank_account_id, balance, account_no, start_date, interest, accum_period, account_types_type_id, client_id, name FROM v_bank_accounts where client_id = "+this.client_id;
 		ResultSet results = statement.executeQuery(query);
 		List<BankAccount> accounts = new ArrayList<BankAccount>();
 		while (results.next()) {
-			accounts.add(new BankAccount(results));
+			BankAccount a = new BankAccount(results);
+			if (a.getAccount_types_f_id().equals("4") || a.getAccount_types_f_id().equals("5"));
+			else
+			accounts.add(a);
+		}
+		return accounts;
+	}
+	public List<BankAccount> getDeposits() throws SQLException {
+		Statement statement = Main.conn.createStatement();
+		String query = "SELECT bank_account_id, balance, account_no, start_date, interest, accum_period, account_types_type_id, client_id, name FROM v_bank_accounts where client_id = "+this.client_id;
+		ResultSet results = statement.executeQuery(query);
+		List<BankAccount> accounts = new ArrayList<BankAccount>();
+		while (results.next()) {
+			BankAccount a = new BankAccount(results);
+			if (a.getAccount_types_f_id().equals("4") || a.getAccount_types_f_id().equals("5"))
+			accounts.add(a);
+			else;
 		}
 		return accounts;
 	}
