@@ -43,7 +43,7 @@ public class PageButtonsPanel extends JPanel {
         this.add(cardsButton, c);
 
         WhiteButton creditsButton = new WhiteButton(dict.getText("credits"));
-        creditsButton.addActionListener(e -> parent.changeToCreditsClient(client));
+        creditsButton.addActionListener(e -> parent.changeToLoansClient(client));
         c.gridx = 3;
         c.gridy = 0;
         this.add(creditsButton, c);

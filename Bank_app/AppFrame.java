@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 
 public class AppFrame extends JFrame {
 
@@ -38,8 +37,8 @@ public class AppFrame extends JFrame {
         this.revalidate();
     }
 
-    public void changeToCreditsClient(Client client) {
-        this.setContentPane(new CreditsClientPanel(this, client));
+    public void changeToLoansClient(Client client) {
+        this.setContentPane(new LoansClientPanel(this, client));
         this.getContentPane().setBackground(bgColor);
         this.revalidate();
     }

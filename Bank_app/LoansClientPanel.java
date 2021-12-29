@@ -1,13 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class CreditsClientPanel extends JPanel {
+public class LoansClientPanel extends JPanel {
 
     AppFrame parent;
     Client client;
     private Dictionary dict;
 
-    public CreditsClientPanel(AppFrame mparent, Client mclient) {
+    public LoansClientPanel(AppFrame mparent, Client mclient) {
         super();
         parent = mparent;
         client = mclient;
