@@ -214,3 +214,8 @@ ALTER TABLE transaction_history
     ADD CONSTRAINT trans_hist_transaction_type_fk FOREIGN KEY ( transaction_type_type_id )
         REFERENCES transaction_type ( transaction_type_id )
             ON DELETE CASCADE;
+
+ALTER TABLE employees ADD branch_id NUMBER(7, 2);
+
+ALTER TABLE employees
+ADD FOREIGN KEY (branch_id) REFERENCES bank_branches(bank_branch_id);
