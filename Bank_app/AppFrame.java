@@ -54,4 +54,10 @@ public class AppFrame extends JFrame {
         this.getContentPane().setBackground(bgColor);
         this.revalidate();
     }
+
+    public void changeToEmployee(Employee employee) {
+        this.setContentPane(new EmployeePanel(this, employee));
+        this.getContentPane().setBackground(bgColor);
+        this.revalidate();
+    }
 }

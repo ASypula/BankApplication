@@ -24,17 +24,26 @@ public class LoginPanel extends JPanel {
         parent.changeToLogin();
     }
 
-    private void loginButtonClickedClient() throws SQLException {
+    private void loginButtonClicked() throws SQLException {
         String login = usernameTf.getText();
         String pass = String.valueOf(passwordPf.getPassword());
 
         try {
-            PersonalData client = Main.login(login, pass);
+            PersonalData person = Main.login(login, pass);
 
-            if (client == null)
+            if (person == null)
                 wrongLoginDialog();
-            else
-                parent.changeToMainClient((Client) client);
+            else {
+                try {
+                    Client cli = new Client(login);
+                    parent.changeToMainClient(cli);
+                } catch (WrongId e) {
+                    try {
+                        Employee emp = new Employee(login);
+                        parent.changeToEmployee(emp);
+                    } catch (WrongId ex) {}
+                }
+            }
         }
         catch (SQLException e) {
             wrongLoginDialog();
@@ -108,7 +117,7 @@ public class LoginPanel extends JPanel {
 
         ActionListener loginActionListener = e -> {
             try {
-                loginButtonClickedClient();
+                loginButtonClicked();
             } catch (SQLException ex) {
                 wrongLoginDialog();
 //                TODO: Add try for employee login

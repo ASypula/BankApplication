@@ -53,8 +53,11 @@ public class Main {
 		if (results.next()) {
 			try {
 					return new Client(login);
-				} catch (WrongId e) {;}
-			// TODO: here can be employee..
+			} catch (WrongId e) {
+				try {
+					return new Employee(login);
+				} catch (WrongId ex) {}
+			}
 		}
 		return null;
 	}
