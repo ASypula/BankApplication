@@ -202,38 +202,66 @@ public class MainClientPanel extends JPanel {
             accountPanel.setBackground(parent.bgColor);
             accountPanel.setLayout(new GridBagLayout());
             c.fill = GridBagConstraints.NONE;
-            c.anchor = GridBagConstraints.FIRST_LINE_START;
+            c.anchor = GridBagConstraints.WEST;
             c.weightx = 0.5;
             c.weighty = 0.5;
 
-            JLabel accountNrLabel = new JLabel(
-                    dict.getText("account_id") +
-                            accounts.get(i).getAccount_id()
+            JLabel accountIdLabel = new JLabel(
+                    "<html>" + dict.getText("account_id") +
+                            "<b>" + accounts.get(i).getAccount_id() + "</b></html>"
             );
+            accountIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             c.gridx = 0;
             c.gridy = 0;
-            c.gridwidth = GridBagConstraints.REMAINDER;
-            accountPanel.add(accountNrLabel, c);
+            c.gridwidth = 1;
+            accountPanel.add(accountIdLabel, c);
 
-            JLabel accountBalanceLabel = new JLabel(
-                    dict.getText("available_funds")+
-                            accounts.get(i).getBalance()
+            JLabel accountNrLabel = new JLabel(
+                    "<html>Numer konta: " +
+                            "<b>" + accounts.get(i).getAccount_no() + "</b></html>"
             );
-            accountBalanceLabel.setFont(new Font("Arial", Font.BOLD, 18));
+            accountNrLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             c.gridx = 0;
             c.gridy = 1;
-            accountPanel.add(accountBalanceLabel, c);
+            accountPanel.add(accountNrLabel, c);
 
+            JLabel accountTypeLabel = new JLabel(
+                    "<html>Typ konta: " +
+                            "<b>" + accounts.get(i).getAccount_type() + "</b></html>"
+            );
+            accountTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             c.gridx = 0;
             c.gridy = 2;
-            accountPanel.add(Box.createRigidArea(new Dimension(0, 20)), c);
+            accountPanel.add(accountTypeLabel, c);
+
+            JLabel accountBalanceLabel = new JLabel(dict.getText("available_funds"));
+            accountBalanceLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+            c.anchor = GridBagConstraints.EAST;
+            c.gridx = 1;
+            c.gridy = 0;
+            c.gridwidth = 2;
+            accountPanel.add(accountBalanceLabel, c);
+
+            JLabel balanceLabel = new JLabel(Integer.toString(accounts.get(i).getBalance()));
+            balanceLabel.setFont(new Font("Arial", Font.BOLD, 20));
+            c.gridx = 1;
+            c.gridy = 1;
+            c.gridheight = 2;
+            accountPanel.add(balanceLabel, c);
+
+            c.anchor = GridBagConstraints.CENTER;
+            c.gridx = 0;
+            c.gridy = 3;
+            c.gridwidth = GridBagConstraints.REMAINDER;
+            c.gridheight = 1;
+            accountPanel.add(Box.createRigidArea(new Dimension(0, 10)), c);
 
             WhiteButton depositButton = new WhiteButton(dict.getText("deposit"));
             depositButton.addActionListener(
                     e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, true)
             );
             c.gridx = 0;
-            c.gridy = 3;
+            c.gridy = 4;
             c.gridwidth = 1;
             accountPanel.add(depositButton, c);
 
@@ -242,7 +270,7 @@ public class MainClientPanel extends JPanel {
                     e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, false)
             );
             c.gridx = 1;
-            c.gridy = 3;
+            c.gridy = 4;
             accountPanel.add(withdrawButton, c);
 
             WhiteButton transferButton = new WhiteButton(dict.getText("transfer"));
@@ -250,7 +278,7 @@ public class MainClientPanel extends JPanel {
                     e -> getTransferDetailsAndTransfer(accounts.get(finalI))
             );
             c.gridx = 2;
-            c.gridy = 3;
+            c.gridy = 4;
             accountPanel.add(transferButton, c);
 
             accountsPanel.add(accountPanel);
@@ -258,6 +286,7 @@ public class MainClientPanel extends JPanel {
         }
 
         c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
         c.gridx = 0;
         c.gridy = 2;
         c.weightx = 0.75;
