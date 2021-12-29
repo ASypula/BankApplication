@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class HelpClientPanel extends JPanel {
 
@@ -12,10 +13,16 @@ public class HelpClientPanel extends JPanel {
         parent = mparent;
         client = mclient;
         dict = parent.dict;
-        initialize();
+        try {
+            initialize();
+        } catch (SQLException ex) {
+            System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+        } catch (WrongId e) {
+        	System.err.format(e.getMessage());
+		}
     }
 
-    private void initialize() {
+    private void initialize() throws SQLException, WrongId {
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -45,6 +52,10 @@ public class HelpClientPanel extends JPanel {
                 dict.getText("contact_us_3")+"</center></html>",
                 SwingConstants.CENTER);
 //        TODO: Numer przypisanego pracownika?
+        System.out.println(client.getEmployees_id());
+        Employee emp = client.getEmployee();
+        System.out.println(emp);//mo¿na te¿ u¿ywac metod z PersonalData
+        //
         phoneLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         c.gridx = 0;
         c.gridy = 2;
@@ -62,6 +73,9 @@ public class HelpClientPanel extends JPanel {
         WhiteButton findPlaceButton = new WhiteButton(dict.getText("search"));
         findPlaceButton.addActionListener(e -> AppDialog.wipDialog(parent));
 //        TODO: Adres przypisanego pracownika?
+        Address adr = client.getEmployee().getAddress();
+        System.out.println(adr);
+        //
         c.fill = GridBagConstraints.NONE;
         c.anchor = GridBagConstraints.NORTH;
         c.gridx = 0;
