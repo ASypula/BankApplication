@@ -20,7 +20,7 @@ public class Employee extends PersonalData {
 
 	public Employee(String employee_id) throws SQLException, WrongId {
 		Statement statement = Main.conn.createStatement();
-		ResultSet results = statement.executeQuery("SELECT personal_data_data_id, salary, professions_f_id from employees where employee_id = "+employee_id);
+		ResultSet results = statement.executeQuery("SELECT personal_data_data_id, salary, professions_profession_id from employees where employee_id = "+employee_id);
 		if (results.next()) { // if not empty
 			String data_id = results.getString(1);
 			this.employees_id = employee_id;
