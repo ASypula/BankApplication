@@ -48,14 +48,11 @@ public class HelpClientPanel extends JPanel {
 
         JLabel phoneLabel = new JLabel(
                 "<html><center>"+ dict.getText("contact_us_1") +"<br />" +
-                dict.getText("contact_us_2")+" <b style='color:red'>123 456 789</b><br />" +
-                dict.getText("contact_us_3")+"</center></html>",
+                    dict.getText("contact_us_2")+" <b style='color:red'>" +
+                    client.getEmployee().getPhone_no() + "</b><br />" +
+                    dict.getText("contact_us_3")+"</center></html>",
                 SwingConstants.CENTER);
-//        TODO: Numer przypisanego pracownika?
-        System.out.println(client.getEmployees_id());
-        Employee emp = client.getEmployee();
-        System.out.println(emp);//moøna teø uøywac metod z PersonalData
-        //
+
         phoneLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         c.gridx = 0;
         c.gridy = 2;
@@ -63,7 +60,7 @@ public class HelpClientPanel extends JPanel {
 
         JLabel placeLabel = new JLabel(
                 "<html><center>" + dict.getText("real_meeting") + "<br />" +
-                dict.getText("find_closest_place")+ "</center></html>",
+                    dict.getText("find_closest_place")+ "</center></html>",
                 SwingConstants.CENTER);
         placeLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         c.gridx = 0;
@@ -72,10 +69,8 @@ public class HelpClientPanel extends JPanel {
 
         WhiteButton findPlaceButton = new WhiteButton(dict.getText("search"));
         findPlaceButton.addActionListener(e -> AppDialog.wipDialog(parent));
-//        TODO: Adres przypisanego pracownika?
-        Address adr = client.getEmployee().getAddress();
-        System.out.println(adr);
-        //
+//        TODO: Adres i godziny otwarcia plac√≥wki przypisanej do przypisanego pracownika?
+
         c.fill = GridBagConstraints.NONE;
         c.anchor = GridBagConstraints.NORTH;
         c.gridx = 0;
