@@ -20,11 +20,13 @@ public class CreateAccountDialog extends AppDialog {
 
     private AppFrame owner;
     private Boolean createClient;
+    private Dictionary dict;
 
     CreateAccountDialog(AppFrame mowner, String title, Boolean createCli) {
         super(mowner, title, 200, 400);
         owner = mowner;
         createClient = createCli;
+        dict = owner.dict;
 
         ActionListener okListener = e -> createPerson();
 
@@ -34,7 +36,7 @@ public class CreateAccountDialog extends AppDialog {
         this.add(creAccPan);
 
         Box nameBox = Box.createHorizontalBox();
-        JLabel nameLabel = new JLabel("Imię:");
+        JLabel nameLabel = new JLabel(dict.getText("name"));
         nameBox.add(Box.createRigidArea(new Dimension(10, 0)));
         nameBox.add(nameLabel);
         nameBox.add(Box.createHorizontalGlue());
@@ -45,7 +47,7 @@ public class CreateAccountDialog extends AppDialog {
         creAccPan.add(nameTf);
 
         Box surnameBox = Box.createHorizontalBox();
-        JLabel surnameLabel = new JLabel("Nazwisko:");
+        JLabel surnameLabel = new JLabel(dict.getText("surname"));
         surnameBox.add(Box.createRigidArea(new Dimension(10, 0)));
         surnameBox.add(surnameLabel);
         surnameBox.add(Box.createHorizontalGlue());
@@ -56,7 +58,7 @@ public class CreateAccountDialog extends AppDialog {
         creAccPan.add(surnameTf);
 
         Box peselBox = Box.createHorizontalBox();
-        JLabel peselLabel = new JLabel("PESEL:");
+        JLabel peselLabel = new JLabel(dict.getText("pesel"));
         peselBox.add(Box.createRigidArea(new Dimension(10, 0)));
         peselBox.add(peselLabel);
         peselBox.add(Box.createHorizontalGlue());
@@ -67,7 +69,7 @@ public class CreateAccountDialog extends AppDialog {
         creAccPan.add(peselTf);
 
         Box phoneBox = Box.createHorizontalBox();
-        JLabel phoneLabel = new JLabel("Numer telefonu:");
+        JLabel phoneLabel = new JLabel(dict.getText("phone_no"));
         phoneBox.add(Box.createRigidArea(new Dimension(10, 0)));
         phoneBox.add(phoneLabel);
         phoneBox.add(Box.createHorizontalGlue());
@@ -78,7 +80,7 @@ public class CreateAccountDialog extends AppDialog {
         creAccPan.add(phoneTf);
 
         Box streetBox = Box.createHorizontalBox();
-        JLabel streetLabel = new JLabel("Ulica:");
+        JLabel streetLabel = new JLabel(dict.getText("street"));
         streetBox.add(Box.createRigidArea(new Dimension(10, 0)));
         streetBox.add(streetLabel);
         streetBox.add(Box.createHorizontalGlue());
@@ -89,7 +91,7 @@ public class CreateAccountDialog extends AppDialog {
         creAccPan.add(streetTf);
 
         Box houseNrBox = Box.createHorizontalBox();
-        JLabel houseNrLabel = new JLabel("Numer domu:");
+        JLabel houseNrLabel = new JLabel(dict.getText("house_no"));
         houseNrBox.add(Box.createRigidArea(new Dimension(10, 0)));
         houseNrBox.add(houseNrLabel);
         houseNrBox.add(Box.createHorizontalGlue());
@@ -100,7 +102,7 @@ public class CreateAccountDialog extends AppDialog {
         creAccPan.add(houseNrTf);
 
         Box cityBox = Box.createHorizontalBox();
-        JLabel cityLabel = new JLabel("Miasto:");
+        JLabel cityLabel = new JLabel(dict.getText("city"));
         cityBox.add(Box.createRigidArea(new Dimension(10, 0)));
         cityBox.add(cityLabel);
         cityBox.add(Box.createHorizontalGlue());
@@ -111,7 +113,7 @@ public class CreateAccountDialog extends AppDialog {
         creAccPan.add(cityTf);
 
         Box passwordBox = Box.createHorizontalBox();
-        JLabel passwordLabel = new JLabel("Hasło:");
+        JLabel passwordLabel = new JLabel(dict.getText("pwd"));
         passwordBox.add(Box.createRigidArea(new Dimension(10, 0)));
         passwordBox.add(passwordLabel);
         passwordBox.add(Box.createHorizontalGlue());
@@ -158,11 +160,11 @@ public class CreateAccountDialog extends AppDialog {
     }
 
     private void incorrectDataDialog() {
-        AppDialog incorrDataDialog = new AppDialog(owner, "Błędne dane", 160, 150);
+        AppDialog incorrDataDialog = new AppDialog(owner, dict.getText("invalid_data"), 160, 150);
         JLabel incorrDataText = new JLabel(
-                "<html><div style='text-align: center;'>Podano nieprawidłowe<br />" +
-                        "lub niepełne<br />" +
-                        "dane.</html>",
+                "<html><div style='text-align: center;'>"+ dict.getText("given_invalid_data_1") +"<br />" +
+                dict.getText("given_invalid_data_2") +"<br />" +
+                dict.getText("given_invalid_data_3") +"</html>",
                 SwingConstants.CENTER
         );
         incorrDataDialog.add(incorrDataText);
@@ -187,23 +189,23 @@ public class CreateAccountDialog extends AppDialog {
             return;
         }
 
-        AppDialog succDialog = new AppDialog(owner, "Twój login", 200, 200);
+        AppDialog succDialog = new AppDialog(owner, dict.getText("your_login"), 200, 200);
         JPanel succPan = new JPanel();
         succPan.setBackground(owner.bgColor);
         succPan.setLayout(new BoxLayout(succPan, BoxLayout.PAGE_AXIS));
         succDialog.add(succPan);
 
         JLabel idText = new JLabel(
-                "<html><div style='text-align: center;'>Założono konto.<br />" +
-                        "Twoje ID to: <b style='color:red'>" + newId + "</b><br />" +
-                        "Zapamiętaj je!<br />" +
-                        "Za jego pomocą będziesz się logować,<br />" +
-                        "a jeszcze nie mamy odzyskiwania.",
+                "<html><div style='text-align: center;'>"+ dict.getText("created_acc_1") +"<br />" +
+                dict.getText("created_acc_2") +"<b style='color:red'>" + newId + "</b><br />" +
+                dict.getText("created_acc_3") +"<br />" +
+                dict.getText("created_acc_4") +"<br />" +
+                dict.getText("created_acc_5"),
                 SwingConstants.CENTER
         );
         succPan.add(idText);
 
-        WhiteButton okButton = new WhiteButton("OK");
+        WhiteButton okButton = new WhiteButton(dict.getText("ok"));
         okButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         okButton.addActionListener(e -> {
             succDialog.setVisible(false);

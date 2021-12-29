@@ -30,7 +30,7 @@ public class DepositsClientPanel extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
         this.add(pageButPan, c);
 
-        JLabel depositsLabel = new JLabel("Moje lokaty");
+        JLabel depositsLabel = new JLabel(dict.getText("my_deposits"));
         c.fill = GridBagConstraints.NONE;
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
@@ -38,7 +38,7 @@ public class DepositsClientPanel extends JPanel {
         c.gridwidth = 1;
         this.add(depositsLabel, c);
 
-        WhiteButton newDepositButton = new WhiteButton("Złóż wniosek o nową lokatę");
+        WhiteButton newDepositButton = new WhiteButton(dict.getText("new_deposit"));
         newDepositButton.addActionListener(e -> AppDialog.contactEmployeeDialog(parent));
         c.anchor = GridBagConstraints.EAST;
         c.gridx = 1;
@@ -73,9 +73,8 @@ public class DepositsClientPanel extends JPanel {
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentAmountLabel = new JLabel(
-                    "<html>Następna wpłata: <b>" +
-                            "[NextInstallmentAmount]" +
-                            "</b></html>"
+                    "<html>"+ dict.getText("next_payment") +"<b>" +
+                            "[NextInstallmentAmount]" + "</b></html>"
             );
             nextInstallmentAmountLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             c.gridx = 0;
@@ -88,9 +87,8 @@ public class DepositsClientPanel extends JPanel {
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentDateLabel = new JLabel(
-                    "<html>Płatna dnia: <b>" +
-                            "[NextInstallmentDate]" +
-                            "</b></html>"
+                    "<html>"+ dict.getText("payment_day") +"<b>" +
+                            "[NextInstallmentDate]" + "</b></html>"
             );
             nextInstallmentDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             c.gridx = 0;
@@ -103,9 +101,8 @@ public class DepositsClientPanel extends JPanel {
 //                            "</b></html>"
 //            );
             JLabel interestLabel = new JLabel(
-                    "<html>Oprocentowanie: <b>" +
-                            "[Interest]" +
-                            "%</b></html>"
+                    "<html>" + dict.getText("interest") + "<b>" +
+                            "[Interest]" + "%</b></html>"
             );
             interestLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             c.gridx = 0;
@@ -114,7 +111,7 @@ public class DepositsClientPanel extends JPanel {
 
             c.anchor = GridBagConstraints.EAST;
 
-            JLabel currentLabel = new JLabel("Obecna kwota:");
+            JLabel currentLabel = new JLabel(dict.getText("current_amount"));
             currentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             c.gridx = 1;
             c.gridy = 0;
@@ -137,11 +134,11 @@ public class DepositsClientPanel extends JPanel {
 //                            "</b>)</html>"
 //            );
             JLabel periodLabel = new JLabel(
-                    "<html>Okres: <b>" +
+                    "<html>"+ dict.getText("period") +" <b>" +
                             "[Months]" +
-                            " msc</b> (od <b>" +
+                            " msc</b> ("+ dict.getText("from") +" <b>" +
                             "[StartDate]" +
-                            "</b> do <b>" +
+                            "</b>"+ dict.getText("to") +"<b>" +
                             "[EndDate]" +
                             "</b>)</html>"
             );

@@ -30,7 +30,7 @@ public class LoansClientPanel extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
         this.add(pageButPan, c);
 
-        JLabel loansLabel = new JLabel("Moje kredyty");
+        JLabel loansLabel = new JLabel(dict.getText("my_credits"));
         c.fill = GridBagConstraints.NONE;
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
@@ -38,7 +38,7 @@ public class LoansClientPanel extends JPanel {
         c.gridwidth = 1;
         this.add(loansLabel, c);
 
-        WhiteButton newLoanButton = new WhiteButton("Złóż wniosek o nowy kredyt");
+        WhiteButton newLoanButton = new WhiteButton(dict.getText("new_credit"));
         newLoanButton.addActionListener(e -> AppDialog.contactEmployeeDialog(parent));
         c.anchor = GridBagConstraints.EAST;
         c.gridx = 1;
@@ -73,7 +73,7 @@ public class LoansClientPanel extends JPanel {
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentAmountLabel = new JLabel(
-                    "<html>Następna rata: <b>" +
+                    "<html>"+ dict.getText("next_installment") +"<b>" +
                             "[NextInstallmentAmount]" +
                             "</b></html>"
             );
@@ -88,7 +88,7 @@ public class LoansClientPanel extends JPanel {
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentDateLabel = new JLabel(
-                    "<html>Płatna dnia: <b>" +
+                    "<html>"+ dict.getText("payment_day") +"<b>" +
                             "[NextInstallmentDate]" +
                             "</b></html>"
             );
@@ -103,7 +103,7 @@ public class LoansClientPanel extends JPanel {
 //                            "</b></html>"
 //            );
             JLabel interestLabel = new JLabel(
-                    "<html>Oprocentowanie: <b>" +
+                    "<html>"+ dict.getText("interest") +"<b>" +
                             "[Interest]" +
                             "%</b></html>"
             );
@@ -114,7 +114,7 @@ public class LoansClientPanel extends JPanel {
 
             c.anchor = GridBagConstraints.EAST;
 
-            JLabel currentLabel = new JLabel("Do spłaty pozostało:");
+            JLabel currentLabel = new JLabel(dict.getText("left_payment"));
             currentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             c.gridx = 1;
             c.gridy = 0;
@@ -133,7 +133,7 @@ public class LoansClientPanel extends JPanel {
 //                            "</b></html>"
 //            );
             JLabel initialAmountLabel = new JLabel(
-                    "<html>Kwota początkowa: <b>" +
+                    "<html>"+ dict.getText("initial_amount") +"<b>" +
                             "[InitialAmount]" +
                             "</b></html>"
             );

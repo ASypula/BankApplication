@@ -36,7 +36,7 @@ public class EmployeePanel extends JPanel {
         c.gridy = 0;
         this.add(logoutButton, c);
 
-        JLabel employeeLabel = new JLabel("Jestę pracownikiem", SwingConstants.CENTER);
+        JLabel employeeLabel = new JLabel(dict.getText("am_employee"), SwingConstants.CENTER);
         employeeLabel.setFont(new Font("Arial", Font.BOLD, 40));
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
