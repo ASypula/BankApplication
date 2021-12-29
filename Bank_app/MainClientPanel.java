@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -170,13 +171,14 @@ public class MainClientPanel extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
         this.add(pageButPan, c);
 
-        JLabel accountsLabel = new JLabel(dict.getText("my_accounts"));
+        JLabel accountsLabel = new JLabel(dict.getText("my_accounts"), SwingConstants.CENTER);
         c.gridx = 0;
         c.gridy = 1;
         c.weightx = 0.75;
+        c.gridwidth = 1;
         this.add(accountsLabel, c);
 
-        JLabel historyLabel = new JLabel(dict.getText("history"));
+        JLabel historyLabel = new JLabel(dict.getText("history"), SwingConstants.CENTER);
         c.gridx = 1;
         c.gridy = 1;
         c.weightx = 0.25;
@@ -191,6 +193,7 @@ public class MainClientPanel extends JPanel {
         this.add(info, c);
 
         JPanel accountsPanel = new JPanel();
+        accountsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         accountsPanel.setBackground(parent.bgColor);
         accountsPanel.setLayout(new BoxLayout(accountsPanel, BoxLayout.Y_AXIS));
 
@@ -213,7 +216,7 @@ public class MainClientPanel extends JPanel {
             accountIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             c.gridx = 0;
             c.gridy = 0;
-            c.gridwidth = 1;
+            c.gridwidth = GridBagConstraints.REMAINDER;
             accountPanel.add(accountIdLabel, c);
 
             JLabel accountNrLabel = new JLabel(
@@ -252,7 +255,6 @@ public class MainClientPanel extends JPanel {
             c.anchor = GridBagConstraints.CENTER;
             c.gridx = 0;
             c.gridy = 3;
-            c.gridwidth = GridBagConstraints.REMAINDER;
             c.gridheight = 1;
             accountPanel.add(Box.createRigidArea(new Dimension(0, 10)), c);
 

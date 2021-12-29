@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class LoansClientPanel extends JPanel {
@@ -31,22 +32,26 @@ public class LoansClientPanel extends JPanel {
 
         JLabel loansLabel = new JLabel("Moje kredyty");
         c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
         c.gridy = 1;
+        c.gridwidth = 1;
         this.add(loansLabel, c);
 
         WhiteButton newLoanButton = new WhiteButton("Złóż wniosek o nowy kredyt");
         newLoanButton.addActionListener(e -> AppDialog.contactEmployeeDialog(parent));
-        c.anchor = GridBagConstraints.FIRST_LINE_END;
+        c.anchor = GridBagConstraints.EAST;
         c.gridx = 1;
         c.gridy = 1;
         this.add(newLoanButton, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.gridwidth = GridBagConstraints.REMAINDER;
         c.weighty = 0.8;
 
         JPanel loansPanel = new JPanel();
+        loansPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         loansPanel.setBackground(parent.bgColor);
         loansPanel.setLayout(new BoxLayout(loansPanel, BoxLayout.Y_AXIS));
 

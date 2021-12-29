@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class DepositsClientPanel extends JPanel {
@@ -31,22 +32,26 @@ public class DepositsClientPanel extends JPanel {
 
         JLabel depositsLabel = new JLabel("Moje lokaty");
         c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
         c.gridy = 1;
+        c.gridwidth = 1;
         this.add(depositsLabel, c);
 
         WhiteButton newDepositButton = new WhiteButton("Złóż wniosek o nową lokatę");
         newDepositButton.addActionListener(e -> AppDialog.contactEmployeeDialog(parent));
-        c.anchor = GridBagConstraints.FIRST_LINE_END;
+        c.anchor = GridBagConstraints.EAST;
         c.gridx = 1;
         c.gridy = 1;
         this.add(newDepositButton, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.gridwidth = GridBagConstraints.REMAINDER;
         c.weighty = 0.8;
 
         JPanel depositsPanel = new JPanel();
+        depositsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         depositsPanel.setBackground(parent.bgColor);
         depositsPanel.setLayout(new BoxLayout(depositsPanel, BoxLayout.Y_AXIS));
 

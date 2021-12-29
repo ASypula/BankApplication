@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.sql.SQLException;
 
@@ -36,22 +37,26 @@ public class CardsClientPanel extends JPanel {
 
         JLabel cardsLabel = new JLabel("Moje karty");
         c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
         c.gridy = 1;
+        c.gridwidth = 1;
         this.add(cardsLabel, c);
 
         WhiteButton newCardButton = new WhiteButton("Zamów nową kartę");
         newCardButton.addActionListener(e -> AppDialog.contactEmployeeDialog(parent));
-        c.anchor = GridBagConstraints.FIRST_LINE_END;
+        c.anchor = GridBagConstraints.EAST;
         c.gridx = 1;
         c.gridy = 1;
         this.add(newCardButton, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.gridwidth = GridBagConstraints.REMAINDER;
         c.weighty = 0.8;
 
         JPanel cardsPanel = new JPanel();
+        cardsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         cardsPanel.setBackground(parent.bgColor);
         cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
 

@@ -1,12 +1,15 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class AppDialog extends JDialog {
 
     AppDialog(AppFrame owner, String title, int width, int height) {
         super(owner, title);
+        this.getRootPane().setBorder(new EmptyBorder(10, 10, 10, 10));
         this.setSize(width, height);
         this.setLocationRelativeTo(owner);
+        this.getRootPane().setBackground(owner.bgColor);
         this.getContentPane().setBackground(owner.bgColor);
     }
 
