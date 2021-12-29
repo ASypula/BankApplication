@@ -97,7 +97,7 @@ public class MainClientPanel extends JPanel {
         transferDialog.setVisible(true);
     }
 
-    private void getAmountFromUserAndUpdate(BankAccount account, JLabel accountBalanceLabel, boolean inc) {
+    private void getAmountFromUserAndUpdate(BankAccount account, JLabel balanceLabel, boolean inc) {
 //        if inc is true - deposit; else withdrawal
         String dialogTitle;
         if (inc)
@@ -125,10 +125,7 @@ public class MainClientPanel extends JPanel {
                             account.balanceInc(amount);
                         else
                             account.balanceDec(amount);
-                        accountBalanceLabel.setText(
-                                dict.getText("available_funds") +
-                                        account.getBalance()
-                        );
+                        balanceLabel.setText(Integer.toString(account.getBalance()));
                     } catch (SQLException ex) {
                         System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
                     }
@@ -260,7 +257,7 @@ public class MainClientPanel extends JPanel {
 
             WhiteButton depositButton = new WhiteButton(dict.getText("deposit"));
             depositButton.addActionListener(
-                    e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, true)
+                    e -> getAmountFromUserAndUpdate(accounts.get(finalI), balanceLabel, true)
             );
             c.gridx = 0;
             c.gridy = 4;
@@ -269,7 +266,7 @@ public class MainClientPanel extends JPanel {
 
             WhiteButton withdrawButton = new WhiteButton(dict.getText("withdraw"));
             withdrawButton.addActionListener(
-                    e -> getAmountFromUserAndUpdate(accounts.get(finalI), accountBalanceLabel, false)
+                    e -> getAmountFromUserAndUpdate(accounts.get(finalI), balanceLabel, false)
             );
             c.gridx = 1;
             c.gridy = 4;
