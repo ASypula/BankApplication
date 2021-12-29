@@ -115,14 +115,14 @@ public class BankAccount {
 	public void balanceInc(int i) throws SQLException {
 		balance += i;
 		Statement statement = Main.conn.createStatement();
-		String query = "UPDATE services_info SET balance = " + balance + " WHERE client_id = " + client_id;
+		String query = "UPDATE v_bank_accounts SET balance = " + balance + " WHERE client_id = " + client_id + " AND bank_account_id = "+account_id;
 		statement.executeQuery(query);
 	}
 	public boolean balanceDec(int i) throws SQLException {
 		if (i>balance) return false;
 		balance -= i;
 		Statement statement = Main.conn.createStatement();
-		String query = "UPDATE services_info SET balance = " + balance + " WHERE client_id = " + client_id;
+		String query = "UPDATE v_bank_accounts SET balance = " + balance + " WHERE client_id = " + client_id + " AND bank_account_id = "+account_id;
 		statement.executeQuery(query);
 		return true;
 	}
