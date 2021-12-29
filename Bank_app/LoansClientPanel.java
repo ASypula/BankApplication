@@ -79,7 +79,7 @@ public class LoansClientPanel extends JPanel {
 
 //            JLabel nextInstallmentDateLabel = new JLabel(
 //                    "<html>Płatna dnia: <b>" +
-//                            loans.get(i).getNextInstallmentDateString() +
+//                            loans.get(i).getNextInstallmentDate().toString() +
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentDateLabel = new JLabel(

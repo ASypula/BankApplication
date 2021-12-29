@@ -79,7 +79,7 @@ public class DepositsClientPanel extends JPanel {
 
 //            JLabel nextInstallmentDateLabel = new JLabel(
 //                    "<html>Płatna dnia: <b>" +
-//                            deposits.get(i).getNextInstallmentDateString() +
+//                            deposits.get(i).getNextInstallmentDate().toString() +
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentDateLabel = new JLabel(
@@ -126,9 +126,9 @@ public class DepositsClientPanel extends JPanel {
 //                    "<html>Okres: <b>" +
 //                            deposits.get(i).getPeriodMonths() +
 //                            " msc</b> (od <b>" +
-//                            deposits.get(i).getStartDateString() +
+//                            deposits.get(i).getStartDate().toString() +
 //                            "</b> do <b>" +
-//                            deposits.get(i).getEndDateString() +
+//                            deposits.get(i).getEndDate().toString() +
 //                            "</b>)</html>"
 //            );
             JLabel periodLabel = new JLabel(
