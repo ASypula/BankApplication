@@ -52,7 +52,7 @@ public class DepositsClientPanel extends JPanel {
 
 //        TODO: Uncomment everything and check after necessary functions implemented; Remove dummy values
 //        java.util.List<Deposit> deposits = client.getDeposits();
-//        for (int i = 0; i < deposits.size(); i++) {
+//        for (Deposit deposit : deposits) {
         for (int i = 0; i < 3; i++) {
             JPanel depositPanel = new JPanel();
             depositPanel.setBackground(parent.bgColor);
@@ -64,7 +64,7 @@ public class DepositsClientPanel extends JPanel {
 
 //            JLabel nextInstallmentAmountLabel = new JLabel(
 //                    "<html>Następna wpłata: <b>" +
-//                            deposits.get(i).getNextInstallmentAmount() +
+//                            deposit.getNextInstallmentAmount() +
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentAmountLabel = new JLabel(
@@ -79,7 +79,7 @@ public class DepositsClientPanel extends JPanel {
 
 //            JLabel nextInstallmentDateLabel = new JLabel(
 //                    "<html>Płatna dnia: <b>" +
-//                            deposits.get(i).getNextInstallmentDate().toString() +
+//                            deposit.getNextInstallmentDate().toString() +
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentDateLabel = new JLabel(
@@ -94,7 +94,7 @@ public class DepositsClientPanel extends JPanel {
 
 //            JLabel interestLabel = new JLabel(
 //                    "<html>Oprocentowanie: <b>" +
-//                            deposits.get(i).getInterest() +
+//                            deposit.getInterest() +
 //                            "</b></html>"
 //            );
             JLabel interestLabel = new JLabel(
@@ -115,7 +115,7 @@ public class DepositsClientPanel extends JPanel {
             c.gridy = 0;
             depositPanel.add(currentLabel, c);
 
-//            JLabel currentAmountLabel = new JLabel(deposits.get(i).getCurrentAmount());
+//            JLabel currentAmountLabel = new JLabel(deposit.getCurrentAmount());
             JLabel currentAmountLabel = new JLabel("[Amount]");
             currentAmountLabel.setFont(new Font("Arial", Font.BOLD, 16));
             c.gridx = 1;
@@ -124,11 +124,11 @@ public class DepositsClientPanel extends JPanel {
 
 //            JLabel periodLabel = new JLabel(
 //                    "<html>Okres: <b>" +
-//                            deposits.get(i).getPeriodMonths() +
+//                            deposit.getPeriodMonths() +
 //                            " msc</b> (od <b>" +
-//                            deposits.get(i).getStartDate().toString() +
+//                            deposit.getStartDate().toString() +
 //                            "</b> do <b>" +
-//                            deposits.get(i).getEndDate().toString() +
+//                            deposit.getEndDate().toString() +
 //                            "</b>)</html>"
 //            );
             JLabel periodLabel = new JLabel(

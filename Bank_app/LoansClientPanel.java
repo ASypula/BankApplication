@@ -52,7 +52,7 @@ public class LoansClientPanel extends JPanel {
 
 //        TODO: Uncomment everything and check after necessary functions implemented; Remove dummy values
 //        java.util.List<Loan> loans = client.getLoans();
-//        for (int i = 0; i < loans.size(); i++) {
+//        for (Loan loan : loans) {
         for (int i = 0; i < 4; i++) {
             JPanel loanPanel = new JPanel();
             loanPanel.setBackground(parent.bgColor);
@@ -64,7 +64,7 @@ public class LoansClientPanel extends JPanel {
 
 //            JLabel nextInstallmentAmountLabel = new JLabel(
 //                    "<html>Następna rata: <b>" +
-//                            loans.get(i).getNextInstallmentAmount() +
+//                            loan.getNextInstallmentAmount() +
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentAmountLabel = new JLabel(
@@ -79,7 +79,7 @@ public class LoansClientPanel extends JPanel {
 
 //            JLabel nextInstallmentDateLabel = new JLabel(
 //                    "<html>Płatna dnia: <b>" +
-//                            loans.get(i).getNextInstallmentDate().toString() +
+//                            loan.getNextInstallmentDate().toString() +
 //                            "</b></html>"
 //            );
             JLabel nextInstallmentDateLabel = new JLabel(
@@ -94,7 +94,7 @@ public class LoansClientPanel extends JPanel {
 
 //            JLabel interestLabel = new JLabel(
 //                    "<html>Oprocentowanie: <b>" +
-//                            loans.get(i).getInterest() +
+//                            loan.getInterest() +
 //                            "</b></html>"
 //            );
             JLabel interestLabel = new JLabel(
@@ -115,7 +115,7 @@ public class LoansClientPanel extends JPanel {
             c.gridy = 0;
             loanPanel.add(currentLabel, c);
 
-//            JLabel currentAmountLabel = new JLabel(loans.get(i).getCurrentAmount());
+//            JLabel currentAmountLabel = new JLabel(loan.getCurrentAmount());
             JLabel currentAmountLabel = new JLabel("[Amount]");
             currentAmountLabel.setFont(new Font("Arial", Font.BOLD, 16));
             c.gridx = 1;
@@ -124,7 +124,7 @@ public class LoansClientPanel extends JPanel {
 
 //            JLabel initialAmountLabel = new JLabel(
 //                    "<html>Kwota początkowa: <b>" +
-//                            loans.get(i).getInitialAmount() +
+//                            loan.getInitialAmount() +
 //                            "</b></html>"
 //            );
             JLabel initialAmountLabel = new JLabel(

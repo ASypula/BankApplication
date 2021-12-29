@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class CardsClientPanel extends JPanel {
 
@@ -12,26 +13,128 @@ public class CardsClientPanel extends JPanel {
         parent = mparent;
         client = mclient;
         dict = parent.dict;
-        initialize();
+        try {
+            initialize();
+        } catch (SQLException ex) {
+            System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+        }
     }
 
-    private void initialize() {
+    private void initialize() throws SQLException {
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         c.weightx = 0.5;
-        c.weighty = 0.5;
 
         PageButtonsPanel pageButPan = new PageButtonsPanel(parent, client);
         c.gridx = 0;
         c.gridy = 0;
+        c.weighty = 0.1;
         c.gridwidth = GridBagConstraints.REMAINDER;
         this.add(pageButPan, c);
 
-        JLabel cardsLabel = new JLabel(dict.getText("my_cards"));
+        JLabel cardsLabel = new JLabel("Moje karty");
+        c.fill = GridBagConstraints.NONE;
         c.gridx = 0;
         c.gridy = 1;
         this.add(cardsLabel, c);
+
+        WhiteButton newCardButton = new WhiteButton("Zamów nową kartę");
+        newCardButton.addActionListener(e -> AppDialog.contactEmployeeDialog(parent));
+        c.anchor = GridBagConstraints.FIRST_LINE_END;
+        c.gridx = 1;
+        c.gridy = 1;
+        this.add(newCardButton, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.weighty = 0.8;
+
+        JPanel cardsPanel = new JPanel();
+        cardsPanel.setBackground(parent.bgColor);
+        cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
+
+        java.util.List<BankAccount> accounts = client.getBankAccounts();
+        for (BankAccount account : accounts) {
+            java.util.List<Card> cards = account.getCards();
+            for (Card card : cards) {
+                JPanel cardPanel = new JPanel();
+                cardPanel.setBackground(parent.bgColor);
+                cardPanel.setLayout(new GridBagLayout());
+                c.fill = GridBagConstraints.NONE;
+                c.anchor = GridBagConstraints.WEST;
+                c.weightx = 0.5;
+                c.weighty = 0.5;
+
+                JLabel cardIdLabel = new JLabel(
+                        "<html>ID karty: <b>" +
+                                card.getCard_id() +
+                                "</b></html>"
+                );
+                cardIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                c.gridx = 0;
+                c.gridy = 0;
+                cardPanel.add(cardIdLabel, c);
+
+                JLabel cardTypeLabel = new JLabel(
+                        "<html>Typ karty: <b>" +
+                                card.getCard_type() +
+                                "</b></html>"
+                );
+                cardTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                c.gridx = 0;
+                c.gridy = 1;
+                cardPanel.add(cardTypeLabel, c);
+
+                JLabel expirationDateLabel = new JLabel(
+                        "<html>Karta ważna do: <b>" +
+                                card.getExpiration_date().toString() +
+                                "</b></html>"
+                );
+                expirationDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                c.gridx = 0;
+                c.gridy = 2;
+                cardPanel.add(expirationDateLabel, c);
+
+                JLabel accountNrLabel = new JLabel(
+                        "<html>Numer powiązanego konta: <b>" +
+                                account.getAccount_no() +
+                                "</b></html>"
+                );
+                accountNrLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                c.gridx = 0;
+                c.gridy = 3;
+                cardPanel.add(accountNrLabel, c);
+
+                c.anchor = GridBagConstraints.EAST;
+
+                JLabel currentLabel = new JLabel("Dostępne środki:");
+                currentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                c.gridx = 1;
+                c.gridy = 0;
+                cardPanel.add(currentLabel, c);
+
+                JLabel currentAmountLabel = new JLabel(Integer.toString(account.getBalance()));
+                currentAmountLabel.setFont(new Font("Arial", Font.BOLD, 20));
+                c.gridx = 1;
+                c.gridy = 1;
+                c.gridheight = 3;
+                cardPanel.add(currentAmountLabel, c);
+
+                c.gridheight = 1;
+
+                cardsPanel.add(cardPanel);
+                cardsPanel.add(Box.createRigidArea(new Dimension(0, 60)));
+            }
+        }
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.gridx = 0;
+        c.gridy = 2;
+        c.weightx = 0.5;
+        c.weighty = 0.8;
+        this.add(cardsPanel, c);
     }
 }
