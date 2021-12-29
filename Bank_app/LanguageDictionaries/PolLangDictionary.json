@@ -1,6 +1,8 @@
 {
     "account_deposit": "Wpłać na konto",
     "account_id": "ID konta: ",
+    "account_no": "Numer konta: ",
+    "account_type": "Typ konta: ",
     "account_withdrawal": "Wypłać z konta",
     "am_employee": "Jestem pracownikiem",
     "amount": "Kwota: ",

@@ -89,8 +89,7 @@ public class LoginPanel extends JPanel {
         c.gridy = 0;
         this.add(engButton, c);
 
-        WhiteButton japButton = new WhiteButton("Japanese");
-//        TODO: Change "Japanese" to japanese equivalent
+        WhiteButton japButton = new WhiteButton("日本");
         japButton.addActionListener(e -> changeLanguage("Jap"));
         c.gridx = 3;
         c.gridy = 0;
@@ -146,14 +145,14 @@ public class LoginPanel extends JPanel {
         WhiteButton newClientButton = new WhiteButton(dict.getText("create_acc_client"));
         newClientButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newClientButton.addActionListener(e ->
-                new CreateAccountDialog(parent, "Załóż konto: klient", true)
+                new CreateAccountDialog(parent, dict.getText("create_acc_client"), true)
         );
         loginDetPan.add(newClientButton);
 
         WhiteButton newEmployeeButton = new WhiteButton(dict.getText("create_acc_emp"));
         newEmployeeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newEmployeeButton.addActionListener(e ->
-                new CreateAccountDialog(parent, "Załóż konto: pracownik", false)
+                new CreateAccountDialog(parent, dict.getText("create_acc_emp"), false)
         );
         loginDetPan.add(newEmployeeButton);
     }
