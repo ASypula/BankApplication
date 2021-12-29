@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class AppDialog extends JDialog {
 
@@ -15,5 +16,22 @@ public class AppDialog extends JDialog {
         JLabel wip = new JLabel("WIP");
         wipDialog.add(wip);
         wipDialog.setVisible(true);
+    }
+
+    public static void contactEmployeeDialog(AppFrame parent) {
+        AppDialog contactDialog = new AppDialog(parent, "Skontaktuj się", 250, 250);
+        JLabel contactLabel = new JLabel(
+                "<html><div style='text-align: center;'>" +
+                    "Ta operacja nie jest dostępna<br />" +
+                    "w wersji online.<br />" +
+                    "Aby dokonać wybranej czynności<br />" +
+                    "skontaktuj się z naszym pracownikiem.<br />" +
+                    "Informację jak to zrobić<br />" +
+                    "można znaleźć w zakładce <b>Pomoc</b>.</div></html>",
+                SwingConstants.CENTER
+        );
+        contactLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        contactDialog.add(contactLabel);
+        contactDialog.setVisible(true);
     }
 }

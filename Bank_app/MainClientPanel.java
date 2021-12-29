@@ -27,7 +27,7 @@ public class MainClientPanel extends JPanel {
         JLabel lowBalanceText = new JLabel(
                 "<html><div style='text-align: center;'>" +
                         dict.getText("no_funds_acc_1") + "<br /> " +
-                        dict.getText("no_funds_acc_2")+"</html>",
+                        dict.getText("no_funds_acc_2")+"</div></html>",
                 SwingConstants.CENTER
         );
         lowBalanceDialog.add(lowBalanceText);
@@ -194,7 +194,6 @@ public class MainClientPanel extends JPanel {
         accountsPanel.setBackground(parent.bgColor);
         accountsPanel.setLayout(new BoxLayout(accountsPanel, BoxLayout.Y_AXIS));
 
-        int rowsPerAcc = 3;
         java.util.List<BankAccount> accounts = client.getBankAccounts();
         for (int i = 0; i < accounts.size(); i++) {
             int finalI = i;
