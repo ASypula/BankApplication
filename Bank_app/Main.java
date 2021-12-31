@@ -18,15 +18,15 @@ public class Main {
 			if (conn != null) {
 				Main.conn = conn;
 				// to be passed as arguments: recipient and mail_info
-				/* 
+				
 				String recipient = "casa.de.papel.pap@gmail.com";
 				HashMap<String, String> mail_info = new HashMap<String, String>();
 				mail_info.put("title", "This is a title");
 				mail_info.put("msg", "This is a message");
 				Mail mail = new Mail();
-				mail.send(recipient, mail_info);
+				mail.send(recipient, mail_info, true);
 				System.out.println("Mail sent");
-				*/
+				
 				runApplication();
 			}
 		} catch (SQLException e) {
