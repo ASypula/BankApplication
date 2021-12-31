@@ -66,7 +66,7 @@ public class Transaction {
 		if (transaction_id != null)
 		statement.executeQuery("INSERT INTO transaction_history VALUES ("+transaction_id+", "+amount+", DATE '"+date+"', "+bank_account_id+","+transaction_type_id+","+target_acc_no+" )");	
 		else //INSERT INTO transaction_history(amount, "Date",BANK_ACCOUNTS_ACCOUNT_ID,TRANSACTION_TYPE_TYPE_ID) VALUES (21,TO_DATE('06-07-2021', 'DD-MM-YYYY'), 1, 2);
-		statement.executeQuery("INSERT INTO transaction_history(amount, \"Date\",BANK_ACCOUNT_ID,TRANSACTION_TYPE_TYPE_ID, TARGET_ACC_NO) VALUES ("+amount+", DATE '"+date+"', "+bank_account_id+","+transaction_type_id+target_acc_no+" )");	
+		statement.executeQuery("INSERT INTO transaction_history(amount, \"Date\",BANK_ACCOUNT_ID,TRANSACTION_TYPE_TYPE_ID, TARGET_ACC_NO) VALUES ("+amount+", DATE '"+date+"', "+bank_account_id+","+transaction_type_id+","+target_acc_no+" )");	
 	}
 	
 	public String getTransaction_id() {
