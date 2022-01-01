@@ -65,9 +65,8 @@ public class LoansClientPanel extends JPanel {
             loansPanel.setBackground(parent.bgColor);
             loansPanel.setLayout(new BoxLayout(loansPanel, BoxLayout.Y_AXIS));
 
-//        TODO: Uncomment everything and check after necessary functions implemented; Remove dummy values
+//        TODO: Verify after adding test values
             for (Loan loan : loans) {
-//        for (int i = 0; i < 4; i++) {
                 JPanel loanPanel = new JPanel();
                 loanPanel.setBackground(parent.bgColor);
                 loanPanel.setLayout(new GridBagLayout());
@@ -76,14 +75,9 @@ public class LoansClientPanel extends JPanel {
                 c.weightx = 0.5;
                 c.weighty = 0.5;
 
-//            JLabel nextInstallmentAmountLabel = new JLabel(
-//                    "<html>Następna rata: <b>" +
-//                            loan.getNextInstallmentAmount() +
-//                            "</b></html>"
-//            );
                 JLabel nextInstallmentAmountLabel = new JLabel(
-                        "<html>" + dict.getText("next_installment") + "<b>" +
-                                "[NextInstallmentAmount]" +
+                        "<html>Rata: <b>" +
+                                loan.getInstallment() +
                                 "</b></html>"
                 );
                 nextInstallmentAmountLabel.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -91,30 +85,24 @@ public class LoansClientPanel extends JPanel {
                 c.gridy = 0;
                 loanPanel.add(nextInstallmentAmountLabel, c);
 
-//            JLabel nextInstallmentDateLabel = new JLabel(
-//                    "<html>Płatna dnia: <b>" +
-//                            loan.getNextInstallmentDate().toString() +
-//                            "</b></html>"
-//            );
-                JLabel nextInstallmentDateLabel = new JLabel(
-                        "<html>" + dict.getText("payment_day") + "<b>" +
-                                "[NextInstallmentDate]" +
-                                "</b></html>"
+                JLabel periodLabel = new JLabel(
+                    "<html>" + dict.getText("period") + " <b>" +
+                            loan.getAccum_period() +
+                            " msc</b> (od <b>" +
+                            loan.getStart_date().toString() +
+                            "</b> do <b>" +
+                            loan.getEndDate().toString() +
+                            "</b>)</html>"
                 );
-                nextInstallmentDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                periodLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 1;
-                loanPanel.add(nextInstallmentDateLabel, c);
+                loanPanel.add(periodLabel, c);
 
-//            JLabel interestLabel = new JLabel(
-//                    "<html>Oprocentowanie: <b>" +
-//                            loan.getInterest() +
-//                            "</b></html>"
-//            );
                 JLabel interestLabel = new JLabel(
-                        "<html>" + dict.getText("interest") + "<b>" +
-                                "[Interest]" +
-                                "%</b></html>"
+                        "<html>Oprocentowanie: <b>" +
+                                loan.getInterest_rate() +
+                                "</b></html>"
                 );
                 interestLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -129,21 +117,15 @@ public class LoansClientPanel extends JPanel {
                 c.gridy = 0;
                 loanPanel.add(currentLabel, c);
 
-//            JLabel currentAmountLabel = new JLabel(loan.getCurrentAmount());
-                JLabel currentAmountLabel = new JLabel("[Amount]");
+                JLabel currentAmountLabel = new JLabel(Integer.toString(loan.getBalance()));
                 currentAmountLabel.setFont(new Font("Arial", Font.BOLD, 16));
                 c.gridx = 1;
                 c.gridy = 1;
                 loanPanel.add(currentAmountLabel, c);
 
-//            JLabel initialAmountLabel = new JLabel(
-//                    "<html>Kwota początkowa: <b>" +
-//                            loan.getInitialAmount() +
-//                            "</b></html>"
-//            );
                 JLabel initialAmountLabel = new JLabel(
-                        "<html>" + dict.getText("initial_amount") + "<b>" +
-                                "[InitialAmount]" +
+                        "<html>Kwota początkowa: <b>" +
+                                loan.getInitial_value() +
                                 "</b></html>"
                 );
                 initialAmountLabel.setFont(new Font("Arial", Font.PLAIN, 12));
