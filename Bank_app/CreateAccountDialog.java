@@ -157,26 +157,34 @@ public class CreateAccountDialog extends AppDialog {
             successDialog();
         } catch (SQLException ex) {
             System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
-            incorrectDataDialog();
-//                TODO: Tell what is wrong?
+            fillInAllDialog();
         }
         catch (NumberFormatException ex) {
             System.err.format(ex.getMessage());
-            incorrectDataDialog();
-//                TODO: Tell what is wrong?
+            houseNumberDialog();
         }
     }
 
-    private void incorrectDataDialog() {
-        AppDialog incorrDataDialog = new AppDialog(owner, dict.getText("invalid_data"), 160, 150);
-        JLabel incorrDataText = new JLabel(
-                "<html><div style='text-align: center;'>"+ dict.getText("given_invalid_data_1") +"<br />" +
-                dict.getText("given_invalid_data_2") +"<br />" +
-                dict.getText("given_invalid_data_3") +"</html>",
+    private void houseNumberDialog() {
+        AppDialog houseNumDialog = new AppDialog(owner, dict.getText("invalid_data"), 160, 150);
+        JLabel houseNumText = new JLabel(
+                "<html><div style='text-align: center;'>Numer domu musi<br />" +
+                        "być liczbą naturalną</div></html>",
                 SwingConstants.CENTER
         );
-        incorrDataDialog.add(incorrDataText);
-        incorrDataDialog.setVisible(true);
+        houseNumDialog.add(houseNumText);
+        houseNumDialog.setVisible(true);
+    }
+
+    private void fillInAllDialog() {
+        AppDialog fillInDialog = new AppDialog(owner, dict.getText("invalid_data"), 160, 150);
+        JLabel fillInText = new JLabel(
+                "<html><div style='text-align: center;'>Proszę uzupełnić<br />" +
+                        "wszystkie pola</div></html>",
+                SwingConstants.CENTER
+        );
+        fillInDialog.add(fillInText);
+        fillInDialog.setVisible(true);
     }
 
     private void successDialog() {
