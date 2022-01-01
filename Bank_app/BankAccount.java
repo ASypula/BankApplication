@@ -2,10 +2,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BankAccount extends Account {
 	private String account_id, account_types_f_id, account_no, service_name;
@@ -54,23 +51,28 @@ public class BankAccount extends Account {
 	public String getServiceName() {
 		return service_name;
 	}
+
+	public boolean transfer(int amount, String bank_accounts_receiver_id) throws SQLException {
+		return transfer("5", amount, bank_accounts_receiver_id);
+	}
+	public boolean payment(int amount) throws SQLException {
+		return transfer("2", amount, null);
+	}
+	public boolean withdrawal(int amount) throws SQLException {
+		return transfer("1", amount, null);
+	}
+//	TODO: It would be better if these values weren't hardcoded but selected by name from database
+
 	public boolean transfer(String transaction_type_f_id,
 			int amount, String bank_accounts_receiver_id) throws SQLException {
-		return transfer(null, transaction_type_f_id, amount, bank_accounts_receiver_id);
-	}
-	
-	public boolean transfer(String transaction_id, String transaction_type_f_id,
-			int amount, String bank_accounts_receiver_id) throws SQLException {
-		if (amount<=0 | !balanceDec(amount) | transaction_id == bank_accounts_receiver_id)
-			return false;
-		Transaction t = new Transaction(transaction_id, transaction_type_f_id, getAccount_id(), -amount, bank_accounts_receiver_id);
+		if (amount>0 && !Objects.equals(this.getAccount_id(), bank_accounts_receiver_id)) {
+			if (Objects.equals(transaction_type_f_id, "2"))
+				balanceInc(amount);
+			else if (!balanceDec(amount))
+				return false;
+		} else { return false; }
+		Transaction t = new Transaction(transaction_type_f_id, getAccount_id(), amount, bank_accounts_receiver_id);
 		t.insert();
-		try {
-			BankAccount b = new BankAccount(bank_accounts_receiver_id);
-			b.balanceInc(amount);
-			t = new Transaction(transaction_id, transaction_type_f_id, bank_accounts_receiver_id, amount, bank_accounts_receiver_id);
-			t.insert();
-		} catch (WrongId e) {;}
 		return true;
 	}
 	

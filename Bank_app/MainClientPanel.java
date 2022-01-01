@@ -55,8 +55,7 @@ public class MainClientPanel extends JPanel {
                     showTooLowBalanceDialog();
                 else if (amount > 0 && !receiver.isEmpty()) {
                     try {
-                        account.transfer("4", amount, receiver);
-//                    TODO: unhardcode these values!
+                        account.transfer(amount, receiver);
                         parent.changeToMainClient(client);
                     } catch (SQLException ex) {
                         System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
@@ -122,9 +121,9 @@ public class MainClientPanel extends JPanel {
                 else if (amount > 0) {
                     try {
                         if (inc)
-                            account.balanceInc(amount);
+                            account.payment(amount);
                         else
-                            account.balanceDec(amount);
+                            account.withdrawal(amount);
                         balanceLabel.setText(Integer.toString(account.getBalance()));
                     } catch (SQLException ex) {
                         System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
