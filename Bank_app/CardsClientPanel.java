@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CardsClientPanel extends JPanel {
 
@@ -55,87 +56,103 @@ public class CardsClientPanel extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.weighty = 0.8;
 
-        JPanel cardsPanel = new JPanel();
-        cardsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        cardsPanel.setBackground(parent.bgColor);
-        cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
-
+        java.util.List<Card> allCards = new ArrayList<Card>();
         java.util.List<BankAccount> accounts = client.getBankAccounts();
         for (BankAccount account : accounts) {
             java.util.List<Card> cards = account.getCards();
-            for (Card card : cards) {
-                JPanel cardPanel = new JPanel();
-                cardPanel.setBackground(parent.bgColor);
-                cardPanel.setLayout(new GridBagLayout());
-                c.fill = GridBagConstraints.NONE;
-                c.anchor = GridBagConstraints.WEST;
-                c.weightx = 0.5;
-                c.weighty = 0.5;
-
-                JLabel cardIdLabel = new JLabel(
-                        "<html>" + dict.getText("card_id") + "<b>" +
-                                card.getCard_id() + "</b></html>"
-                );
-                cardIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-                c.gridx = 0;
-                c.gridy = 0;
-                cardPanel.add(cardIdLabel, c);
-
-                JLabel cardTypeLabel = new JLabel(
-                        "<html>" + dict.getText("card_type") + "<b>" +
-                                card.getCard_type() + "</b></html>"
-                );
-                cardTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-                c.gridx = 0;
-                c.gridy = 1;
-                cardPanel.add(cardTypeLabel, c);
-
-                JLabel expirationDateLabel = new JLabel(
-                        "<html>" + dict.getText("card_valid_until") + "<b>" +
-                                card.getExpiration_date().toString() + "</b></html>"
-                );
-                expirationDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-                c.gridx = 0;
-                c.gridy = 2;
-                cardPanel.add(expirationDateLabel, c);
-
-                JLabel accountNrLabel = new JLabel(
-                        "<html>" + dict.getText("linked_acc_no") +"<b>" +
-                                account.getAccount_no() + "</b></html>"
-                );
-                accountNrLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-                c.gridx = 0;
-                c.gridy = 3;
-                cardPanel.add(accountNrLabel, c);
-
-                c.anchor = GridBagConstraints.EAST;
-
-                JLabel currentLabel = new JLabel(dict.getText("available_funds"));
-                currentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-                c.gridx = 1;
-                c.gridy = 0;
-                cardPanel.add(currentLabel, c);
-
-                JLabel currentAmountLabel = new JLabel(Integer.toString(account.getBalance()));
-                currentAmountLabel.setFont(new Font("Arial", Font.BOLD, 20));
-                c.gridx = 1;
-                c.gridy = 1;
-                c.gridheight = 3;
-                cardPanel.add(currentAmountLabel, c);
-
-                c.gridheight = 1;
-
-                cardsPanel.add(cardPanel);
-                cardsPanel.add(Box.createRigidArea(new Dimension(0, 60)));
-            }
+            allCards.addAll(cards);
         }
 
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.FIRST_LINE_START;
-        c.gridx = 0;
-        c.gridy = 2;
-        c.weightx = 0.5;
-        c.weighty = 0.8;
-        this.add(cardsPanel, c);
+        if (allCards.isEmpty()) {
+            JLabel noneLabel = new JLabel("Brak kart", SwingConstants.CENTER);
+            c.fill = GridBagConstraints.BOTH;
+            c.gridwidth = GridBagConstraints.REMAINDER;
+            c.weighty = 0.8;
+            c.gridx = 0;
+            c.gridy = 2;
+            this.add(noneLabel, c);
+        } else {
+            JPanel cardsPanel = new JPanel();
+            cardsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+            cardsPanel.setBackground(parent.bgColor);
+            cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.Y_AXIS));
+
+            for (BankAccount account : accounts) {
+                java.util.List<Card> cards = account.getCards();
+                for (Card card : cards) {
+                    JPanel cardPanel = new JPanel();
+                    cardPanel.setBackground(parent.bgColor);
+                    cardPanel.setLayout(new GridBagLayout());
+                    c.fill = GridBagConstraints.NONE;
+                    c.anchor = GridBagConstraints.WEST;
+                    c.weightx = 0.5;
+                    c.weighty = 0.5;
+
+                    JLabel cardIdLabel = new JLabel(
+                            "<html>" + dict.getText("card_id") + "<b>" +
+                                    card.getCard_id() + "</b></html>"
+                    );
+                    cardIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    c.gridx = 0;
+                    c.gridy = 0;
+                    cardPanel.add(cardIdLabel, c);
+
+                    JLabel cardTypeLabel = new JLabel(
+                            "<html>" + dict.getText("card_type") + "<b>" +
+                                    card.getCard_type() + "</b></html>"
+                    );
+                    cardTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    c.gridx = 0;
+                    c.gridy = 1;
+                    cardPanel.add(cardTypeLabel, c);
+
+                    JLabel expirationDateLabel = new JLabel(
+                            "<html>" + dict.getText("card_valid_until") + "<b>" +
+                                    card.getExpiration_date().toString() + "</b></html>"
+                    );
+                    expirationDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    c.gridx = 0;
+                    c.gridy = 2;
+                    cardPanel.add(expirationDateLabel, c);
+
+                    JLabel accountNrLabel = new JLabel(
+                            "<html>" + dict.getText("linked_acc_no") + "<b>" +
+                                    account.getAccount_no() + "</b></html>"
+                    );
+                    accountNrLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    c.gridx = 0;
+                    c.gridy = 3;
+                    cardPanel.add(accountNrLabel, c);
+
+                    c.anchor = GridBagConstraints.EAST;
+
+                    JLabel currentLabel = new JLabel(dict.getText("available_funds"));
+                    currentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    c.gridx = 1;
+                    c.gridy = 0;
+                    cardPanel.add(currentLabel, c);
+
+                    JLabel currentAmountLabel = new JLabel(Integer.toString(account.getBalance()));
+                    currentAmountLabel.setFont(new Font("Arial", Font.BOLD, 20));
+                    c.gridx = 1;
+                    c.gridy = 1;
+                    c.gridheight = 3;
+                    cardPanel.add(currentAmountLabel, c);
+
+                    c.gridheight = 1;
+
+                    cardsPanel.add(cardPanel);
+                    cardsPanel.add(Box.createRigidArea(new Dimension(0, 60)));
+                }
+            }
+
+            c.fill = GridBagConstraints.HORIZONTAL;
+            c.anchor = GridBagConstraints.FIRST_LINE_START;
+            c.gridx = 0;
+            c.gridy = 2;
+            c.weightx = 0.5;
+            c.weighty = 0.8;
+            this.add(cardsPanel, c);
+        }
     }
 }

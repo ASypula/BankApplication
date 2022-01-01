@@ -189,107 +189,116 @@ public class MainClientPanel extends JPanel {
         c.gridy = 2;
         this.add(info, c);
 
-        JPanel accountsPanel = new JPanel();
-        accountsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        accountsPanel.setBackground(parent.bgColor);
-        accountsPanel.setLayout(new BoxLayout(accountsPanel, BoxLayout.Y_AXIS));
-
         java.util.List<BankAccount> accounts = client.getBankAccounts();
-        for (int i = 0; i < accounts.size(); i++) {
-            int finalI = i;
-
-            JPanel accountPanel = new JPanel();
-            accountPanel.setBackground(parent.bgColor);
-            accountPanel.setLayout(new GridBagLayout());
-            c.fill = GridBagConstraints.NONE;
-            c.anchor = GridBagConstraints.WEST;
-            c.weightx = 0.5;
-            c.weighty = 0.5;
-
-            JLabel accountIdLabel = new JLabel(
-                    "<html>" + dict.getText("account_id") +
-                            "<b>" + accounts.get(i).getAccount_id() + "</b></html>"
-            );
-            accountIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-            c.gridx = 0;
-            c.gridy = 0;
-            c.gridwidth = GridBagConstraints.REMAINDER;
-            accountPanel.add(accountIdLabel, c);
-
-            JLabel accountNrLabel = new JLabel(
-                    "<html>" + dict.getText("account_no") +
-                            "<b>" + accounts.get(i).getAccount_no() + "</b></html>"
-            );
-            accountNrLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-            c.gridx = 0;
-            c.gridy = 1;
-            accountPanel.add(accountNrLabel, c);
-
-            JLabel accountTypeLabel = new JLabel(
-                    "<html>"+ dict.getText("account_type") +
-                            "<b>" + accounts.get(i).getAccount_type() + "</b></html>"
-            );
-            accountTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        if (accounts.isEmpty()) {
+            JLabel noneLabel = new JLabel("Brak kont", SwingConstants.CENTER);
+            c.fill = GridBagConstraints.BOTH;
+            c.weighty = 0.8;
             c.gridx = 0;
             c.gridy = 2;
-            accountPanel.add(accountTypeLabel, c);
+            this.add(noneLabel, c);
+        } else {
+            JPanel accountsPanel = new JPanel();
+            accountsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+            accountsPanel.setBackground(parent.bgColor);
+            accountsPanel.setLayout(new BoxLayout(accountsPanel, BoxLayout.Y_AXIS));
 
-            JLabel accountBalanceLabel = new JLabel(dict.getText("available_funds"));
-            accountBalanceLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-            c.anchor = GridBagConstraints.EAST;
-            c.gridx = 1;
-            c.gridy = 0;
-            c.gridwidth = 2;
-            accountPanel.add(accountBalanceLabel, c);
+            for (int i = 0; i < accounts.size(); i++) {
+                int finalI = i;
 
-            JLabel balanceLabel = new JLabel(Integer.toString(accounts.get(i).getBalance()));
-            balanceLabel.setFont(new Font("Arial", Font.BOLD, 20));
-            c.gridx = 1;
-            c.gridy = 1;
-            c.gridheight = 2;
-            accountPanel.add(balanceLabel, c);
+                JPanel accountPanel = new JPanel();
+                accountPanel.setBackground(parent.bgColor);
+                accountPanel.setLayout(new GridBagLayout());
+                c.fill = GridBagConstraints.NONE;
+                c.anchor = GridBagConstraints.WEST;
+                c.weightx = 0.5;
+                c.weighty = 0.5;
 
-            c.anchor = GridBagConstraints.CENTER;
+                JLabel accountIdLabel = new JLabel(
+                        "<html>" + dict.getText("account_id") +
+                                "<b>" + accounts.get(i).getAccount_id() + "</b></html>"
+                );
+                accountIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                c.gridx = 0;
+                c.gridy = 0;
+                c.gridwidth = GridBagConstraints.REMAINDER;
+                accountPanel.add(accountIdLabel, c);
+
+                JLabel accountNrLabel = new JLabel(
+                        "<html>" + dict.getText("account_no") +
+                                "<b>" + accounts.get(i).getAccount_no() + "</b></html>"
+                );
+                accountNrLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                c.gridx = 0;
+                c.gridy = 1;
+                accountPanel.add(accountNrLabel, c);
+
+                JLabel accountTypeLabel = new JLabel(
+                        "<html>" + dict.getText("account_type") +
+                                "<b>" + accounts.get(i).getAccount_type() + "</b></html>"
+                );
+                accountTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                c.gridx = 0;
+                c.gridy = 2;
+                accountPanel.add(accountTypeLabel, c);
+
+                JLabel accountBalanceLabel = new JLabel(dict.getText("available_funds"));
+                accountBalanceLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                c.anchor = GridBagConstraints.EAST;
+                c.gridx = 1;
+                c.gridy = 0;
+                c.gridwidth = 2;
+                accountPanel.add(accountBalanceLabel, c);
+
+                JLabel balanceLabel = new JLabel(Integer.toString(accounts.get(i).getBalance()));
+                balanceLabel.setFont(new Font("Arial", Font.BOLD, 20));
+                c.gridx = 1;
+                c.gridy = 1;
+                c.gridheight = 2;
+                accountPanel.add(balanceLabel, c);
+
+                c.anchor = GridBagConstraints.CENTER;
+                c.gridx = 0;
+                c.gridy = 3;
+                c.gridheight = 1;
+                accountPanel.add(Box.createRigidArea(new Dimension(0, 10)), c);
+
+                WhiteButton depositButton = new WhiteButton(dict.getText("deposit"));
+                depositButton.addActionListener(
+                        e -> getAmountFromUserAndUpdate(accounts.get(finalI), balanceLabel, true)
+                );
+                c.gridx = 0;
+                c.gridy = 4;
+                c.gridwidth = 1;
+                accountPanel.add(depositButton, c);
+
+                WhiteButton withdrawButton = new WhiteButton(dict.getText("withdraw"));
+                withdrawButton.addActionListener(
+                        e -> getAmountFromUserAndUpdate(accounts.get(finalI), balanceLabel, false)
+                );
+                c.gridx = 1;
+                c.gridy = 4;
+                accountPanel.add(withdrawButton, c);
+
+                WhiteButton transferButton = new WhiteButton(dict.getText("transfer"));
+                transferButton.addActionListener(
+                        e -> getTransferDetailsAndTransfer(accounts.get(finalI))
+                );
+                c.gridx = 2;
+                c.gridy = 4;
+                accountPanel.add(transferButton, c);
+
+                accountsPanel.add(accountPanel);
+                accountsPanel.add(Box.createRigidArea(new Dimension(0, 60)));
+            }
+
+            c.fill = GridBagConstraints.HORIZONTAL;
+            c.anchor = GridBagConstraints.FIRST_LINE_START;
             c.gridx = 0;
-            c.gridy = 3;
-            c.gridheight = 1;
-            accountPanel.add(Box.createRigidArea(new Dimension(0, 10)), c);
-
-            WhiteButton depositButton = new WhiteButton(dict.getText("deposit"));
-            depositButton.addActionListener(
-                    e -> getAmountFromUserAndUpdate(accounts.get(finalI), balanceLabel, true)
-            );
-            c.gridx = 0;
-            c.gridy = 4;
-            c.gridwidth = 1;
-            accountPanel.add(depositButton, c);
-
-            WhiteButton withdrawButton = new WhiteButton(dict.getText("withdraw"));
-            withdrawButton.addActionListener(
-                    e -> getAmountFromUserAndUpdate(accounts.get(finalI), balanceLabel, false)
-            );
-            c.gridx = 1;
-            c.gridy = 4;
-            accountPanel.add(withdrawButton, c);
-
-            WhiteButton transferButton = new WhiteButton(dict.getText("transfer"));
-            transferButton.addActionListener(
-                    e -> getTransferDetailsAndTransfer(accounts.get(finalI))
-            );
-            c.gridx = 2;
-            c.gridy = 4;
-            accountPanel.add(transferButton, c);
-
-            accountsPanel.add(accountPanel);
-            accountsPanel.add(Box.createRigidArea(new Dimension(0, 60)));
+            c.gridy = 2;
+            c.weightx = 0.75;
+            c.weighty = 0.8;
+            this.add(accountsPanel, c);
         }
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.FIRST_LINE_START;
-        c.gridx = 0;
-        c.gridy = 2;
-        c.weightx = 0.75;
-        c.weighty = 0.8;
-        this.add(accountsPanel, c);
     }
 }
