@@ -6,21 +6,22 @@ import java.sql.SQLException;
 
 public class CreateAccountDialog extends AppDialog {
 
-    public PersonalData personalData;
+    public Client client;
+    public Employee employee;
     public String newId;
 
-    private JTextField nameTf = new JTextField();
-    private JTextField surnameTf = new JTextField();
-    private JTextField peselTf = new JTextField();
-    private JTextField phoneTf = new JTextField();
-    private JTextField streetTf = new JTextField();
-    private JTextField houseNrTf = new JTextField();
-    private JTextField cityTf = new JTextField();
-    private JPasswordField passwordPf = new JPasswordField();
+    private final JTextField nameTf = new JTextField();
+    private final JTextField surnameTf = new JTextField();
+    private final JTextField peselTf = new JTextField();
+    private final JTextField phoneTf = new JTextField();
+    private final JTextField streetTf = new JTextField();
+    private final JTextField houseNrTf = new JTextField();
+    private final JTextField cityTf = new JTextField();
+    private final JPasswordField passwordPf = new JPasswordField();
 
-    private AppFrame owner;
-    private Boolean createClient;
-    private Dictionary dict;
+    private final AppFrame owner;
+    private final Boolean createClient;
+    private final Dictionary dict;
 
     CreateAccountDialog(AppFrame mowner, String title, Boolean createCli) {
         super(mowner, title, 200, 400);
@@ -137,15 +138,21 @@ public class CreateAccountDialog extends AppDialog {
                     Integer.parseInt(houseNrTf.getText())
             );
             address.insert();
-            personalData = new PersonalData(
-                    nameTf.getText(),
-                    surnameTf.getText(),
-                    peselTf.getText(),
-                    phoneTf.getText(),
-                    address.getAddress_id()
-            );
+
+            if (createClient) {
+                client = new Client(
+                        nameTf.getText(),
+                        surnameTf.getText(),
+                        peselTf.getText(),
+                        phoneTf.getText(),
+                        address.getAddress_id()
+                );
+                client.insert(String.valueOf(passwordPf.getPassword()));
+                newId = client.getData_id();
+            } else {
+//                TODO: Adding employee - profession, salary and branch needed
+            }
 //            TODO: Verify input?
-            personalData.insert(String.valueOf(passwordPf.getPassword()));
 
             successDialog();
         } catch (SQLException ex) {
@@ -154,6 +161,7 @@ public class CreateAccountDialog extends AppDialog {
 //                TODO: Tell what is wrong?
         }
         catch (NumberFormatException ex) {
+            System.err.format(ex.getMessage());
             incorrectDataDialog();
 //                TODO: Tell what is wrong?
         }
@@ -172,23 +180,6 @@ public class CreateAccountDialog extends AppDialog {
     }
 
     private void successDialog() {
-        try {
-            if (createClient) {
-                Client cli = new Client(personalData.getData_id());
-                newId = cli.getClient_id();
-            } else {
-                Employee emp = new Employee(personalData.getData_id());
-                newId = emp.getEmployees_id();
-            }
-        } catch (SQLException ex) {
-            System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
-            incorrectDataDialog();
-            return;
-        } catch(WrongId ex) {
-            incorrectDataDialog();
-            return;
-        }
-
         AppDialog succDialog = new AppDialog(owner, dict.getText("your_login"), 200, 200);
         JPanel succPan = new JPanel();
         succPan.setBackground(owner.bgColor);
@@ -203,6 +194,7 @@ public class CreateAccountDialog extends AppDialog {
                 dict.getText("created_acc_5"),
                 SwingConstants.CENTER
         );
+        idText.setAlignmentX(Component.CENTER_ALIGNMENT);
         succPan.add(idText);
 
         WhiteButton okButton = new WhiteButton(dict.getText("ok"));
