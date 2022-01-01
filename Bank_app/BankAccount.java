@@ -52,8 +52,13 @@ public class BankAccount extends Account {
 		return service_name;
 	}
 
-	public boolean transfer(int amount, String bank_accounts_receiver_id) throws SQLException {
-		return transfer("5", amount, bank_accounts_receiver_id);
+	public boolean transfer(int amount, String bank_accounts_receiver_no) throws SQLException {
+		Statement statement = Main.conn.createStatement();
+		String query = "SELECT bank_account_id FROM bank_accounts WHERE account_no = " + bank_accounts_receiver_no;
+		ResultSet results = statement.executeQuery(query);
+		if (results.next())
+			return transfer("5", amount, results.getString(1));
+		return false;
 	}
 	public boolean payment(int amount) throws SQLException {
 		return transfer("2", amount, null);

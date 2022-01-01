@@ -55,20 +55,21 @@ public class MainClientPanel extends JPanel {
                     showTooLowBalanceDialog();
                 else if (amount > 0 && !receiver.isEmpty()) {
                     try {
-                        account.transfer(amount, receiver);
-                        parent.changeToMainClient(client);
+                        if  (account.transfer(amount, receiver)) {
+                            parent.changeToMainClient(client);
+                            transferDialog.setVisible(false);
+                            transferDialog.dispatchEvent(
+                                    new WindowEvent(transferDialog, WindowEvent.WINDOW_CLOSING)
+                            );
+                        }
                     } catch (SQLException ex) {
                         System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
                     }
-                    transferDialog.setVisible(false);
-                    transferDialog.dispatchEvent(
-                            new WindowEvent(transferDialog, WindowEvent.WINDOW_CLOSING)
-                    );
                 }
             } catch (NumberFormatException ignored) {}
         };
 
-        JLabel receiverLabel = new JLabel(dict.getText("recipient_id"));
+        JLabel receiverLabel = new JLabel("Numer konta odbiorcy:");
         c.gridx = 0;
         c.gridy = 0;
         transferDialog.add(receiverLabel, c);
