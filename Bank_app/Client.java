@@ -19,7 +19,7 @@ public class Client extends PersonalData {
 	}
 	public List<Loan> getLoans() throws SQLException {
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT loan_id, end_date, installment, initial_value, balance, start_date, interest_rate, accum_period, client_id FROM v_loans where client_id = "+this.client_id;
+		String query = "SELECT loan_id, end_date, installment, initial_value, balance, start_date, interest, accum_period, client_id FROM v_loans where client_id = "+this.client_id;
 		ResultSet results = statement.executeQuery(query);
 		List<Loan> accounts = new ArrayList<Loan>();
 		while (results.next()) {

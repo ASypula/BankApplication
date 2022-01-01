@@ -55,7 +55,7 @@ public class MainClientPanel extends JPanel {
                     showTooLowBalanceDialog();
                 else if (amount > 0 && !receiver.isEmpty()) {
                     try {
-                        account.transfer("1000", "4", amount, receiver);
+                        account.transfer("4", amount, receiver);
 //                    TODO: unhardcode these values!
                         parent.changeToMainClient(client);
                     } catch (SQLException ex) {

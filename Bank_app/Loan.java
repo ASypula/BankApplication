@@ -22,7 +22,7 @@ public class Loan extends Account{
 	
 	public Loan(String loan_id) throws SQLException, WrongId {
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT loan_id, end_date, installment, initial_value, balance, start_date, interest_rate, accum_period, client_id FROM v_loans where loan_id ="
+		String query = "SELECT loan_id, end_date, installment, initial_value, balance, start_date, interest, accum_period, client_id FROM v_loans where loan_id ="
 				+ loan_id;
 		ResultSet results = statement.executeQuery(query);
 		if (results.next()) { // if not empty
