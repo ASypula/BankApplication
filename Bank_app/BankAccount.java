@@ -26,7 +26,8 @@ public class BankAccount extends Account {
 	
 	public List<Transaction> getTransactions() throws SQLException {
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT transaction_id, amount, \"Date\", bank_account_id, transaction_type_type_id, target_acc_no FROM transaction_history WHERE bank_account_id = "+ this.account_id;
+		String query = "SELECT transaction_id, amount, \"Date\", bank_account_id, transaction_type_type_id, target_acc_no FROM transaction_history" +
+				" WHERE bank_account_id = " + this.account_id + "ORDER BY transaction_id DESC";
 		ResultSet results = statement.executeQuery(query);
 		List<Transaction> accounts = new ArrayList<Transaction>();
 		while (results.next()) {
