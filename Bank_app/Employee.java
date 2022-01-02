@@ -17,6 +17,16 @@ public class Employee extends PersonalData {
 	public String getEmployees_id() {
 		return employees_id;
 	}
+	public List<Client> getClients() throws SQLException, WrongId {
+		Statement statement = Main.conn.createStatement();
+		String query = "SELECT PERSONAL_DATA_DATA_ID from clients where employees_employee_id = " + employees_id;
+		ResultSet results = statement.executeQuery(query);
+		List<Client> accounts = new ArrayList<Client>();
+		while (results.next()) {
+			accounts.add(new Client(results.getString(1)));
+		}
+		return accounts;
+	}
 
 	public Employee(String employee_id) throws SQLException, WrongId {
 		Statement statement = Main.conn.createStatement();
