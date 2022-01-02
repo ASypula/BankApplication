@@ -28,14 +28,21 @@ public class PersonalData {
 	public PersonalData() {
 	}
 	public void updateAddress(String addresses_address_id) throws SQLException, WrongId {
+		addresses_f_id = addresses_address_id;
 		Statement statement = Main.conn.createStatement();
 		String query = "UPDATE PERSONAL_DATA SET ADDRESSES_ADDRESS_ID = " + addresses_address_id + " WHERE PERSONAL_DATA_ID = " + data_id;
+		statement.executeQuery(query);
+	}
+	public void updatePhone(String phone) throws SQLException, WrongId {
+		phone_no = phone;
+		Statement statement = Main.conn.createStatement();
+		String query = "UPDATE PERSONAL_DATA SET phone_no = '" + phone + "' WHERE PERSONAL_DATA_ID = " + data_id;
 		statement.executeQuery(query);
 	}
 	public void updatePassword(String unhashed_password) throws SQLException, WrongId {
 		String password = Main.hash(unhashed_password);
 		Statement statement = Main.conn.createStatement();
-		String query = "UPDATE PERSONAL_DATA SET HASHED_PSWD = " + password + " WHERE PERSONAL_DATA_ID = " + data_id;
+		String query = "UPDATE PERSONAL_DATA SET HASHED_PSWD = '" + password + "' WHERE PERSONAL_DATA_ID = " + data_id;
 		statement.executeQuery(query);
 	}
 	public PersonalData(ResultSet results) throws SQLException {

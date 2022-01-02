@@ -37,7 +37,7 @@ public class HelpClientPanel extends JPanel {
 
         WhiteButton updateInfoButton = new WhiteButton("<html>" + dict.getText("update_data_1") +
         "<br />" + dict.getText("update_data_2") +"</html>");
-        updateInfoButton.addActionListener(e -> AppDialog.wipDialog(parent));
+        updateInfoButton.addActionListener(e -> new UpdateDataDialog(parent, client));
         c.fill = GridBagConstraints.NONE;
         c.gridx = 0;
         c.gridy = 1;
