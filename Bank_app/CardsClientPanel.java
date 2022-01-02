@@ -99,7 +99,7 @@ public class CardsClientPanel extends JPanel {
 
                     JLabel cardTypeLabel = new JLabel(
                             "<html>" + dict.getText("card_type") + "<b>" +
-                                    card.getCard_type() + "</b></html>"
+                                    dict.getText("card_type_"+card.getCard_type()) + "</b></html>"
                     );
                     cardTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                     c.gridx = 0;

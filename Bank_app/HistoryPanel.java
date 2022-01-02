@@ -37,7 +37,7 @@ public class HistoryPanel extends JPanel {
             c.weightx = 0.5;
             c.weighty = 0.5;
 
-            JLabel tranTypeLabel = new JLabel(transaction.getTransaction_type());
+            JLabel tranTypeLabel = new JLabel(dict.getText("trans_type_"+transaction.getTransaction_type()));
             tranTypeLabel.setFont(new Font("Arial", Font.BOLD, 12));
             c.gridx = 0;
             c.gridy = 0;

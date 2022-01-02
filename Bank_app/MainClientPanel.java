@@ -227,7 +227,7 @@ public class MainClientPanel extends JPanel {
 
                 JLabel accountTypeLabel = new JLabel(
                         "<html>" + dict.getText("account_type") +
-                                "<b>" + accounts.get(i).getAccount_type() + "</b></html>"
+                                "<b>" + dict.getText("account_type_"+accounts.get(i).getAccount_type()) + "</b></html>"
                 );
                 accountTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 0;
