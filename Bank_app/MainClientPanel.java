@@ -315,6 +315,7 @@ public class MainClientPanel extends JPanel {
             this.add(accountsPanel, c);
 
             WhiteButton showFullButton = new WhiteButton("Wyświetl całą historię");
+            showFullButton.addActionListener(e -> new FullHistoryDialog(parent, accounts));
             c.fill = GridBagConstraints.NONE;
             c.anchor = GridBagConstraints.FIRST_LINE_END;
             c.gridx = 0;
