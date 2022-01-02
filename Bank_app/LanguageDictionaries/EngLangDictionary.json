@@ -2,6 +2,7 @@
     "account_deposit": "Deposit to your account",
     "account_id": "Account ID: ",
     "account_no": "Account number: ",
+    "account_no_recipient": "Recipient account number:",
     "account_type": "Account type: ",
     "account_type_personal": "personal",
     "account_type_savings": "savings",

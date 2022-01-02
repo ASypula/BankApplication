@@ -2,6 +2,7 @@
     "account_deposit": "アカウントにデポジットする",
     "account_id": "アカウント: ",
     "account_no": "口座番号: ",
+    "account_no_recipient": "受信者のアカウント番号:",
     "account_type": "口座の種類: ",
     "account_type_personal": "個人的",
     "account_type_savings": "節約",

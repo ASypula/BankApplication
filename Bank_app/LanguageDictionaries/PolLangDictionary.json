@@ -2,6 +2,7 @@
     "account_deposit": "Wpłać na konto",
     "account_id": "ID konta: ",
     "account_no": "Numer konta: ",
+    "account_no_recipient": "Numer konta odbiorcy:",
     "account_type": "Typ konta: ",
     "account_type_personal": "personalne",
     "account_type_savings": "oszczędnościowe",

@@ -69,7 +69,7 @@ public class MainClientPanel extends JPanel {
             } catch (NumberFormatException ignored) {}
         };
 
-        JLabel receiverLabel = new JLabel("Numer konta odbiorcy:");
+        JLabel receiverLabel = new JLabel(dict.getText("account_no_recipient"));
         c.gridx = 0;
         c.gridy = 0;
         transferDialog.add(receiverLabel, c);
