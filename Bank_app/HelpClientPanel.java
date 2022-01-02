@@ -35,13 +35,21 @@ public class HelpClientPanel extends JPanel {
         c.gridy = 0;
         this.add(pageButPan, c);
 
-        WhiteButton updateInfoButton = new WhiteButton("<html>" + dict.getText("update_data_1") +
-        "<br />" + dict.getText("update_data_2") +"</html>");
+        WhiteButton updateInfoButton = new WhiteButton("<html><center>" + dict.getText("update_data_1") +
+                "<br />" + dict.getText("update_data_2") +"</center></html>");
         updateInfoButton.addActionListener(e -> new UpdateDataDialog(parent, client));
         c.fill = GridBagConstraints.NONE;
         c.gridx = 0;
         c.gridy = 1;
         this.add(updateInfoButton, c);
+
+        WhiteButton mailOfferButton = new WhiteButton("<html><center>Otrzymaj email" +
+                "<br />z naszą ofertą</center></html>");
+        mailOfferButton.addActionListener(e -> AppDialog.emailDialog(parent));
+        c.anchor = GridBagConstraints.FIRST_LINE_END;
+        c.gridx = 0;
+        c.gridy = 1;
+        this.add(mailOfferButton, c);
 
         c.fill = GridBagConstraints.BOTH;
         c.weighty = 0.5;

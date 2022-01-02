@@ -91,7 +91,7 @@ public class UpdateDataDialog extends AppDialog {
         updatePanel.add(cityTf);
 
         Box passwordBox = Box.createHorizontalBox();
-        JLabel passwordLabel = new JLabel(dict.getText("pwd"));
+        JLabel passwordLabel = new JLabel(dict.getText("pwd") + ":");
         passwordBox.add(Box.createRigidArea(new Dimension(10, 0)));
         passwordBox.add(passwordLabel);
         passwordBox.add(Box.createHorizontalGlue());
