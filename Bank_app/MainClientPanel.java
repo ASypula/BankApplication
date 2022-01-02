@@ -293,53 +293,7 @@ public class MainClientPanel extends JPanel {
                     c.gridheight = GridBagConstraints.REMAINDER;
                     accountPanel.add(noneLabel, c);
                 } else {
-                    JPanel historyPanel = new JPanel();
-                    historyPanel.setBorder(new EmptyBorder(0, 10, 0, 0));
-                    historyPanel.setBackground(parent.bgColor);
-                    historyPanel.setLayout(new BoxLayout(historyPanel, BoxLayout.Y_AXIS));
-
-                    for (int j = 0; j < 3 && j < transactions.size(); j++) {
-                        Transaction transaction = transactions.get(j);
-
-                        JPanel transactionPanel = new JPanel();
-                        transactionPanel.setBackground(parent.bgColor);
-                        transactionPanel.setLayout(new GridBagLayout());
-                        c.fill = GridBagConstraints.NONE;
-                        c.anchor = GridBagConstraints.FIRST_LINE_START;
-                        c.weightx = 0.5;
-                        c.weighty = 0.5;
-
-                        JLabel tranTypeLabel = new JLabel(transaction.getTransaction_type());
-                        tranTypeLabel.setFont(new Font("Arial", Font.BOLD, 12));
-                        c.gridx = 0;
-                        c.gridy = 0;
-                        transactionPanel.add(tranTypeLabel, c);
-
-                        JLabel tranTargetLabel = new JLabel(transaction.getTargetAccNo());
-                        tranTargetLabel.setFont(new Font("Arial", Font.PLAIN, 9));
-                        c.gridx = 0;
-                        c.gridy = 1;
-                        transactionPanel.add(tranTargetLabel, c);
-
-                        JLabel tranDateLabel = new JLabel(transaction.getDate().toString());
-                        tranDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-                        c.gridx = 0;
-                        c.gridy = 2;
-                        transactionPanel.add(tranDateLabel, c);
-
-                        JLabel tranAmountLabel = new JLabel(Integer.toString(transaction.getAmount()));
-                        tranAmountLabel.setFont(new Font("Arial", Font.BOLD, 16));
-                        c.anchor = GridBagConstraints.EAST;
-                        c.gridx = 1;
-                        c.gridy = 0;
-                        c.gridheight = GridBagConstraints.REMAINDER;
-                        transactionPanel.add(tranAmountLabel, c);
-                        c.gridheight = 1;
-
-                        historyPanel.add(transactionPanel);
-                        historyPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-                    }
-
+                    JPanel historyPanel = new HistoryPanel(parent, transactions, 3);
                     c.fill = GridBagConstraints.BOTH;
                     c.gridx = 3;
                     c.gridy = 0;
@@ -359,6 +313,13 @@ public class MainClientPanel extends JPanel {
             c.gridwidth = GridBagConstraints.REMAINDER;
             c.weighty = 0.8;
             this.add(accountsPanel, c);
+
+            WhiteButton showFullButton = new WhiteButton("Wyświetl całą historię");
+            c.fill = GridBagConstraints.NONE;
+            c.anchor = GridBagConstraints.FIRST_LINE_END;
+            c.gridx = 0;
+            c.gridy = 3;
+            this.add(showFullButton, c);
         }
     }
 }
