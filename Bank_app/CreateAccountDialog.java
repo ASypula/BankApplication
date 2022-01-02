@@ -168,8 +168,8 @@ public class CreateAccountDialog extends AppDialog {
     private void houseNumberDialog() {
         AppDialog houseNumDialog = new AppDialog(owner, dict.getText("invalid_data"), 160, 150);
         JLabel houseNumText = new JLabel(
-                "<html><div style='text-align: center;'>Numer domu musi<br />" +
-                        "być liczbą naturalną</div></html>",
+                "<html><div style='text-align: center;'>"+dict.getText("invalid_house_no_1")+"<br />" +
+                dict.getText("invalid_house_no_2")+"</div></html>",
                 SwingConstants.CENTER
         );
         houseNumDialog.add(houseNumText);
@@ -179,8 +179,8 @@ public class CreateAccountDialog extends AppDialog {
     private void fillInAllDialog() {
         AppDialog fillInDialog = new AppDialog(owner, dict.getText("invalid_data"), 160, 150);
         JLabel fillInText = new JLabel(
-                "<html><div style='text-align: center;'>Proszę uzupełnić<br />" +
-                        "wszystkie pola</div></html>",
+                "<html><div style='text-align: center;'>"+dict.getText("not_all_data_1")+"<br />" +
+                dict.getText("not_all_data_2")+"</div></html>",
                 SwingConstants.CENTER
         );
         fillInDialog.add(fillInText);

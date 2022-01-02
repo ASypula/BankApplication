@@ -64,7 +64,7 @@ public class CardsClientPanel extends JPanel {
         }
 
         if (allCards.isEmpty()) {
-            JLabel noneLabel = new JLabel("Brak kart", SwingConstants.CENTER);
+            JLabel noneLabel = new JLabel(dict.getText("no_cards"), SwingConstants.CENTER);
             c.fill = GridBagConstraints.BOTH;
             c.gridwidth = GridBagConstraints.REMAINDER;
             c.weighty = 0.8;

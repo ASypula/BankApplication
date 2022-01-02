@@ -52,7 +52,7 @@ public class DepositsClientPanel extends JPanel {
 
         java.util.List<BankAccount> deposits = client.getDeposits();
         if (deposits.isEmpty()) {
-            JLabel noneLabel = new JLabel("Brak lokat", SwingConstants.CENTER);
+            JLabel noneLabel = new JLabel(dict.getText("no_deposits"), SwingConstants.CENTER);
             c.fill = GridBagConstraints.BOTH;
             c.gridwidth = GridBagConstraints.REMAINDER;
             c.weighty = 0.8;
