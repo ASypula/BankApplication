@@ -125,14 +125,14 @@ public class MainClientPanel extends JPanel {
                             account.payment(amount);
                         else
                             account.withdrawal(amount);
-                        balanceLabel.setText(Integer.toString(account.getBalance()));
+                        parent.changeToMainClient(client);
+                        amountDialog.setVisible(false);
+                        amountDialog.dispatchEvent(
+                                new WindowEvent(amountDialog, WindowEvent.WINDOW_CLOSING)
+                        );
                     } catch (SQLException ex) {
                         System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
                     }
-                    amountDialog.setVisible(false);
-                    amountDialog.dispatchEvent(
-                            new WindowEvent(amountDialog, WindowEvent.WINDOW_CLOSING)
-                    );
                 }
             } catch (NumberFormatException ignored) {}
         };
@@ -180,14 +180,6 @@ public class MainClientPanel extends JPanel {
         c.gridy = 1;
         c.weightx = 0.25;
         this.add(historyLabel, c);
-
-        c.weighty = 0.8;
-
-        JLabel info = new JLabel(client.getName()+client.getSurname(), SwingConstants.CENTER);
-//        TODO: Add history
-        c.gridx = 1;
-        c.gridy = 2;
-        this.add(info, c);
 
         java.util.List<BankAccount> accounts = client.getBankAccounts();
         if (accounts.isEmpty()) {
@@ -288,6 +280,30 @@ public class MainClientPanel extends JPanel {
                 c.gridy = 4;
                 accountPanel.add(transferButton, c);
 
+                java.util.List<Transaction> transactions = accounts.get(i).getTransactions();
+                if (transactions.isEmpty()) {
+                    JLabel noneLabel = new JLabel(
+                            "<html><center>Brak transakcji<br />związanych<br />z tym kontem</center></html>",
+                            SwingConstants.CENTER
+                    );
+                    c.fill = GridBagConstraints.BOTH;
+                    c.weightx = 0.25;
+                    c.gridx = 3;
+                    c.gridy = 0;
+                    c.gridheight = GridBagConstraints.REMAINDER;
+                    accountPanel.add(noneLabel, c);
+                    c.gridheight = 1;
+                } else {
+                    JLabel noneLabel = new JLabel("Jest coś w historii", SwingConstants.CENTER);
+                    c.fill = GridBagConstraints.BOTH;
+                    c.weightx = 0.25;
+                    c.gridx = 3;
+                    c.gridy = 0;
+                    c.gridheight = GridBagConstraints.REMAINDER;
+                    accountPanel.add(noneLabel, c);
+                    c.gridheight = 1;
+                }
+
                 accountsPanel.add(accountPanel);
                 accountsPanel.add(Box.createRigidArea(new Dimension(0, 60)));
             }
@@ -296,7 +312,7 @@ public class MainClientPanel extends JPanel {
             c.anchor = GridBagConstraints.FIRST_LINE_START;
             c.gridx = 0;
             c.gridy = 2;
-            c.weightx = 0.75;
+            c.gridwidth = GridBagConstraints.REMAINDER;
             c.weighty = 0.8;
             this.add(accountsPanel, c);
         }
