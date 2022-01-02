@@ -119,7 +119,6 @@ public class LoginPanel extends JPanel {
                 loginButtonClicked();
             } catch (SQLException ex) {
                 wrongLoginDialog();
-//                TODO: Add try for employee login
             }
         };
 

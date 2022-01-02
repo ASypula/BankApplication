@@ -18,9 +18,10 @@ public class UpdateDataDialog extends AppDialog {
     private final Dictionary dict;
 
     UpdateDataDialog(AppFrame mowner, Client mclient) {
-        //TODO: dodanie slownika z tytulem, nie mozna go utworzyc przed konstruktorem
-        //dict = mowner.dict;
-        super(mowner, "Zaktualizuj dane", 200, 400);
+        super(mowner,
+                mowner.dict.getText("update_data_1") + " " + mowner.dict.getText("update_data_2"),
+                200, 300
+        );
         owner = mowner;
         client = mclient;
         dict = owner.dict;

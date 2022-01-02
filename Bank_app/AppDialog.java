@@ -44,6 +44,7 @@ public class AppDialog extends JDialog {
                 mail_info.put("title", "Oferta Casa de PAPel");
                 mail_info.put("msg", "Advert");
                 Mail.send(email, mail_info, true, dict);
+//                TODO: Catch error if invalid email address
 
                 emailDialog.setVisible(false);
                 emailDialog.dispatchEvent(
