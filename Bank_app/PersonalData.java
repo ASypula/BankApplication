@@ -27,7 +27,17 @@ public class PersonalData {
 	}
 	public PersonalData() {
 	}
-	
+	public void updateAddress(String addresses_address_id) throws SQLException, WrongId {
+		Statement statement = Main.conn.createStatement();
+		String query = "UPDATE PERSONAL_DATA SET ADDRESSES_ADDRESS_ID = " + addresses_address_id + " WHERE PERSONAL_DATA_ID = " + data_id;
+		statement.executeQuery(query);
+	}
+	public void updatePassword(String unhashed_password) throws SQLException, WrongId {
+		String password = Main.hash(unhashed_password);
+		Statement statement = Main.conn.createStatement();
+		String query = "UPDATE PERSONAL_DATA SET HASHED_PSWD = " + password + " WHERE PERSONAL_DATA_ID = " + data_id;
+		statement.executeQuery(query);
+	}
 	public PersonalData(ResultSet results) throws SQLException {
 		this.data_id = results.getString(1);
 		this.name = results.getString(2);
