@@ -210,7 +210,7 @@ public class MainClientPanel extends JPanel {
                         "<html>" + dict.getText("account_id") +
                                 "<b>" + accounts.get(i).getAccount_id() + "</b></html>"
                 );
-                accountIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                accountIdLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 0;
                 c.gridwidth = GridBagConstraints.REMAINDER;
@@ -220,7 +220,7 @@ public class MainClientPanel extends JPanel {
                         "<html>" + dict.getText("account_no") +
                                 "<b>" + accounts.get(i).getAccount_no() + "</b></html>"
                 );
-                accountNrLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                accountNrLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 1;
                 accountPanel.add(accountNrLabel, c);
@@ -229,13 +229,13 @@ public class MainClientPanel extends JPanel {
                         "<html>" + dict.getText("account_type") +
                                 "<b>" + dict.getText("account_type_"+accounts.get(i).getAccount_type()) + "</b></html>"
                 );
-                accountTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                accountTypeLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 2;
                 accountPanel.add(accountTypeLabel, c);
 
                 JLabel accountBalanceLabel = new JLabel(dict.getText("available_funds"));
-                accountBalanceLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                accountBalanceLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.anchor = GridBagConstraints.EAST;
                 c.gridx = 1;
                 c.gridy = 0;
@@ -243,7 +243,7 @@ public class MainClientPanel extends JPanel {
                 accountPanel.add(accountBalanceLabel, c);
 
                 JLabel balanceLabel = new JLabel(Integer.toString(accounts.get(i).getBalance()));
-                balanceLabel.setFont(new Font("Arial", Font.BOLD, 20));
+                balanceLabel.setFont(new Font("Dialog", Font.BOLD, 20));
                 c.gridx = 1;
                 c.gridy = 1;
                 c.gridheight = 2;

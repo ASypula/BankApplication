@@ -86,7 +86,7 @@ public class DepositsClientPanel extends JPanel {
                         "<html>" + dict.getText("next_payment") + "<b>" +
                                 "[NextInstallmentAmount]" + "</b></html>"
                 );
-                nextInstallmentAmountLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                nextInstallmentAmountLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 0;
                 depositPanel.add(nextInstallmentAmountLabel, c);
@@ -100,7 +100,7 @@ public class DepositsClientPanel extends JPanel {
                         "<html>" + dict.getText("payment_day") + "<b>" +
                                 "[NextInstallmentDate]" + "</b></html>"
                 );
-                nextInstallmentDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                nextInstallmentDateLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 1;
                 depositPanel.add(nextInstallmentDateLabel, c);
@@ -114,7 +114,7 @@ public class DepositsClientPanel extends JPanel {
                         "<html>" + dict.getText("interest") + "<b>" +
                                 "[Interest]" + "%</b></html>"
                 );
-                interestLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                interestLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 2;
                 depositPanel.add(interestLabel, c);
@@ -122,14 +122,14 @@ public class DepositsClientPanel extends JPanel {
                 c.anchor = GridBagConstraints.EAST;
 
                 JLabel currentLabel = new JLabel(dict.getText("current_amount"));
-                currentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                currentLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 1;
                 c.gridy = 0;
                 depositPanel.add(currentLabel, c);
 
 //            JLabel currentAmountLabel = new JLabel(deposit.getCurrentAmount());
                 JLabel currentAmountLabel = new JLabel("[Amount]");
-                currentAmountLabel.setFont(new Font("Arial", Font.BOLD, 16));
+                currentAmountLabel.setFont(new Font("Dialog", Font.BOLD, 16));
                 c.gridx = 1;
                 c.gridy = 1;
                 depositPanel.add(currentAmountLabel, c);
@@ -152,7 +152,7 @@ public class DepositsClientPanel extends JPanel {
                                 "[EndDate]" +
                                 "</b>)</html>"
                 );
-                periodLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                periodLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 1;
                 c.gridy = 2;
                 depositPanel.add(periodLabel, c);

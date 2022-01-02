@@ -38,25 +38,25 @@ public class HistoryPanel extends JPanel {
             c.weighty = 0.5;
 
             JLabel tranTypeLabel = new JLabel(dict.getText("trans_type_"+transaction.getTransaction_type()));
-            tranTypeLabel.setFont(new Font("Arial", Font.BOLD, 12));
+            tranTypeLabel.setFont(new Font("Dialog", Font.BOLD, 12));
             c.gridx = 0;
             c.gridy = 0;
             transactionPanel.add(tranTypeLabel, c);
 
             JLabel tranTargetLabel = new JLabel(transaction.getTargetAccNo());
-            tranTargetLabel.setFont(new Font("Arial", Font.PLAIN, 9));
+            tranTargetLabel.setFont(new Font("Dialog", Font.PLAIN, 9));
             c.gridx = 0;
             c.gridy = 1;
             transactionPanel.add(tranTargetLabel, c);
 
             JLabel tranDateLabel = new JLabel(transaction.getDate().toString());
-            tranDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+            tranDateLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
             c.gridx = 0;
             c.gridy = 2;
             transactionPanel.add(tranDateLabel, c);
 
             JLabel tranAmountLabel = new JLabel(Integer.toString(transaction.getAmount()));
-            tranAmountLabel.setFont(new Font("Arial", Font.BOLD, 16));
+            tranAmountLabel.setFont(new Font("Dialog", Font.BOLD, 16));
             c.anchor = GridBagConstraints.EAST;
             c.gridx = 1;
             c.gridy = 0;

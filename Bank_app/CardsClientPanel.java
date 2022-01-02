@@ -92,7 +92,7 @@ public class CardsClientPanel extends JPanel {
                             "<html>" + dict.getText("card_id") + "<b>" +
                                     card.getCard_id() + "</b></html>"
                     );
-                    cardIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    cardIdLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                     c.gridx = 0;
                     c.gridy = 0;
                     cardPanel.add(cardIdLabel, c);
@@ -101,7 +101,7 @@ public class CardsClientPanel extends JPanel {
                             "<html>" + dict.getText("card_type") + "<b>" +
                                     dict.getText("card_type_"+card.getCard_type()) + "</b></html>"
                     );
-                    cardTypeLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    cardTypeLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                     c.gridx = 0;
                     c.gridy = 1;
                     cardPanel.add(cardTypeLabel, c);
@@ -110,7 +110,7 @@ public class CardsClientPanel extends JPanel {
                             "<html>" + dict.getText("card_valid_until") + "<b>" +
                                     card.getExpiration_date().toString() + "</b></html>"
                     );
-                    expirationDateLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    expirationDateLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                     c.gridx = 0;
                     c.gridy = 2;
                     cardPanel.add(expirationDateLabel, c);
@@ -119,7 +119,7 @@ public class CardsClientPanel extends JPanel {
                             "<html>" + dict.getText("linked_acc_no") + "<b>" +
                                     account.getAccount_no() + "</b></html>"
                     );
-                    accountNrLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    accountNrLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                     c.gridx = 0;
                     c.gridy = 3;
                     cardPanel.add(accountNrLabel, c);
@@ -127,13 +127,13 @@ public class CardsClientPanel extends JPanel {
                     c.anchor = GridBagConstraints.EAST;
 
                     JLabel currentLabel = new JLabel(dict.getText("available_funds"));
-                    currentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                    currentLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                     c.gridx = 1;
                     c.gridy = 0;
                     cardPanel.add(currentLabel, c);
 
                     JLabel currentAmountLabel = new JLabel(Integer.toString(account.getBalance()));
-                    currentAmountLabel.setFont(new Font("Arial", Font.BOLD, 20));
+                    currentAmountLabel.setFont(new Font("Dialog", Font.BOLD, 20));
                     c.gridx = 1;
                     c.gridy = 1;
                     c.gridheight = 3;

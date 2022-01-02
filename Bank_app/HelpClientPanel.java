@@ -53,7 +53,7 @@ public class HelpClientPanel extends JPanel {
                     dict.getText("contact_us_3")+"</center></html>",
                 SwingConstants.CENTER);
 
-        phoneLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        phoneLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
         c.gridx = 0;
         c.gridy = 2;
         this.add(phoneLabel, c);
@@ -62,7 +62,7 @@ public class HelpClientPanel extends JPanel {
                 "<html><center>" + dict.getText("real_meeting") + "<br />" +
                     dict.getText("find_closest_place")+ "</center></html>",
                 SwingConstants.CENTER);
-        placeLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        placeLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
         c.gridx = 0;
         c.gridy = 3;
         this.add(placeLabel, c);
@@ -84,7 +84,7 @@ public class HelpClientPanel extends JPanel {
                 "<html><center>"+ dict.getText("app_comments_1") +"<br />" +
                 dict.getText("app_comments_2") +"<b style='color:red'>app@casadepapel.com</b></center></html>",
                 SwingConstants.CENTER);
-        emailLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        emailLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
         c.gridx = 0;
         c.gridy = 5;
         this.add(emailLabel, c);

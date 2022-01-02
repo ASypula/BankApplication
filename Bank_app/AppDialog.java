@@ -34,7 +34,7 @@ public class AppDialog extends JDialog {
                     dict.getText("contact_oper_impossible_6") + "<b>"+dict.getText("help")+"</b>.</div></html>",
                 SwingConstants.CENTER
         );
-        contactLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        contactLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
         contactDialog.add(contactLabel);
         contactDialog.setVisible(true);
     }

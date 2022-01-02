@@ -79,7 +79,7 @@ public class LoansClientPanel extends JPanel {
                         "<html>"+dict.getText("next_installment")+"<b>" +
                                 loan.getInstallment() + "</b></html>"
                 );
-                nextInstallmentAmountLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                nextInstallmentAmountLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 0;
                 loanPanel.add(nextInstallmentAmountLabel, c);
@@ -93,7 +93,7 @@ public class LoansClientPanel extends JPanel {
                             loan.getEndDate().toString() +
                             "</b>)</html>"
                 );
-                periodLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                periodLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 1;
                 loanPanel.add(periodLabel, c);
@@ -102,7 +102,7 @@ public class LoansClientPanel extends JPanel {
                         "<html>"+dict.getText("interest")+"<b>" +
                                 loan.getInterest_rate() + "</b></html>"
                 );
-                interestLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                interestLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 2;
                 loanPanel.add(interestLabel, c);
@@ -110,13 +110,13 @@ public class LoansClientPanel extends JPanel {
                 c.anchor = GridBagConstraints.EAST;
 
                 JLabel currentLabel = new JLabel(dict.getText("left_payment"));
-                currentLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                currentLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 1;
                 c.gridy = 0;
                 loanPanel.add(currentLabel, c);
 
                 JLabel currentAmountLabel = new JLabel(Integer.toString(loan.getBalance()));
-                currentAmountLabel.setFont(new Font("Arial", Font.BOLD, 16));
+                currentAmountLabel.setFont(new Font("Dialog", Font.BOLD, 16));
                 c.gridx = 1;
                 c.gridy = 1;
                 loanPanel.add(currentAmountLabel, c);
@@ -125,7 +125,7 @@ public class LoansClientPanel extends JPanel {
                         "<html>"+dict.getText("initial_amount")+"<b>" +
                                 loan.getInitial_value() + "</b></html>"
                 );
-                initialAmountLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                initialAmountLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 1;
                 c.gridy = 2;
                 loanPanel.add(initialAmountLabel, c);
