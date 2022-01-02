@@ -52,7 +52,7 @@ public class LoansClientPanel extends JPanel {
 
         java.util.List<Loan> loans = client.getLoans();
         if (loans.isEmpty()) {
-            JLabel noneLabel = new JLabel("Brak kredytów", SwingConstants.CENTER);
+            JLabel noneLabel = new JLabel(dict.getText("no_credits"), SwingConstants.CENTER);
             c.fill = GridBagConstraints.BOTH;
             c.gridwidth = GridBagConstraints.REMAINDER;
             c.weighty = 0.8;
@@ -76,9 +76,8 @@ public class LoansClientPanel extends JPanel {
                 c.weighty = 0.5;
 
                 JLabel nextInstallmentAmountLabel = new JLabel(
-                        "<html>Rata: <b>" +
-                                loan.getInstallment() +
-                                "</b></html>"
+                        "<html>"+dict.getText("next_installment")+"<b>" +
+                                loan.getInstallment() + "</b></html>"
                 );
                 nextInstallmentAmountLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -88,9 +87,9 @@ public class LoansClientPanel extends JPanel {
                 JLabel periodLabel = new JLabel(
                     "<html>" + dict.getText("period") + " <b>" +
                             loan.getAccum_period() +
-                            " msc</b> (od <b>" +
+                            " msc</b> ("+dict.getText("from")+" <b>" +
                             loan.getStart_date().toString() +
-                            "</b> do <b>" +
+                            "</b> "+dict.getText("to")+" <b>" +
                             loan.getEndDate().toString() +
                             "</b>)</html>"
                 );
@@ -100,9 +99,8 @@ public class LoansClientPanel extends JPanel {
                 loanPanel.add(periodLabel, c);
 
                 JLabel interestLabel = new JLabel(
-                        "<html>Oprocentowanie: <b>" +
-                                loan.getInterest_rate() +
-                                "</b></html>"
+                        "<html>"+dict.getText("interest")+"<b>" +
+                                loan.getInterest_rate() + "</b></html>"
                 );
                 interestLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -124,9 +122,8 @@ public class LoansClientPanel extends JPanel {
                 loanPanel.add(currentAmountLabel, c);
 
                 JLabel initialAmountLabel = new JLabel(
-                        "<html>Kwota początkowa: <b>" +
-                                loan.getInitial_value() +
-                                "</b></html>"
+                        "<html>"+dict.getText("initial_amount")+"<b>" +
+                                loan.getInitial_value() + "</b></html>"
                 );
                 initialAmountLabel.setFont(new Font("Arial", Font.PLAIN, 12));
                 c.gridx = 1;

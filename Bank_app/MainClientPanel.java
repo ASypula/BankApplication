@@ -183,7 +183,7 @@ public class MainClientPanel extends JPanel {
 
         java.util.List<BankAccount> accounts = client.getBankAccounts();
         if (accounts.isEmpty()) {
-            JLabel noneLabel = new JLabel("Brak kont", SwingConstants.CENTER);
+            JLabel noneLabel = new JLabel(dict.getText("no_accounts"), SwingConstants.CENTER);
             c.fill = GridBagConstraints.BOTH;
             c.weighty = 0.8;
             c.gridx = 0;
@@ -283,7 +283,9 @@ public class MainClientPanel extends JPanel {
                 java.util.List<Transaction> transactions = accounts.get(i).getTransactions();
                 if (transactions.isEmpty()) {
                     JLabel noneLabel = new JLabel(
-                            "<html><center>Brak transakcji<br />związanych<br />z tym kontem</center></html>",
+                            "<html><center>" + dict.getText("no_transactions_1") +
+                                    "<br />" + dict.getText("no_transactions_2") +
+                                    "<br />"+ dict.getText("no_transactions_3") +"</center></html>",
                             SwingConstants.CENTER
                     );
                     c.fill = GridBagConstraints.BOTH;
@@ -314,7 +316,7 @@ public class MainClientPanel extends JPanel {
             c.weighty = 0.8;
             this.add(accountsPanel, c);
 
-            WhiteButton showFullButton = new WhiteButton("Wyświetl całą historię");
+            WhiteButton showFullButton = new WhiteButton(dict.getText("show_history"));
             showFullButton.addActionListener(e -> new FullHistoryDialog(parent, accounts));
             c.fill = GridBagConstraints.NONE;
             c.anchor = GridBagConstraints.FIRST_LINE_END;

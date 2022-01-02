@@ -8,6 +8,7 @@ public class FullHistoryDialog extends AppDialog {
     private Dictionary dict;
 
     public FullHistoryDialog(AppFrame mparent, java.util.List<BankAccount> bankAccounts) {
+        //TODO: how to get dictionary to the constructor to translate "Pełna historia"
         super(mparent, "Pełna historia", 400, 400);
         parent = mparent;
         dict = parent.dict;
@@ -46,7 +47,9 @@ public class FullHistoryDialog extends AppDialog {
 
             if (transactions.isEmpty()) {
                 JLabel noneLabel = new JLabel(
-                        "<html><center>Brak transakcji<br />związanych<br />z tym kontem</center></html>",
+                        "<html><center>" + dict.getText("no_transactions_1") +
+                        "<br />" + dict.getText("no_transactions_2") +
+                        "<br />" + dict.getText("no_transactions_3") + "</center></html>",
                         SwingConstants.CENTER
                 );
                 c.gridx = i;
