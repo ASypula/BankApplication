@@ -1,7 +1,7 @@
-																	TESTY
+TESTY
 
 ===============================================
-Test działania procedury do zmiany kursu walut:
+Test dzialania procedury do zmiany kursu walut:
 
 alter session set NLS_NUMERIC_CHARACTERS='.,'; 
 
@@ -10,7 +10,7 @@ SELECT NAME, EXCHANGE_RATE FROM CURRENCIES;
 
 
 ================================================
-Test działania przewalutowywania:
+Test dzialania przewalutowywania:
 
 alter session set NLS_NUMERIC_CHARACTERS='.,'; 
 
