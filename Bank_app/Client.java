@@ -1,5 +1,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.CallableStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,15 +72,33 @@ public class Client extends PersonalData {
 		this.employees_id = "1"; //I'm a sad client I don't know how to get my employee ;(
 //		TODO: Should choose employee with the least clients
 	}
+
 	public void insert(String unhashed_password) throws SQLException { //for id = null
 		super.insert(unhashed_password);
 		Statement statement = Main.conn.createStatement();
-		String query1 = "INSERT INTO clients(personal_data_data_id, employees_employee_id) VALUES(" + data_id + ","+ employees_id + ")";
+		String query1 = "INSERT INTO clients(personal_data_data_id, employees_employee_id) VALUES(" + data_id + ","
+				+ employees_id + ")";
 		statement.executeQuery(query1);
 		String query2 = "SELECT client_id FROM clients WHERE personal_data_data_id =" + data_id;
 		ResultSet results = statement.executeQuery(query2);
 		results.next();
 		this.client_id = results.getString(1);
+	}
+	
+	public void changeCurrency(int currency_id) throws SQLException {
+		Statement statement = Main.conn.createStatement();
+		String query1 = "SELECT service_info_id WHERE client_id=" + client_id;
+		ResultSet results = statement.executeQuery(query1);
+		if (results.next()) {
+			int service_info_id = results.getInt(1);
+			String query2 = "call P_CONVERT_CURRENCY (?, ?)";
+			CallableStatement cs = Main.conn.prepareCall(query2);
+			cs.setInt(1, service_info_id);
+			cs.setInt(2, currency_id);
+			cs.execute();
+		} //TODO: what if client has no service_info associated with client_id?
+		//else throw
+
 	}
 
 	@Override
