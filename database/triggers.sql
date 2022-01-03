@@ -100,3 +100,29 @@ BEGIN
         :new.transaction_id := :new.transaction_id + 1;
     END IF;
 END;
+
+-- trigger used to delete personal data and convert services info of certain client to be unusable
+CREATE OR REPLACE TRIGGER t_delete_client
+BEFORE DELETE ON CLIENTS
+FOR EACH ROW
+DECLARE
+    v_count NUMBER;
+    v_NULL_ID NUMBER;
+BEGIN
+    SELECT count(service_info_id) INTO v_count 
+    FROM services_info 
+    WHERE client_id = :old.client_id AND balance > 0;
+    SELECT PERSONAL_DATA_ID INTO v_NULL_ID
+    FROM personal_data 
+    WHERE name = 'NULL' AND surname = 'NULL';
+    
+    IF v_count > 0 THEN
+        raise_application_error(-20002, 'Client cannot be deleted! He still has ongoing services!');
+    ELSE
+        UPDATE clients 
+        SET personal_data_data_id = v_NULL_ID, employees_employee_id = NULL 
+        WHERE CLIENT_ID = :old.client_id;
+        DELETE FROM personal_data
+        WHERE personal_data_id = :old.personal_data_data_id;
+    END IF;
+END;
