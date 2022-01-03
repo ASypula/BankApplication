@@ -10,3 +10,16 @@ FROM loans l INNER JOIN SERVICES_INFO s USING(service_info_id);
 CREATE OR REPLACE VIEW v_addresses AS
 SELECT a.address_id, a.street, a.apartment_no, c.city_name
 FROM addresses a INNER JOIN cities c ON a.CITIES_CITY_ID = c.CITY_ID;
+
+-- list of assistants with no. of clients assigned to them
+CREATE OR REPLACE VIEW V_ASSISTANTS_CLIENTS ("EMPLOYEE_ID", "NO_OF_CLIENTS") AS 
+SELECT e.employee_id, count(c.client_id) 
+FROM employees e LEFT OUTER JOIN clients c ON c.employees_employee_id = e.employee_id
+WHERE e.professions_profession_id = 
+    (SELECT PROFESSION_ID FROM PROFESSIONS WHERE NAME = 'assistant')
+GROUP BY e.employee_id
+ORDER BY count(c.client_id);
+
+-- view used to return the assistant whe the least number of clients assigned to him    
+CREATE OR REPLACE VIEW v_needs_work AS
+SELECT employee_id FROM v_assistants_clients WHERE rownum = 1;
