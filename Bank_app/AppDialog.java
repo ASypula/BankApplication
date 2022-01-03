@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
+import javax.mail.*;
 
 public class AppDialog extends JDialog {
 
@@ -22,6 +23,19 @@ public class AppDialog extends JDialog {
         JLabel wip = new JLabel("WIP");
         wipDialog.add(wip);
         wipDialog.setVisible(true);
+    }
+
+    public static void wrongMailDialog(AppFrame parent, Dictionary dict) {
+        AppDialog wrongLoginDialog = new AppDialog(parent, dict.getText("invalid_data"), 160, 150);
+        JLabel wrongLoginText = new JLabel(
+                "<html><div style='text-align: center;'>" +
+                        dict.getText("wrong_mail_1")+ "<br />"+
+                        dict.getText("wrong_mail_2") + "<br />" +
+                        "</html>",
+                SwingConstants.CENTER
+        );
+        wrongLoginDialog.add(wrongLoginText);
+        wrongLoginDialog.setVisible(true);
     }
 
     public static void emailDialog(AppFrame parent) {
@@ -43,13 +57,16 @@ public class AppDialog extends JDialog {
                 HashMap<String, String> mail_info = new HashMap<String, String>();
                 mail_info.put("title", dict.getText("mail_offer"));
                 mail_info.put("msg", "Advert");
-                Mail new_mail = new Mail(parent);
-                new_mail.send(email, mail_info, true);
+                try {
+                    Mail.send(email, mail_info, true, dict);
 
-                emailDialog.setVisible(false);
-                emailDialog.dispatchEvent(
-                        new WindowEvent(emailDialog, WindowEvent.WINDOW_CLOSING)
-                );
+                    emailDialog.setVisible(false);
+                    emailDialog.dispatchEvent(
+                            new WindowEvent(emailDialog, WindowEvent.WINDOW_CLOSING)
+                    );
+                } catch (MessagingException ex) {
+                    wrongMailDialog(parent, dict);
+                }
             }
         };
 

@@ -69,6 +69,7 @@ public class Client extends PersonalData {
 		super(name,surname,pesel,phone_no,addresses_address_id);
 		this.client_id = null;
 		this.employees_id = "1"; //I'm a sad client I don't know how to get my employee ;(
+//		TODO: Should choose employee with the least clients
 	}
 	public void insert(String unhashed_password) throws SQLException { //for id = null
 		super.insert(unhashed_password);
