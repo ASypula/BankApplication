@@ -55,6 +55,15 @@ public class Loan extends Account{
 		return initial_value;
 	}
 
+	public Date nextInstallmentDate() throws SQLException {
+		Date nextInstallment;
+		Statement statement = Main.conn.createStatement();
+		String query = "SELECT F_NEXT_INSTALLMENT(" + loan_id + ") from dual;";
+		ResultSet results = statement.executeQuery(query);
+		nextInstallment = results.getDate(1);
+		return nextInstallment;
+	}
+
 	@Override
 	public String toString() {
 		return "Loan [loan_id=" + loan_id + ", end_date= " + end_date + ", installment="
