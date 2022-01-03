@@ -27,7 +27,7 @@ public class AppDialog extends JDialog {
     public static void emailDialog(AppFrame parent) {
         Dictionary dict = parent.dict;
 
-        AppDialog emailDialog = new AppDialog(parent, "Podaj adres email", 250, 200);
+        AppDialog emailDialog = new AppDialog(parent, dict.getText("give_mail_address"), 250, 200);
         emailDialog.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -41,11 +41,10 @@ public class AppDialog extends JDialog {
             String email = emailTf.getText();
             if (!email.isEmpty()) {
                 HashMap<String, String> mail_info = new HashMap<String, String>();
-                mail_info.put("title", "Oferta Casa de PAPel");
+                mail_info.put("title", dict.getText("mail_offer"));
                 mail_info.put("msg", "Advert");
                 Mail new_mail = new Mail(parent);
                 new_mail.send(email, mail_info, true);
-//                TODO: Catch error if invalid email address
 
                 emailDialog.setVisible(false);
                 emailDialog.dispatchEvent(
@@ -54,7 +53,7 @@ public class AppDialog extends JDialog {
             }
         };
 
-        JLabel emailLabel = new JLabel("Adres email:");
+        JLabel emailLabel = new JLabel(dict.getText("mail_address"));
         c.gridx = 0;
         c.gridy = 0;
         emailDialog.add(emailLabel, c);

@@ -43,8 +43,8 @@ public class HelpClientPanel extends JPanel {
         c.gridy = 1;
         this.add(updateInfoButton, c);
 
-        WhiteButton mailOfferButton = new WhiteButton("<html><center>Otrzymaj email" +
-                "<br />z naszą ofertą</center></html>");
+        WhiteButton mailOfferButton = new WhiteButton("<html><center>" + dict.getText("mail_offer_receive_1") +
+                "<br />"+dict.getText("mail_offer_receive_2")+"</center></html>");
         mailOfferButton.addActionListener(e -> AppDialog.emailDialog(parent));
         c.anchor = GridBagConstraints.FIRST_LINE_END;
         c.gridx = 0;

@@ -53,6 +53,7 @@
     "find_closest_place": "最も近い点を見つける: ",
     "from": "から",
     "full_history": "完全な歴史",
+    "give_mail_address": "メールアドレスを頂けますか",
     "given_invalid_data_1": "間違って入力されました",
     "given_invalid_data_2": "または不完全",
     "given_invalid_data_3": "データ.",
@@ -68,6 +69,10 @@
     "linked_acc_no": "リンクされたアカウント番号: ",
     "login": "ログインする",
     "logout": "ログアウト",
+    "mail_address": "メールアドレス:",
+    "mail_offer": "カサデパペルオファー",
+    "mail_offer_receive_1": "メールを受け取る",
+    "mail_offer_receive_2": "私たちのオファーで",
     "mail_msg_1": "Dear Client,",
     "mail_msg_2": "We have a specially prepared offer for you!",
     "mail_msg_3": "You can choose a loan with an APRC of just 5% and repay it in convenient installments ",
@@ -127,5 +132,7 @@
     "wrong_login_1": "与えられたについてのユーザー",
     "wrong_login_2": "とパスワード",
     "wrong_login_3": "存在しません",
+    "wrong_mail_1": "提供されたメールアドレス",
+    "wrong_mail_2": "間違っている",
     "your_login": "あなたのログイン"
 }

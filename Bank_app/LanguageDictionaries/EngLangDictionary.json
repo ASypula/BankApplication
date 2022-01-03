@@ -53,6 +53,7 @@
     "find_closest_place": "Find the closest point: ",
     "from": "from",
     "full_history": "Full history",
+    "give_mail_address": "Provide email address",
     "given_invalid_data_1": "Entered incorrect",
     "given_invalid_data_2": "or incomplete",
     "given_invalid_data_3": "data.",
@@ -68,6 +69,10 @@
     "linked_acc_no": "Linked account number: ",
     "login": "Log in",
     "logout": "Log out",
+    "mail_address": "Email address:",
+    "mail_offer": "Casa de PAPel offer",
+    "mail_offer_receive_1": "Receive an email",
+    "mail_offer_receive_2": "with our offer",
     "mail_msg_1": "Dear Client,",
     "mail_msg_2": "We have a specially prepared offer for you!",
     "mail_msg_3": "You can choose a loan with an APRC of just 5% and repay it in convenient installments ",
@@ -127,5 +132,7 @@
     "wrong_login_1": "User with given",
     "wrong_login_2": "and password",
     "wrong_login_3": "does not exist",
+    "wrong_mail_1": "Email address provided",
+    "wrong_mail_2": "is incorrect",
     "your_login": "Your login"
 }

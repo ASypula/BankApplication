@@ -53,6 +53,7 @@
     "find_closest_place": "Znajdź najbliższy punkt:",
     "from": "od",
     "full_history": "Pełna historia",
+    "give_mail_address": "Podaj adres email",
     "given_invalid_data_1": "Podano nieprawidłowe",
     "given_invalid_data_2": "lub niepełne",
     "given_invalid_data_3": "dane.",
@@ -68,6 +69,10 @@
     "left_payment": "Do spłaty pozostało:",
     "login": "Zaloguj się",
     "logout": "Wyloguj",
+    "mail_address": "Adres email:",
+    "mail_offer": "Oferta Casa de PAPel",
+    "mail_offer_receive_1": "Otrzymaj email",
+    "mail_offer_receive_2": "z naszą ofertą",
     "mail_msg_1": "Drogi kliencie,",
     "mail_msg_2": "Mamy dla Ciebie specjalnie przygotowana oferte!",
     "mail_msg_3": "Mozesz wybrac kredyt z RRSO zaledwie 5% i splata w dogodnych ratach ",
@@ -127,5 +132,7 @@
     "wrong_login_1": "Użytkownk o podanym",
     "wrong_login_2": "i haśle",
     "wrong_login_3": "nie istnieje",
+    "wrong_mail_1": "Podany adres mailowy",
+    "wrong_mail_2": "jest niepoprawny",
     "your_login": "Twój login"
 }

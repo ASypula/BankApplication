@@ -72,9 +72,9 @@ public class Mail
         AppDialog wrongLoginDialog = new AppDialog(owner, dict.getText("invalid_data"), 160, 150);
         JLabel wrongLoginText = new JLabel(
                 "<html><div style='text-align: center;'>" +
-                        dict.getText("wrong_login_1")+ "<br />ID "+
-                        dict.getText("wrong_login_2") + "<br />" +
-                        dict.getText("wrong_login_3") + "</html>",
+                        dict.getText("wrong_mail_1")+ "<br />"+
+                        dict.getText("wrong_mail_2") + "<br />" +
+                        "</html>",
                 SwingConstants.CENTER
         );
         wrongLoginDialog.add(wrongLoginText);
