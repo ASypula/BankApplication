@@ -1,5 +1,7 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class EmployeePanel extends JPanel {
 
@@ -12,10 +14,16 @@ public class EmployeePanel extends JPanel {
         parent = mparent;
         employee = memployee;
         dict = parent.dict;
-        initialize();
+        try {
+            initialize();
+        } catch (SQLException ex) {
+            System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+        } catch (WrongId e) {
+            System.err.format(e.getMessage());
+        }
     }
 
-    private void initialize() {
+    private void initialize() throws SQLException, WrongId {
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.NONE;
@@ -36,13 +44,99 @@ public class EmployeePanel extends JPanel {
         c.gridy = 0;
         this.add(logoutButton, c);
 
-        JLabel employeeLabel = new JLabel(dict.getText("am_employee"), SwingConstants.CENTER);
-        employeeLabel.setFont(new Font("Dialog", Font.BOLD, 40));
+        JLabel professionLabel = new JLabel("Stanowisko: " + employee.getProfessionName(), SwingConstants.CENTER);
+        professionLabel.setFont(new Font("Dialog", Font.BOLD, 18));
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
         c.gridy = 1;
         c.gridwidth = GridBagConstraints.REMAINDER;
-        c.weighty = 0.98;
-        this.add(employeeLabel, c);
+        c.weighty = 0.2;
+        this.add(professionLabel, c);
+
+        java.util.List<Client> clients = employee.getClients();
+
+        if(!clients.isEmpty()) {
+            JLabel clientsLabel = new JLabel("Moi klienci:");
+            clientsLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+            c.anchor = GridBagConstraints.FIRST_LINE_START;
+            c.gridx = 0;
+            c.gridy = 2;
+            c.weighty = 0.1;
+            this.add(clientsLabel, c);
+
+            JPanel clientsPanel = new JPanel();
+            clientsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+            clientsPanel.setBackground(parent.bgColor);
+            clientsPanel.setLayout(new BoxLayout(clientsPanel, BoxLayout.Y_AXIS));
+
+            for (Client client : clients) {
+
+                JPanel clientPanel = new JPanel();
+                clientPanel.setBackground(parent.bgColor);
+                clientPanel.setLayout(new GridBagLayout());
+                c.fill = GridBagConstraints.NONE;
+                c.anchor = GridBagConstraints.FIRST_LINE_START;
+                c.weightx = 0.5;
+                c.weighty = 0.5;
+
+                JLabel clientIdLabel = new JLabel(
+                        "<html>ID klienta: <b>" +
+                                client.getClient_id() + "</b></html>"
+                );
+                clientIdLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+                c.gridx = 0;
+                c.gridy = 0;
+                clientPanel.add(clientIdLabel, c);
+
+                JLabel clientNameLabel = new JLabel(client.getName() + " " + client.getSurname());
+                clientNameLabel.setFont(new Font("Dialog", Font.BOLD, 16));
+                c.gridx = 0;
+                c.gridy = 1;
+                clientPanel.add(clientNameLabel, c);
+
+                String accStr = "Konta klienta: ";
+                java.util.List<BankAccount> accounts = client.getBankAccounts();
+
+                if (accounts.isEmpty()) {
+                    accStr += "brak";
+                } else {
+                    for (BankAccount account : accounts)
+                        accStr += account.getAccount_no() + ", ";
+                    accStr = accStr.substring(0, accStr.length() - 2);
+                }
+
+                JLabel clientAccountsLabel = new JLabel(accStr);
+                clientAccountsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+                c.gridx = 0;
+                c.gridy = 2;
+                clientPanel.add(clientAccountsLabel, c);
+
+                WhiteButton removeClientButton = new WhiteButton("Usuń klienta");
+                removeClientButton.addActionListener(e -> AppDialog.wipDialog(parent));
+                c.anchor = GridBagConstraints.FIRST_LINE_END;
+                c.gridx = 1;
+                c.gridy = 1;
+                clientPanel.add(removeClientButton, c);
+
+                clientsPanel.add(clientPanel);
+                clientsPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+            }
+
+
+            c.anchor = GridBagConstraints.FIRST_LINE_START;
+            c.gridx = 0;
+            c.gridy = 3;
+            c.gridwidth = GridBagConstraints.REMAINDER;
+            c.weighty = 0.8;
+
+            if (clients.size() > 6) {
+                JScrollPane clientsScroll = new JScrollPane(clientsPanel);
+                c.fill = GridBagConstraints.BOTH;
+                this.add(clientsScroll, c);
+            } else {
+                c.fill = GridBagConstraints.HORIZONTAL;
+                this.add(clientsPanel, c);
+            }
+        }
     }
 }

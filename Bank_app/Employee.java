@@ -2,11 +2,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Employee extends PersonalData {
 
 	private String salary, professions_f_id, employee_id, branch_id;
+	static Map<Integer, String> profession_names = new HashMap<Integer, String>();
 
 	public String getSalary() {
 		return salary;
@@ -33,6 +36,26 @@ public class Employee extends PersonalData {
 			accounts.add(new Client(results.getString(1)));
 		}
 		return accounts;
+	}
+
+	public String getProfessionName() throws SQLException {
+		int i = Integer.parseInt(professions_f_id);
+		if (!profession_names.containsKey(i)) {
+			Statement statement = Main.conn.createStatement();
+			String query = "SELECT profession_id, name FROM professions";
+			ResultSet results = statement.executeQuery(query);
+			while (results.next()) profession_names.put(results.getInt(1), results.getString(2));
+		}
+		return profession_names.get(i);
+	}
+
+	public static Employee getEmployeeFromPersonalDataId(String personalDataId) throws SQLException, WrongId {
+		Statement statement = Main.conn.createStatement();
+		ResultSet results = statement.executeQuery("SELECT employee_id from employees where personal_data_data_id = "+personalDataId);
+		if (results.next()) {
+			return new Employee(results.getString(1));
+		}
+		return null;
 	}
 
 	public Employee(String employee_id) throws SQLException, WrongId {

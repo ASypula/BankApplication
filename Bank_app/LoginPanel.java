@@ -39,7 +39,7 @@ public class LoginPanel extends JPanel {
                     parent.changeToMainClient(cli);
                 } catch (WrongId e) {
                     try {
-                        Employee emp = new Employee(login);
+                        Employee emp = Employee.getEmployeeFromPersonalDataId(login);
                         parent.changeToEmployee(emp);
                     } catch (WrongId ex) {}
                 }

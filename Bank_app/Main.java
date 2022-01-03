@@ -66,8 +66,8 @@ public class Main {
 					return new Client(login);
 			} catch (WrongId e) {
 				try {
-					return new Employee(login);
-				} catch (WrongId ex) {}
+					return Employee.getEmployeeFromPersonalDataId(login);
+				} catch (WrongId ignored) {}
 			}
 		}
 		return null;
@@ -78,7 +78,7 @@ public class Main {
 		password += "bd1";
 		String hashedPassword = null;
 		try {
-		  MessageDigest md = MessageDigest.getInstance("MD5");
+		  MessageDigest md = MessageDigest.getInstance("SHA-256");
 		  md.update(password.getBytes());
 		  byte[] bytes = md.digest();
 		  StringBuilder sb = new StringBuilder();
@@ -89,7 +89,7 @@ public class Main {
 		} catch (NoSuchAlgorithmException e) {
 		  e.printStackTrace();
 		}
-		return hashedPassword;
+		return hashedPassword.toUpperCase();
 	}
 	public static String capitalize(String str) {
 		if (str.length()>1)
