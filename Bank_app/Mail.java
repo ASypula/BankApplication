@@ -2,14 +2,22 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.*;
+import javax.swing.*;
  
  
 public class Mail
 {
     final static String username = "casa.de.papel.pap@gmail.com";
     final static String password = "casadepapel8";
+    private final AppFrame owner;
+    private Dictionary dict;
 
-    public static void send(String recipient, HashMap<String, String> mail_info, boolean advert, Dictionary dict) {
+    public Mail(AppFrame mowner) {
+        owner = mowner;
+        dict = owner.dict;
+    }
+
+    public void send(String recipient, HashMap<String, String> mail_info, boolean advert) {
         // if advert is true then the mail is sent with automatic advert message
 
         Properties prop = new Properties();
@@ -44,7 +52,7 @@ public class Mail
             Transport.send(message);
 
         } catch (MessagingException e) {
-            e.printStackTrace();
+            wrongMailDialog();
         }
     }
     
@@ -58,6 +66,19 @@ public class Mail
         "<h2>" + dict.getText("mail_msg_8") + "</h2>" +
         "<h2 style=\"color:#2B79DC;\">" + dict.getText("mail_msg_9");
         return msg;
+    }
+
+    private void wrongMailDialog() {
+        AppDialog wrongLoginDialog = new AppDialog(owner, dict.getText("invalid_data"), 160, 150);
+        JLabel wrongLoginText = new JLabel(
+                "<html><div style='text-align: center;'>" +
+                        dict.getText("wrong_login_1")+ "<br />ID "+
+                        dict.getText("wrong_login_2") + "<br />" +
+                        dict.getText("wrong_login_3") + "</html>",
+                SwingConstants.CENTER
+        );
+        wrongLoginDialog.add(wrongLoginText);
+        wrongLoginDialog.setVisible(true);
     }
 
 }

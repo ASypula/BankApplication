@@ -43,7 +43,8 @@ public class AppDialog extends JDialog {
                 HashMap<String, String> mail_info = new HashMap<String, String>();
                 mail_info.put("title", "Oferta Casa de PAPel");
                 mail_info.put("msg", "Advert");
-                Mail.send(email, mail_info, true, dict);
+                Mail new_mail = new Mail(parent);
+                new_mail.send(email, mail_info, true);
 //                TODO: Catch error if invalid email address
 
                 emailDialog.setVisible(false);
