@@ -59,3 +59,55 @@ BEGIN
 
     RETURN v_install_sum;
 END;
+
+create or replace PROCEDURE       "P_ALTER_CURRENCIES" (
+    p_usd in NUMBER, 
+    p_eur in NUMBER,  
+    p_chf in NUMBER,  
+    p_gbp in NUMBER,
+    p_czk in NUMBER,
+    p_rub in NUMBER,  
+    p_try in NUMBER, 
+    p_cny in NUMBER, 
+    p_sek in NUMBER
+)
+IS
+BEGIN
+    UPDATE CURRENCIES SET EXCHANGE_RATE = p_usd WHERE ABBREVIATION like 'USD';
+    UPDATE CURRENCIES SET EXCHANGE_RATE = p_eur WHERE ABBREVIATION like 'EUR';
+    UPDATE CURRENCIES SET EXCHANGE_RATE = p_chf WHERE ABBREVIATION like 'CHF';
+    UPDATE CURRENCIES SET EXCHANGE_RATE = p_gbp WHERE ABBREVIATION like 'GBP';
+    UPDATE CURRENCIES SET EXCHANGE_RATE = p_czk WHERE ABBREVIATION like 'CZK';
+    UPDATE CURRENCIES SET EXCHANGE_RATE = p_rub WHERE ABBREVIATION like 'RUB';
+    UPDATE CURRENCIES SET EXCHANGE_RATE = p_try WHERE ABBREVIATION like 'TRY';
+    UPDATE CURRENCIES SET EXCHANGE_RATE = p_cny WHERE ABBREVIATION like 'CNY';
+    UPDATE CURRENCIES SET EXCHANGE_RATE = p_sek WHERE ABBREVIATION like 'SEK';
+END;
+
+create or replace PROCEDURE       "P_CONVERT_CURRENCY" (p_service_info_id NUMBER, p_new_currency_id NUMBER)
+AS
+    v_balance            NUMBER;
+    v_new_balance        NUMBER;
+    v_exchange_rate      NUMBER;
+    v_new_exchange_rate  NUMBER;
+BEGIN
+    SELECT BALANCE INTO v_balance 
+    FROM SERVICES_INFO
+    WHERE SERVICE_INFO_ID = p_service_info_id;
+    SELECT EXCHANGE_RATE INTO v_exchange_rate 
+    FROM CURRENCIES 
+    WHERE CURRENCY_ID = (
+        SELECT CURRENCY_ID 
+        FROM SERVICES_INFO
+        WHERE SERVICE_INFO_ID = p_service_info_id);
+    SELECT EXCHANGE_RATE INTO v_new_exchange_rate
+    FROM CURRENCIES 
+    WHERE CURRENCY_ID = p_new_currency_id;
+
+    v_new_balance := f_convert_acc_currency(v_balance, v_exchange_rate, v_new_exchange_rate);
+
+    UPDATE SERVICES_INFO 
+    SET BALANCE = v_new_balance, CURRENCY_ID = p_new_currency_id
+    WHERE SERVICE_INFO_ID = p_service_info_id;
+
+END;
