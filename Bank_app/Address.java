@@ -52,9 +52,12 @@ public class Address {
 			results.next();
 		}
 		city_id = results.getString(1);
-		statement.executeQuery("INSERT INTO addresses(STREET,APARTMENT_NO,CITIES_CITY_ID) VALUES ('"+street+"',"+apartment_no+","+city_id+")");
 		results = statement.executeQuery("SELECT ADDRESS_ID FROM addresses where street ='"+street+"' AND apartment_no = "+apartment_no+" AND CITIES_CITY_ID ="+city_id);
-		results.next();
+		if (!results.next()) {
+			statement.executeQuery("INSERT INTO addresses(STREET,APARTMENT_NO,CITIES_CITY_ID) VALUES ('" + street + "'," + apartment_no + "," + city_id + ")");
+			results = statement.executeQuery("SELECT ADDRESS_ID FROM addresses where street ='" + street + "' AND apartment_no = " + apartment_no + " AND CITIES_CITY_ID =" + city_id);
+			results.next();
+		}
 		address_id = results.getString(1);
 	}
 
