@@ -23,3 +23,8 @@ ORDER BY count(c.client_id);
 -- view used to return the assistant whe the least number of clients assigned to him    
 CREATE OR REPLACE VIEW v_needs_work AS
 SELECT employee_id FROM v_assistants_clients WHERE rownum = 1;
+
+-- view used to describe set of personal data, addresses and cities 
+CREATE OR REPLACE VIEW v_personal_data AS
+SELECT personal_data_id, p.name, p.surname, PESEL, PHONE_NO, HASHED_PSWD, ADDRESSES_ADDRESS_ID, STREET, APARTMENT_NO, CITIES_CITY_ID, CITY_NAME
+FROM personal_data p join ADDRESSES a ON p.addresses_address_id = a.address_id join CITIES c on a.cities_city_id = c.city_id;
