@@ -188,6 +188,7 @@ public class MainClientPanel extends JPanel {
             c.weighty = 0.8;
             c.gridx = 0;
             c.gridy = 2;
+            c.gridwidth = GridBagConstraints.REMAINDER;
             this.add(noneLabel, c);
         } else {
             JPanel accountsPanel = new JPanel();

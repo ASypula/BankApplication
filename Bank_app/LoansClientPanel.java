@@ -76,7 +76,7 @@ public class LoansClientPanel extends JPanel {
                 c.weighty = 0.5;
 
                 JLabel nextInstallmentAmountLabel = new JLabel(
-                        "<html>"+dict.getText("next_installment")+"<b>" +
+                        "<html>"+dict.getText("installment_amount")+"<b>" +
                                 loan.getInstallment() + "</b></html>"
                 );
                 nextInstallmentAmountLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -87,7 +87,7 @@ public class LoansClientPanel extends JPanel {
                 JLabel periodLabel = new JLabel(
                     "<html>" + dict.getText("period") + " <b>" +
                             loan.getAccum_period() +
-                            " msc</b> ("+dict.getText("from")+" <b>" +
+                            " yrs</b> ("+dict.getText("from")+" <b>" +
                             loan.getStart_date().toString() +
                             "</b> "+dict.getText("to")+" <b>" +
                             loan.getEndDate().toString() +
@@ -100,7 +100,7 @@ public class LoansClientPanel extends JPanel {
 
                 JLabel interestLabel = new JLabel(
                         "<html>"+dict.getText("interest")+"<b>" +
-                                loan.getInterest_rate() + "</b></html>"
+                                loan.getInterest_rate() + "%</b></html>"
                 );
                 interestLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -138,7 +138,7 @@ public class LoansClientPanel extends JPanel {
             c.anchor = GridBagConstraints.FIRST_LINE_START;
             c.gridx = 0;
             c.gridy = 2;
-            c.weightx = 0.5;
+            c.gridwidth = GridBagConstraints.REMAINDER;
             c.weighty = 0.8;
             this.add(loansPanel, c);
         }
