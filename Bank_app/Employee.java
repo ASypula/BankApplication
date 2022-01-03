@@ -19,6 +19,10 @@ public class Employee extends PersonalData {
 		return branch_id;
 	}
 
+	public Branch getBranch() throws SQLException, WrongId {
+		return new Branch(branch_id);
+	}
+	
 	public String getProfessions_f_id() {
 		return professions_f_id;
 	}
