@@ -65,10 +65,7 @@ public class DepositsClientPanel extends JPanel {
             depositsPanel.setBackground(parent.bgColor);
             depositsPanel.setLayout(new BoxLayout(depositsPanel, BoxLayout.Y_AXIS));
 
-//        TODO: Uncomment everything and check after necessary functions implemented; Remove dummy values
-//        java.util.List<Deposit> deposits = client.getDeposits();
             for (BankAccount deposit : deposits) {
-//            for (int i = 0; i < 3; i++) {
                 JPanel depositPanel = new JPanel();
                 depositPanel.setBackground(parent.bgColor);
                 depositPanel.setLayout(new GridBagLayout());
@@ -77,42 +74,27 @@ public class DepositsClientPanel extends JPanel {
                 c.weightx = 0.5;
                 c.weighty = 0.5;
 
-//            JLabel nextInstallmentAmountLabel = new JLabel(
-//                    "<html>Następna wpłata: <b>" +
-//                            deposit.getNextInstallmentAmount() +
-//                            "</b></html>"
-//            );
-                JLabel nextInstallmentAmountLabel = new JLabel(
-                        "<html>" + dict.getText("next_payment") + "<b>" +
-                                "[NextInstallmentAmount]" + "</b></html>"
+                JLabel periodLabel = new JLabel(
+                        "<html>" + dict.getText("period") + " <b>" +
+                                deposit.getAccum_period() + " msc</b></html>"
                 );
-                nextInstallmentAmountLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+                periodLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 0;
-                depositPanel.add(nextInstallmentAmountLabel, c);
+                depositPanel.add(periodLabel, c);
 
-//            JLabel nextInstallmentDateLabel = new JLabel(
-//                    "<html>Płatna dnia: <b>" +
-//                            deposit.getNextInstallmentDate().toString() +
-//                            "</b></html>"
-//            );
-                JLabel nextInstallmentDateLabel = new JLabel(
-                        "<html>" + dict.getText("payment_day") + "<b>" +
-                                "[NextInstallmentDate]" + "</b></html>"
+                JLabel startDateLabel = new JLabel(
+                        "<html>Data początkowa: <b>" +
+                                deposit.getStart_date().toString() + "</b></html>"
                 );
-                nextInstallmentDateLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+                startDateLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 1;
-                depositPanel.add(nextInstallmentDateLabel, c);
+                depositPanel.add(startDateLabel, c);
 
-//            JLabel interestLabel = new JLabel(
-//                    "<html>Oprocentowanie: <b>" +
-//                            deposit.getInterest() +
-//                            "</b></html>"
-//            );
                 JLabel interestLabel = new JLabel(
                         "<html>" + dict.getText("interest") + "<b>" +
-                                "[Interest]" + "%</b></html>"
+                                deposit.getInterest_rate() + "%</b></html>"
                 );
                 interestLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -127,35 +109,14 @@ public class DepositsClientPanel extends JPanel {
                 c.gridy = 0;
                 depositPanel.add(currentLabel, c);
 
-//            JLabel currentAmountLabel = new JLabel(deposit.getCurrentAmount());
-                JLabel currentAmountLabel = new JLabel("[Amount]");
-                currentAmountLabel.setFont(new Font("Dialog", Font.BOLD, 16));
+                JLabel currentAmountLabel = new JLabel(Integer.toString(deposit.getBalance()));
+                currentAmountLabel.setFont(new Font("Dialog", Font.BOLD, 20));
                 c.gridx = 1;
                 c.gridy = 1;
+                c.gridheight = GridBagConstraints.REMAINDER;
                 depositPanel.add(currentAmountLabel, c);
 
-//            JLabel periodLabel = new JLabel(
-//                    "<html>Okres: <b>" +
-//                            deposit.getPeriodMonths() +
-//                            " msc</b> (od <b>" +
-//                            deposit.getStartDate().toString() +
-//                            "</b> do <b>" +
-//                            deposit.getEndDate().toString() +
-//                            "</b>)</html>"
-//            );
-                JLabel periodLabel = new JLabel(
-                        "<html>" + dict.getText("period") + " <b>" +
-                                "[Years]" +
-                                " yrs</b> (" + dict.getText("from") + " <b>" +
-                                "[StartDate]" +
-                                "</b>" + dict.getText("to") + "<b>" +
-                                "[EndDate]" +
-                                "</b>)</html>"
-                );
-                periodLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-                c.gridx = 1;
-                c.gridy = 2;
-                depositPanel.add(periodLabel, c);
+                c.gridheight = 1;
 
                 depositsPanel.add(depositPanel);
                 depositsPanel.add(Box.createRigidArea(new Dimension(0, 60)));
