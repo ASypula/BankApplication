@@ -44,7 +44,7 @@ public class EmployeePanel extends JPanel {
         c.gridy = 0;
         this.add(logoutButton, c);
 
-        JLabel professionLabel = new JLabel("Stanowisko: " + employee.getProfessionName(), SwingConstants.CENTER);
+        JLabel professionLabel = new JLabel(dict.getText("profession") + employee.getProfessionName(), SwingConstants.CENTER);
         professionLabel.setFont(new Font("Dialog", Font.BOLD, 18));
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
@@ -56,7 +56,7 @@ public class EmployeePanel extends JPanel {
         java.util.List<Client> clients = employee.getClients();
 
         if(!clients.isEmpty()) {
-            JLabel clientsLabel = new JLabel("Moi klienci:");
+            JLabel clientsLabel = new JLabel(dict.getText("my_clients"));
             clientsLabel.setFont(new Font("Dialog", Font.BOLD, 14));
             c.anchor = GridBagConstraints.FIRST_LINE_START;
             c.gridx = 0;
@@ -80,7 +80,7 @@ public class EmployeePanel extends JPanel {
                 c.weighty = 0.5;
 
                 JLabel clientIdLabel = new JLabel(
-                        "<html>ID klienta: <b>" +
+                        "<html>"+dict.getText("client_id")+"<b>" +
                                 client.getClient_id() + "</b></html>"
                 );
                 clientIdLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -94,11 +94,11 @@ public class EmployeePanel extends JPanel {
                 c.gridy = 1;
                 clientPanel.add(clientNameLabel, c);
 
-                String accStr = "Konta klienta: ";
+                String accStr = dict.getText("client_account");
                 java.util.List<BankAccount> accounts = client.getBankAccounts();
 
                 if (accounts.isEmpty()) {
-                    accStr += "brak";
+                    accStr += dict.getText("lack");
                 } else {
                     for (BankAccount account : accounts)
                         accStr += account.getAccount_no() + ", ";
@@ -111,7 +111,7 @@ public class EmployeePanel extends JPanel {
                 c.gridy = 2;
                 clientPanel.add(clientAccountsLabel, c);
 
-                WhiteButton removeClientButton = new WhiteButton("Usuń klienta");
+                WhiteButton removeClientButton = new WhiteButton(dict.getText("remove_client"));
                 removeClientButton.addActionListener(e -> AppDialog.wipDialog(parent));
                 c.anchor = GridBagConstraints.FIRST_LINE_END;
                 c.gridx = 1;

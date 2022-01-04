@@ -84,7 +84,7 @@ public class DepositsClientPanel extends JPanel {
                 depositPanel.add(periodLabel, c);
 
                 JLabel startDateLabel = new JLabel(
-                        "<html>Data początkowa: <b>" +
+                        "<html>"+dict.getText("start_date")+"<b>" +
                                 deposit.getStart_date().toString() + "</b></html>"
                 );
                 startDateLabel.setFont(new Font("Dialog", Font.PLAIN, 12));

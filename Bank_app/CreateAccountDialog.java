@@ -147,7 +147,7 @@ public class CreateAccountDialog extends AppDialog {
 
         if (!createCli) {
             Box salaryBox = Box.createHorizontalBox();
-            JLabel salaryLabel = new JLabel("Zarobki:");
+            JLabel salaryLabel = new JLabel(dict.getText("salary"));
             salaryBox.add(Box.createRigidArea(new Dimension(10, 0)));
             salaryBox.add(salaryLabel);
             salaryBox.add(Box.createHorizontalGlue());
@@ -158,7 +158,7 @@ public class CreateAccountDialog extends AppDialog {
             creAccPan.add(salaryTf);
 
             Box professionBox = Box.createHorizontalBox();
-            JLabel professionLabel = new JLabel("Zawód:");
+            JLabel professionLabel = new JLabel(dict.getText("profession"));
             professionBox.add(Box.createRigidArea(new Dimension(10, 0)));
             professionBox.add(professionLabel);
             professionBox.add(Box.createHorizontalGlue());
@@ -168,7 +168,7 @@ public class CreateAccountDialog extends AppDialog {
             creAccPan.add(professionCb);
 
             Box branchBox = Box.createHorizontalBox();
-            JLabel branchLabel = new JLabel("ID oddziału:");
+            JLabel branchLabel = new JLabel(dict.getText("branch_id"));
             branchBox.add(Box.createRigidArea(new Dimension(10, 0)));
             branchBox.add(branchLabel);
             branchBox.add(Box.createHorizontalGlue());
