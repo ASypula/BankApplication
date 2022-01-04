@@ -3,6 +3,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.util.HashMap;
 import javax.mail.*;
 
@@ -104,5 +105,60 @@ public class AppDialog extends JDialog {
         contactLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
         contactDialog.add(contactLabel);
         contactDialog.setVisible(true);
+    }
+
+    private static String getHoursOrClosed(Branch branch, String day, Dictionary dict) {
+        String hours = branch.getOpening_hours(day);
+        if (hours == null)
+            hours = "Zamknięte";
+        return hours;
+    }
+
+    public static void branchDetailsDialog(AppFrame parent, Branch branch) throws SQLException, WrongId {
+        Dictionary dict = parent.dict;
+        AppDialog branchDialog = new AppDialog(parent, "Szczegóły oddziału", 250, 275);
+
+        JPanel branchPanel = new JPanel();
+        branchPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        branchPanel.setBackground(parent.bgColor);
+        branchPanel.setLayout(new BoxLayout(branchPanel, BoxLayout.PAGE_AXIS));
+        branchDialog.add(branchPanel);
+
+        JLabel addressLabel = new JLabel(
+                "<html><center><b>Adres oddziału:</b> " +
+                        branch.getAddress().getStreet() + " " +
+                        branch.getAddress().getApartment_no() + ", " +
+                        branch.getAddress().getCity_name() + "</center></html>",
+                SwingConstants.CENTER
+        );
+        addressLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+        addressLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        branchPanel.add(addressLabel);
+
+        branchPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+        JLabel hoursTitleLabel = new JLabel("Godziny otwarcia", SwingConstants.CENTER);
+        hoursTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        branchPanel.add(hoursTitleLabel);
+
+        branchPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+
+        JLabel hoursLabel = new JLabel(
+                "<html><div style=\"text-align:center\">" +
+                        "Poniedziałek: " + getHoursOrClosed(branch, "MON", dict) + "<br />" +
+                        "Wtorek: " + getHoursOrClosed(branch, "TUE", dict) + "<br />" +
+                        "Środa: " + getHoursOrClosed(branch, "WED", dict) + "<br />" +
+                        "Czwartek: " + getHoursOrClosed(branch, "THU", dict) + "<br />" +
+                        "Piątek: " + getHoursOrClosed(branch, "FRI", dict) + "<br />" +
+                        "Sobota: " + getHoursOrClosed(branch, "SAT", dict) + "<br />" +
+                        "Niedziela: " + getHoursOrClosed(branch, "SUN", dict) +
+                        "</div></html>",
+                SwingConstants.CENTER
+        );
+        hoursLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+        hoursLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        branchPanel.add(hoursLabel);
+
+        branchDialog.setVisible(true);
     }
 }

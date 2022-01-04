@@ -76,8 +76,15 @@ public class HelpClientPanel extends JPanel {
         this.add(placeLabel, c);
 
         WhiteButton findPlaceButton = new WhiteButton(dict.getText("search"));
-        findPlaceButton.addActionListener(e -> AppDialog.wipDialog(parent));
-//        TODO: Adres i godziny otwarcia placówki przypisanej do przypisanego pracownika?
+        findPlaceButton.addActionListener(e -> {
+            try {
+                AppDialog.branchDetailsDialog(parent, client.getEmployee().getBranch());
+            } catch (SQLException ex) {
+                System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+            } catch (WrongId ex) {
+                System.err.format(ex.getMessage());
+            }
+        });
 
         c.fill = GridBagConstraints.NONE;
         c.anchor = GridBagConstraints.NORTH;
