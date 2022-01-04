@@ -145,8 +145,8 @@ public class DepositsClientPanel extends JPanel {
 //            );
                 JLabel periodLabel = new JLabel(
                         "<html>" + dict.getText("period") + " <b>" +
-                                "[Months]" +
-                                " msc</b> (" + dict.getText("from") + " <b>" +
+                                "[Years]" +
+                                " yrs</b> (" + dict.getText("from") + " <b>" +
                                 "[StartDate]" +
                                 "</b>" + dict.getText("to") + "<b>" +
                                 "[EndDate]" +
@@ -165,7 +165,7 @@ public class DepositsClientPanel extends JPanel {
             c.anchor = GridBagConstraints.FIRST_LINE_START;
             c.gridx = 0;
             c.gridy = 2;
-            c.weightx = 0.5;
+            c.gridwidth = GridBagConstraints.REMAINDER;
             c.weighty = 0.8;
             this.add(depositsPanel, c);
         }

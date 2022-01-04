@@ -65,7 +65,6 @@ public class LoansClientPanel extends JPanel {
             loansPanel.setBackground(parent.bgColor);
             loansPanel.setLayout(new BoxLayout(loansPanel, BoxLayout.Y_AXIS));
 
-//        TODO: Verify after adding test values
             for (Loan loan : loans) {
                 JPanel loanPanel = new JPanel();
                 loanPanel.setBackground(parent.bgColor);
@@ -84,19 +83,15 @@ public class LoansClientPanel extends JPanel {
                 c.gridy = 0;
                 loanPanel.add(nextInstallmentAmountLabel, c);
 
-                JLabel periodLabel = new JLabel(
-                    "<html>" + dict.getText("period") + " <b>" +
-                            loan.getAccum_period() +
-                            " yrs</b> ("+dict.getText("from")+" <b>" +
-                            loan.getStart_date().toString() +
-                            "</b> "+dict.getText("to")+" <b>" +
-                            loan.getEndDate().toString() +
-                            "</b>)</html>"
+                JLabel nextInstallmentLabel = new JLabel(
+                    "<html>" + dict.getText("next_installment") + "<b>" +
+                            loan.nextInstallmentDate().toString() +
+                            "</b></html>"
                 );
-                periodLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+                nextInstallmentLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 1;
-                loanPanel.add(periodLabel, c);
+                loanPanel.add(nextInstallmentLabel, c);
 
                 JLabel interestLabel = new JLabel(
                         "<html>"+dict.getText("interest")+"<b>" +

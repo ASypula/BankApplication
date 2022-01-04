@@ -58,10 +58,13 @@ public class Loan extends Account{
 	public Date nextInstallmentDate() throws SQLException {
 		Date nextInstallment;
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT F_NEXT_INSTALLMENT(" + loan_id + ") from dual;";
+		String query = "SELECT F_NEXT_INSTALLMENT(" + loan_id + ") from dual";
 		ResultSet results = statement.executeQuery(query);
-		nextInstallment = results.getDate(1);
-		return nextInstallment;
+		if (results.next()) {
+			nextInstallment = results.getDate(1);
+			return nextInstallment;
+		}
+		return null;
 	}
 
 	@Override
