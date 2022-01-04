@@ -110,13 +110,13 @@ public class AppDialog extends JDialog {
     private static String getHoursOrClosed(Branch branch, String day, Dictionary dict) {
         String hours = branch.getOpening_hours(day);
         if (hours == null)
-            hours = "Zamknięte";
+            hours = dict.getText("closed");
         return hours;
     }
 
     public static void branchDetailsDialog(AppFrame parent, Branch branch) throws SQLException, WrongId {
         Dictionary dict = parent.dict;
-        AppDialog branchDialog = new AppDialog(parent, "Szczegóły oddziału", 250, 275);
+        AppDialog branchDialog = new AppDialog(parent, dict.getText("branch_detail"), 250, 275);
 
         JPanel branchPanel = new JPanel();
         branchPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -125,7 +125,7 @@ public class AppDialog extends JDialog {
         branchDialog.add(branchPanel);
 
         JLabel addressLabel = new JLabel(
-                "<html><center><b>Adres oddziału:</b> " +
+                "<html><center><b>"+dict.getText("branch_address")+"</b> " +
                         branch.getAddress().getStreet() + " " +
                         branch.getAddress().getApartment_no() + ", " +
                         branch.getAddress().getCity_name() + "</center></html>",
@@ -137,7 +137,7 @@ public class AppDialog extends JDialog {
 
         branchPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        JLabel hoursTitleLabel = new JLabel("Godziny otwarcia", SwingConstants.CENTER);
+        JLabel hoursTitleLabel = new JLabel(dict.getText("opening_hours"), SwingConstants.CENTER);
         hoursTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         branchPanel.add(hoursTitleLabel);
 
@@ -145,13 +145,13 @@ public class AppDialog extends JDialog {
 
         JLabel hoursLabel = new JLabel(
                 "<html><div style=\"text-align:center\">" +
-                        "Poniedziałek: " + getHoursOrClosed(branch, "MON", dict) + "<br />" +
-                        "Wtorek: " + getHoursOrClosed(branch, "TUE", dict) + "<br />" +
-                        "Środa: " + getHoursOrClosed(branch, "WED", dict) + "<br />" +
-                        "Czwartek: " + getHoursOrClosed(branch, "THU", dict) + "<br />" +
-                        "Piątek: " + getHoursOrClosed(branch, "FRI", dict) + "<br />" +
-                        "Sobota: " + getHoursOrClosed(branch, "SAT", dict) + "<br />" +
-                        "Niedziela: " + getHoursOrClosed(branch, "SUN", dict) +
+                        dict.getText("day_mon") + getHoursOrClosed(branch, "MON", dict) + "<br />" +
+                        dict.getText("day_tu") + getHoursOrClosed(branch, "TUE", dict) + "<br />" +
+                        dict.getText("day_wed") + getHoursOrClosed(branch, "WED", dict) + "<br />" +
+                        dict.getText("day_th") + getHoursOrClosed(branch, "THU", dict) + "<br />" +
+                        dict.getText("day_fr") + getHoursOrClosed(branch, "FRI", dict) + "<br />" +
+                        dict.getText("day_sat") + getHoursOrClosed(branch, "SAT", dict) + "<br />" +
+                        dict.getText("day_sun") + getHoursOrClosed(branch, "SUN", dict) +
                         "</div></html>",
                 SwingConstants.CENTER
         );
