@@ -68,32 +68,6 @@ public class Loan extends Account{
 		return null;
 	}
 
-	public void changeCurrency(String new_curr_abbr) throws SQLException, WrongId {
-		Statement statement = Main.conn.createStatement();
-		String query = "SELECT currency_id FROM currencies WHERE abbreviation=" + new_curr_abbr;
-		ResultSet results = statement.executeQuery(query);
-		int new_curr_id = 1;
-		if (results.next()) {
-			new_curr_id = results.getInt(1);
-		} else {
-			throw new WrongId(new_curr_abbr);
-		}
-
-		query = "SELECT service_info_id FROM loans WHERE loan_id=" + loan_id;
-		results = statement.executeQuery(query);
-		if (results.next()) {
-			int service_info_id = results.getInt(1);
-			CallableStatement cs = Main.conn.prepareCall("call P_CONVERT_CURRENCY (?, ?)");
-			cs.setInt(1, service_info_id);
-			cs.setInt(2, new_curr_id);
-			cs.execute();
-			currency_id = Integer.toString(new_curr_id);
-			currency_abbr = new_curr_abbr;
-		} else {
-			throw new WrongId(loan_id);
-		}
-	}
-
 	@Override
 	public String toString() {
 		return "Loan [loan_id=" + loan_id + ", end_date= " + end_date + ", installment="

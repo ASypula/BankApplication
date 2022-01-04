@@ -76,7 +76,7 @@ public class LoansClientPanel extends JPanel {
 
                 JLabel nextInstallmentAmountLabel = new JLabel(
                         "<html>"+dict.getText("installment_amount")+"<b>" +
-                                loan.getInstallment() + "</b></html>"
+                                loan.getInstallment() + " " + loan.getCurrency_abbr() + "</b></html>"
                 );
                 nextInstallmentAmountLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
@@ -110,7 +110,9 @@ public class LoansClientPanel extends JPanel {
                 c.gridy = 0;
                 loanPanel.add(currentLabel, c);
 
-                JLabel currentAmountLabel = new JLabel(Integer.toString(loan.getBalance()));
+                JLabel currentAmountLabel = new JLabel(
+                        Integer.toString(loan.getBalance()) + " " + loan.getCurrency_abbr()
+                );
                 currentAmountLabel.setFont(new Font("Dialog", Font.BOLD, 16));
                 c.gridx = 1;
                 c.gridy = 1;
@@ -118,7 +120,7 @@ public class LoansClientPanel extends JPanel {
 
                 JLabel initialAmountLabel = new JLabel(
                         "<html>"+dict.getText("initial_amount")+"<b>" +
-                                loan.getInitial_value() + "</b></html>"
+                                loan.getInitial_value() + " " + loan.getCurrency_abbr() + "</b></html>"
                 );
                 initialAmountLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 1;

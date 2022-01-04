@@ -109,7 +109,9 @@ public class DepositsClientPanel extends JPanel {
                 c.gridy = 0;
                 depositPanel.add(currentLabel, c);
 
-                JLabel currentAmountLabel = new JLabel(Integer.toString(deposit.getBalance()));
+                JLabel currentAmountLabel = new JLabel(
+                        Integer.toString(deposit.getBalance()) + " " + deposit.getCurrency_abbr()
+                );
                 currentAmountLabel.setFont(new Font("Dialog", Font.BOLD, 20));
                 c.gridx = 1;
                 c.gridy = 1;

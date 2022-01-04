@@ -132,7 +132,9 @@ public class CardsClientPanel extends JPanel {
                     c.gridy = 0;
                     cardPanel.add(currentLabel, c);
 
-                    JLabel currentAmountLabel = new JLabel(Integer.toString(account.getBalance()));
+                    JLabel currentAmountLabel = new JLabel(
+                            Integer.toString(account.getBalance()) + " " + account.getCurrency_abbr()
+                    );
                     currentAmountLabel.setFont(new Font("Dialog", Font.BOLD, 20));
                     c.gridx = 1;
                     c.gridy = 1;
