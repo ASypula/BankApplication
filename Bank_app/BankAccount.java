@@ -1,7 +1,4 @@
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 
 public class BankAccount extends Account {
@@ -84,7 +81,7 @@ public class BankAccount extends Account {
 	
 	public BankAccount(String account_id) throws SQLException, WrongId {
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT bank_account_id, balance, account_no, start_date, interest, accum_period, account_types_type_id, client_id, name FROM v_bank_accounts where bank_account_id ="
+		String query = "SELECT bank_account_id, balance, account_no, start_date, interest, accum_period, account_types_type_id, client_id, name, currency_id, abbreviation FROM v_bank_accounts where bank_account_id ="
 				+ account_id;
 		ResultSet results = statement.executeQuery(query);
 		if (results.next()) { // if not empty
@@ -97,6 +94,8 @@ public class BankAccount extends Account {
 			this.account_types_f_id = results.getString(7);
 			this.client_id = results.getString(8);
 			this.service_name = results.getString(9);
+			this.currency_id = results.getString(10);
+			this.currency_abbr = results.getString(11);
 		} else
 			throw new WrongId(account_id);
 	}
@@ -125,7 +124,36 @@ public class BankAccount extends Account {
 		this.account_types_f_id = results.getString(7);
 		this.client_id = results.getString(8);
 		this.service_name = results.getString(9);
+		this.currency_id = results.getString(10);
+		this.currency_abbr = results.getString(11);
 	}
+
+	public void changeCurrency(String new_curr_abbr) throws SQLException, WrongId {
+		Statement statement = Main.conn.createStatement();
+		String query = "SELECT currency_id FROM currencies WHERE abbreviation=" + new_curr_abbr;
+		ResultSet results = statement.executeQuery(query);
+		int new_curr_id = 1;
+		if (results.next()) {
+			new_curr_id = results.getInt(1);
+		} else {
+			throw new WrongId(new_curr_abbr);
+		}
+
+		query = "SELECT service_info_id FROM bank_accounts WHERE bank_account_id=" + account_id;
+		results = statement.executeQuery(query);
+		if (results.next()) {
+			int service_info_id = results.getInt(1);
+			CallableStatement cs = Main.conn.prepareCall("call P_CONVERT_CURRENCY (?, ?)");
+			cs.setInt(1, service_info_id);
+			cs.setInt(2, new_curr_id);
+			cs.execute();
+			currency_id = Integer.toString(new_curr_id);
+			currency_abbr = new_curr_abbr;
+		} else {
+			throw new WrongId(account_id);
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "BankAccount [bank_account_id=" + account_id + ", account_types_f_id=" + account_types_f_id

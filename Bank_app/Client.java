@@ -1,6 +1,5 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.CallableStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class Client extends PersonalData {
 	}
 	public List<Loan> getLoans() throws SQLException {
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT loan_id, end_date, installment, initial_value, balance, start_date, interest, accum_period, client_id FROM v_loans where client_id = "+this.client_id;
+		String query = "SELECT loan_id, end_date, installment, initial_value, balance, start_date, interest, accum_period, client_id, currency_id, abbreviation FROM v_loans where client_id = "+this.client_id;
 		ResultSet results = statement.executeQuery(query);
 		List<Loan> accounts = new ArrayList<Loan>();
 		while (results.next()) {
@@ -30,7 +29,7 @@ public class Client extends PersonalData {
 	}
 	public List<BankAccount> getBankAccounts() throws SQLException {
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT bank_account_id, balance, account_no, start_date, interest, accum_period, account_types_type_id, client_id, name FROM v_bank_accounts where client_id = "+this.client_id;
+		String query = "SELECT bank_account_id, balance, account_no, start_date, interest, accum_period, account_types_type_id, client_id, name, currency_id, abbreviation FROM v_bank_accounts where client_id = "+this.client_id;
 		ResultSet results = statement.executeQuery(query);
 		List<BankAccount> accounts = new ArrayList<BankAccount>();
 		while (results.next()) {
@@ -43,7 +42,7 @@ public class Client extends PersonalData {
 	}
 	public List<BankAccount> getDeposits() throws SQLException {
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT bank_account_id, balance, account_no, start_date, interest, accum_period, account_types_type_id, client_id, name FROM v_bank_accounts where client_id = "+this.client_id;
+		String query = "SELECT bank_account_id, balance, account_no, start_date, interest, accum_period, account_types_type_id, client_id, name, currency_id, abbreviation FROM v_bank_accounts where client_id = "+this.client_id;
 		ResultSet results = statement.executeQuery(query);
 		List<BankAccount> accounts = new ArrayList<BankAccount>();
 		while (results.next()) {
@@ -83,22 +82,6 @@ public class Client extends PersonalData {
 		ResultSet results = statement.executeQuery(query2);
 		results.next();
 		this.client_id = results.getString(1);
-	}
-	
-	public void changeCurrency(int currency_id) throws SQLException {
-		Statement statement = Main.conn.createStatement();
-		String query1 = "SELECT service_info_id WHERE client_id=" + client_id;
-		ResultSet results = statement.executeQuery(query1);
-		if (results.next()) {
-			int service_info_id = results.getInt(1);
-			String query2 = "call P_CONVERT_CURRENCY (?, ?)";
-			CallableStatement cs = Main.conn.prepareCall(query2);
-			cs.setInt(1, service_info_id);
-			cs.setInt(2, currency_id);
-			cs.execute();
-		} //TODO: what if client has no service_info associated with client_id?
-		//else throw
-
 	}
 
 	@Override
