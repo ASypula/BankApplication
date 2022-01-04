@@ -103,6 +103,25 @@ public class Employee extends PersonalData {
 		this.employee_id = results.getString(1);
 	}
 
+	public static String getProfessionId(String professionName) throws SQLException {
+		Statement statement = Main.conn.createStatement();
+		ResultSet results = statement.executeQuery("SELECT profession_id from professions where name = '"+professionName+"'");
+		if (results.next()) {
+			return results.getString(1);
+		}
+		return null;
+	}
+
+	public static List<String> getProfessionNames() throws SQLException {
+		List<String> names = new ArrayList<String>();
+		Statement statement = Main.conn.createStatement();
+		ResultSet results = statement.executeQuery("SELECT name from professions");
+		while (results.next()) {
+			names.add(results.getString(1));
+		}
+		return names;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [salary=" + salary + ", professions_f_id=" + professions_f_id + ", employee_id="

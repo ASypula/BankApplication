@@ -1,7 +1,9 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Branch {
@@ -47,6 +49,17 @@ public class Branch {
 		} else
 			throw new WrongId(bank_branch_id);
 	}
+
+	public static List<String> getBranches() throws SQLException {
+		List<String> branches = new ArrayList<String>();
+		Statement statement = Main.conn.createStatement();
+		ResultSet results = statement.executeQuery("SELECT bank_branch_id from bank_branches");
+		while (results.next()) {
+			branches.add(results.getString(1));
+		}
+		return branches;
+	}
+	
 	@Override
 	public String toString() {
 		return "Branch [Opening_hours=" + Opening_hours + ", bank_branch_id=" + bank_branch_id

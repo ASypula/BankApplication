@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class CreateAccountDialog extends AppDialog {
 
@@ -18,6 +19,9 @@ public class CreateAccountDialog extends AppDialog {
     private final JTextField houseNrTf = new JTextField();
     private final JTextField cityTf = new JTextField();
     private final JPasswordField passwordPf = new JPasswordField();
+    private final JTextField salaryTf = new JTextField();
+    private JComboBox<String> professionCb;
+    private JComboBox<String> branchCb;
 
     private final AppFrame owner;
     private final Boolean createClient;
@@ -28,6 +32,23 @@ public class CreateAccountDialog extends AppDialog {
         owner = mowner;
         createClient = createCli;
         dict = owner.dict;
+
+        if (!createCli) {
+            this.setSize(200, 500);
+            this.setLocationRelativeTo(owner);
+
+            try {
+                professionCb = new JComboBox<String>(new Vector<String>(Employee.getProfessionNames()));
+                professionCb.insertItemAt("", 0);
+                professionCb.setSelectedIndex(0);
+
+                branchCb = new JComboBox<String>(new Vector<String>(Branch.getBranches()));
+                branchCb.insertItemAt("", 0);
+                branchCb.setSelectedIndex(0);
+            } catch (SQLException ex) {
+                System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+            }
+        }
 
         ActionListener okListener = e -> createPerson();
 
@@ -124,6 +145,39 @@ public class CreateAccountDialog extends AppDialog {
         passwordPf.addActionListener(okListener);
         creAccPan.add(passwordPf);
 
+        if (!createCli) {
+            Box salaryBox = Box.createHorizontalBox();
+            JLabel salaryLabel = new JLabel("Zarobki:");
+            salaryBox.add(Box.createRigidArea(new Dimension(10, 0)));
+            salaryBox.add(salaryLabel);
+            salaryBox.add(Box.createHorizontalGlue());
+            creAccPan.add(salaryBox);
+
+            salaryTf.setMaximumSize(new Dimension(150, 25));
+            salaryTf.addActionListener(okListener);
+            creAccPan.add(salaryTf);
+
+            Box professionBox = Box.createHorizontalBox();
+            JLabel professionLabel = new JLabel("Zawód:");
+            professionBox.add(Box.createRigidArea(new Dimension(10, 0)));
+            professionBox.add(professionLabel);
+            professionBox.add(Box.createHorizontalGlue());
+            creAccPan.add(professionBox);
+
+            professionCb.setMaximumSize(new Dimension(150, 25));
+            creAccPan.add(professionCb);
+
+            Box branchBox = Box.createHorizontalBox();
+            JLabel branchLabel = new JLabel("ID oddziału:");
+            branchBox.add(Box.createRigidArea(new Dimension(10, 0)));
+            branchBox.add(branchLabel);
+            branchBox.add(Box.createHorizontalGlue());
+            creAccPan.add(branchBox);
+
+            branchCb.setMaximumSize(new Dimension(150, 25));
+            creAccPan.add(branchCb);
+        }
+
         OkCancelButtonsPanel okCanButPan = new OkCancelButtonsPanel(owner, this, okListener);
         creAccPan.add(okCanButPan);
 
@@ -150,9 +204,19 @@ public class CreateAccountDialog extends AppDialog {
                 client.insert(String.valueOf(passwordPf.getPassword()));
                 newId = client.getData_id();
             } else {
-//                TODO: Adding employee - profession, salary and branch needed
+                employee = new Employee(
+                        nameTf.getText(),
+                        surnameTf.getText(),
+                        peselTf.getText(),
+                        phoneTf.getText(),
+                        address.getAddress_id(),
+                        salaryTf.getText(),
+                        Employee.getProfessionId((String) professionCb.getSelectedItem()),
+                        (String) branchCb.getSelectedItem()
+                );
+                employee.insert(String.valueOf(passwordPf.getPassword()));
+                newId = employee.getData_id();
             }
-//            TODO: Verify input?
 
             successDialog();
         } catch (SQLException ex) {
