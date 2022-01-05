@@ -118,7 +118,34 @@ public class BankAccount extends Account {
 		} else
 			throw new WrongId(account_id);
 	}
+	public BankAccount(String currency_abbr, String account_no, String service_name, String client_id, int interest_rate, int accum_period, int balance) throws SQLException, WrongId{
+		Statement statement = Main.conn.createStatement(); 
+		ResultSet results;
+		this.client_id = client_id;
+		this.interest_rate = interest_rate; //
+		this.accum_period = accum_period;
+		this.balance = balance; //
+		java.util.Date date = new java.util.Date();
+		this.start_date = new java.sql.Date(date.getTime());;
+		this.service_name = service_name;
+		results = statement.executeQuery("Select ACCOUNT_TYPE_ID from ACCOUNT_TYPES where NAME = '"+service_name+"'");
+		results.next();this.account_types_f_id = results.getString(1);
+		this.account_no = account_no;
+		this.currency_abbr = currency_abbr;
+		results = statement.executeQuery("Select CURRENCY_ID from CURRENCIES where ABBREVIATION = '"+currency_abbr+"'");
+		results.next();this.currency_id = results.getString(1);
+		this.account_id = null;
+	}
 	
+	public void insert() throws SQLException {
+		Statement statement = Main.conn.createStatement();
+		statement.executeQuery("INSERT INTO SERVICES_INFO(BALANCE,ACCUM_PERIOD,INTEREST,CLIENT_ID,CURRENCY_ID,STATUS) VALUES ("+balance+","+accum_period+","+interest_rate+","+client_id+","+currency_id+", (null) )");
+		ResultSet results = statement.executeQuery("Select service_info_id from SERVICES_INFO where CLIENT_ID = "+client_id+" and BALANCE = "+balance+"  and ACCUM_PERIOD = " + accum_period + "  and INTEREST ="+interest_rate );
+		results.next(); String service_info_id = results.getString(1);
+		statement.executeQuery(/*may del ACCOUNT_NO in fut ->*/"INSERT INTO BANK_ACCOUNTS(ACCOUNT_NO,ACCOUNT_TYPES_TYPE_ID,SERVICE_INFO_ID) VALUES (" +account_no /*may del in fut*/ +","+ account_types_f_id + "," + service_info_id +")");
+		results = statement.executeQuery("Select BANK_ACCOUNT_ID from BANK_ACCOUNTS where ACCOUNT_NO= '"+account_no+"'");
+		results.next(); this.account_id = results.getString(1);
+	}
 	public void balanceInc(int i) throws SQLException {
 		balance += i;
 		Statement statement = Main.conn.createStatement();
@@ -178,13 +205,11 @@ public class BankAccount extends Account {
 			balance = results.getInt(1);
 		}
 	}
-
 	@Override
 	public String toString() {
-		return "BankAccount [bank_account_id=" + account_id + ", account_types_f_id=" + account_types_f_id
-				+ ", client_id=" + client_id + ", account_no=" + account_no + ", start_date=" + start_date
-				+ ", interest_rate=" + interest_rate + ", accum_period=" + accum_period
-				+ ", balance=" + balance + ", service_name=" + service_name + " ]";
+		return "BankAccount [account_id=" + account_id + ", account_types_f_id=" + account_types_f_id + ", account_no="
+				+ account_no + ", service_name=" + service_name + ", client_id=" + client_id + ", currency_id="
+				+ currency_id + ", currency_abbr=" + currency_abbr + ", interest_rate=" + interest_rate
+				+ ", accum_period=" + accum_period + ", balance=" + balance + ", start_date=" + start_date + "]";
 	}
-	
 }
