@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class MainClientPanel extends JPanel {
 
@@ -79,7 +80,7 @@ public class MainClientPanel extends JPanel {
         c.gridy = 1;
         transferDialog.add(receiverTf, c);
 
-        JLabel amountLabel = new JLabel(dict.getText("amount"));
+        JLabel amountLabel = new JLabel(dict.getText("amount") + " (" + account.getCurrency_abbr() + ")");
         c.gridx = 0;
         c.gridy = 2;
         transferDialog.add(amountLabel, c);
@@ -137,7 +138,7 @@ public class MainClientPanel extends JPanel {
             } catch (NumberFormatException ignored) {}
         };
 
-        JLabel amountLabel = new JLabel(dict.getText("amount"));
+        JLabel amountLabel = new JLabel(dict.getText("amount") + " (" + account.getCurrency_abbr() + ")");
         c.gridx = 0;
         c.gridy = 0;
         amountDialog.add(amountLabel, c);
@@ -243,12 +244,33 @@ public class MainClientPanel extends JPanel {
                 c.gridwidth = 2;
                 accountPanel.add(accountBalanceLabel, c);
 
+                JPanel balancePanel = new JPanel();
+                balancePanel.setBackground(parent.bgColor);
+                balancePanel.setLayout(new BoxLayout(balancePanel, BoxLayout.X_AXIS));
+
                 JLabel balanceLabel = new JLabel(Integer.toString(accounts.get(i).getBalance()));
                 balanceLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+                balancePanel.add(balanceLabel);
+
+                JComboBox<String> currencyCb = new JComboBox<String>(new Vector<String>(Account.getCurrencyAbbreviations()));
+                currencyCb.setSelectedItem(accounts.get(i).getCurrency_abbr());
+                currencyCb.setMaximumSize(new Dimension(60, 25));
+                currencyCb.addActionListener(e -> {
+                    try {
+                        accounts.get(finalI).changeCurrency((String) currencyCb.getSelectedItem());
+                        balanceLabel.setText(Integer.toString(accounts.get(finalI).getBalance()));
+                    } catch (SQLException ex) {
+                        System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                    } catch (WrongId ex) {
+                        System.err.format(ex.getMessage());
+                    }
+                });
+                balancePanel.add(currencyCb);
+
                 c.gridx = 1;
                 c.gridy = 1;
                 c.gridheight = 2;
-                accountPanel.add(balanceLabel, c);
+                accountPanel.add(balancePanel, c);
 
                 c.anchor = GridBagConstraints.CENTER;
                 c.gridx = 0;

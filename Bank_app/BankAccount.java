@@ -130,7 +130,7 @@ public class BankAccount extends Account {
 
 	public void changeCurrency(String new_curr_abbr) throws SQLException, WrongId {
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT currency_id FROM currencies WHERE abbreviation=" + new_curr_abbr;
+		String query = "SELECT currency_id FROM currencies WHERE abbreviation='" + new_curr_abbr + "'";
 		ResultSet results = statement.executeQuery(query);
 		int new_curr_id = 1;
 		if (results.next()) {
@@ -151,6 +151,12 @@ public class BankAccount extends Account {
 			currency_abbr = new_curr_abbr;
 		} else {
 			throw new WrongId(account_id);
+		}
+
+		query = "SELECT balance FROM v_bank_accounts WHERE bank_account_id=" + account_id;
+		results = statement.executeQuery(query);
+		if (results.next()) {
+			balance = results.getInt(1);
 		}
 	}
 

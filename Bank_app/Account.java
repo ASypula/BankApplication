@@ -27,7 +27,7 @@ public class Account {
 	public String getCurrency_id() { return currency_id; }
 	public String getCurrency_abbr() { return currency_abbr; }
 
-	public List<String> getCurrencyAbbreviations() throws SQLException {
+	public static List<String> getCurrencyAbbreviations() throws SQLException {
 		List<String> abbrs = new ArrayList<String>();
 		Statement statement = Main.conn.createStatement();
 		ResultSet results = statement.executeQuery("SELECT abbreviation from currencies");
