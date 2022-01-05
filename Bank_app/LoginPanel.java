@@ -85,7 +85,6 @@ public class LoginPanel extends JPanel {
         c.gridy = 0;
         this.add(polButton, c);
 
-        //TODO: UK and Japan flag not displaying properly
         Icon engFlag = new ImageIcon("Flags/flag_UK.png");
         JButton engButton = new JButton(engFlag);
         engButton.addActionListener(e -> changeLanguage("Eng"));
