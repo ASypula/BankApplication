@@ -111,3 +111,33 @@ BEGIN
     WHERE SERVICE_INFO_ID = p_service_info_id;
 
 END;
+
+create or replace procedure P_DELETE_CLIENT(p_client_id NUMBER)
+IS
+    v_count NUMBER;
+    v_NULL_ID NUMBER;
+    v_pd_id NUMBER;
+BEGIN
+    SELECT count(service_info_id) INTO v_count 
+    FROM services_info 
+    WHERE client_id = p_client_id AND balance > 0;
+    SELECT PERSONAL_DATA_ID INTO v_NULL_ID
+    FROM personal_data 
+    WHERE name = 'NULL' AND surname = 'NULL';
+    SELECT personal_data_data_id INTO v_pd_id 
+    FROM clients
+    WHERE client_id = p_client_id;
+
+    IF v_count > 0 THEN
+        raise_application_error(-20002, 'Client cannot be deleted! He still has ongoing services!');
+    ELSE
+        UPDATE clients 
+        SET personal_data_data_id = v_NULL_ID, employees_employee_id = NULL 
+        WHERE CLIENT_ID = p_client_id;
+        UPDATE SERVICES_INFO
+        SET STATUS = 'CLOSED'
+        WHERE CLIENT_ID = p_client_id;
+        DELETE FROM personal_data
+        WHERE personal_data_id = v_pd_id;
+    END IF;
+END;
