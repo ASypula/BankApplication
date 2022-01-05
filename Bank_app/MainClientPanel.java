@@ -65,6 +65,8 @@ public class MainClientPanel extends JPanel {
                         }
                     } catch (SQLException ex) {
                         System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                    } catch (WrongId ex) {
+                        System.err.format(ex.getMessage());
                     }
                 }
             } catch (NumberFormatException ignored) {}
@@ -133,6 +135,8 @@ public class MainClientPanel extends JPanel {
                         );
                     } catch (SQLException ex) {
                         System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                    } catch (WrongId ex) {
+                        System.err.format(ex.getMessage());
                     }
                 }
             } catch (NumberFormatException ignored) {}

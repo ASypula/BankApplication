@@ -78,10 +78,11 @@ public class Client extends PersonalData {
 		String query1 = "INSERT INTO clients(personal_data_data_id, employees_employee_id) VALUES(" + data_id + ","
 				+ employees_id + ")";
 		statement.executeQuery(query1);
-		String query2 = "SELECT client_id FROM clients WHERE personal_data_data_id =" + data_id;
+		String query2 = "SELECT client_id, employees_employee_id FROM clients WHERE personal_data_data_id =" + data_id;
 		ResultSet results = statement.executeQuery(query2);
 		results.next();
 		this.client_id = results.getString(1);
+		this.employees_id = results.getString(2);
 	}
 
 	@Override

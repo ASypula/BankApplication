@@ -50,21 +50,40 @@ public class BankAccount extends Account {
 		return service_name;
 	}
 
-	public boolean transfer(int amount, String bank_accounts_receiver_no) throws SQLException {
+	public boolean transfer(int amount, String bank_accounts_receiver_no) throws SQLException, WrongId {
+		String trans_type_id;
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT bank_account_id FROM bank_accounts WHERE account_no = " + bank_accounts_receiver_no;
+		String query = "SELECT transaction_type_id FROM transaction_type WHERE type_name = 'transfer_out'";
 		ResultSet results = statement.executeQuery(query);
 		if (results.next())
-			return transfer("5", amount, results.getString(1));
+			trans_type_id = results.getString(1);
+		else
+			throw new WrongId("transfer_out");
+
+		query = "SELECT bank_account_id FROM bank_accounts WHERE account_no = " + bank_accounts_receiver_no;
+		results = statement.executeQuery(query);
+		if (results.next())
+			return transfer(trans_type_id, amount, results.getString(1));
 		return false;
 	}
-	public boolean payment(int amount) throws SQLException {
-		return transfer("2", amount, null);
+	public boolean payment(int amount) throws SQLException, WrongId {
+		Statement statement = Main.conn.createStatement();
+		String query = "SELECT transaction_type_id FROM transaction_type WHERE type_name = 'payment'";
+		ResultSet results = statement.executeQuery(query);
+		if (results.next())
+			return transfer(results.getString(1), amount, null);
+		else
+			throw new WrongId("payment");
 	}
-	public boolean withdrawal(int amount) throws SQLException {
-		return transfer("1", amount, null);
+	public boolean withdrawal(int amount) throws SQLException, WrongId {
+		Statement statement = Main.conn.createStatement();
+		String query = "SELECT transaction_type_id FROM transaction_type WHERE type_name = 'withdrawal'";
+		ResultSet results = statement.executeQuery(query);
+		if (results.next())
+			return transfer(results.getString(1), amount, null);
+		else
+			throw new WrongId("withdrawal");
 	}
-//	TODO: It would be better if these values weren't hardcoded but selected by name from database
 
 	public boolean transfer(String transaction_type_f_id,
 			int amount, String bank_accounts_receiver_id) throws SQLException {
