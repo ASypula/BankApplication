@@ -75,28 +75,25 @@ public class LoansClientPanel extends JPanel {
                 c.weighty = 0.5;
 
                 JLabel nextInstallmentAmountLabel = new JLabel(
-                        "<html>"+dict.getText("installment_amount")+"<b>" +
-                                loan.getInstallment() + " " + loan.getCurrency_abbr() + "</b></html>"
-                );
+                        "<html>" + dict.getText("installment_amount") + "<b>" +
+                                loan.getInstallment() + " " + loan.getCurrency_abbr() + "</b></html>");
                 nextInstallmentAmountLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 0;
                 loanPanel.add(nextInstallmentAmountLabel, c);
 
                 JLabel nextInstallmentLabel = new JLabel(
-                    "<html>" + dict.getText("next_installment") + "<b>" +
-                            loan.nextInstallmentDate().toString() +
-                            "</b></html>"
-                );
+                        "<html>" + dict.getText("next_installment") + "<b>" +
+                                loan.nextInstallmentDate().toString() +
+                                "</b></html>");
                 nextInstallmentLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 1;
                 loanPanel.add(nextInstallmentLabel, c);
 
                 JLabel interestLabel = new JLabel(
-                        "<html>"+dict.getText("interest")+"<b>" +
-                                loan.getInterest_rate() + "%</b></html>"
-                );
+                        "<html>" + dict.getText("interest") + "<b>" +
+                                loan.getInterest_rate() + "%</b></html>");
                 interestLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 0;
                 c.gridy = 2;
@@ -111,17 +108,15 @@ public class LoansClientPanel extends JPanel {
                 loanPanel.add(currentLabel, c);
 
                 JLabel currentAmountLabel = new JLabel(
-                        Integer.toString(loan.getBalance()) + " " + loan.getCurrency_abbr()
-                );
+                        Integer.toString(loan.getBalance()) + " " + loan.getCurrency_abbr());
                 currentAmountLabel.setFont(new Font("Dialog", Font.BOLD, 16));
                 c.gridx = 1;
                 c.gridy = 1;
                 loanPanel.add(currentAmountLabel, c);
 
                 JLabel initialAmountLabel = new JLabel(
-                        "<html>"+dict.getText("initial_amount")+"<b>" +
-                                loan.getInitial_value() + " " + loan.getCurrency_abbr() + "</b></html>"
-                );
+                        "<html>" + dict.getText("initial_amount") + "<b>" +
+                                loan.getInitial_value() + " " + loan.getCurrency_abbr() + "</b></html>");
                 initialAmountLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
                 c.gridx = 1;
                 c.gridy = 2;
@@ -140,4 +135,11 @@ public class LoansClientPanel extends JPanel {
             this.add(loansPanel, c);
         }
     }
+    
+    // public void predictedLoan() {
+    //     // value -> loan amount chosen/given by the customer
+    //     // months_no -> number of months during which customer will be paying off the loan
+    //     double total_sum = Loan.newLoanTotal(value);
+    //     double interest = Loan.newInstallment(months_no, total_sum);
+    // }
 }

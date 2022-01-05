@@ -68,6 +68,19 @@ public class Loan extends Account{
 		return null;
 	}
 
+	public static double newLoanTotal(int value) {
+		// new loan predicted interest set to 3%, client can further discuss the rate while getting new loan with the assistant
+		double rate = 0.03;
+		double total_sum;
+		total_sum = (1 + rate) * value;
+		return total_sum;
+	}
+	
+	public static double newInstallment(int months_no, double total_sum) {
+		double installment = total_sum / months_no;
+		return installment;
+	}
+
 	@Override
 	public String toString() {
 		return "Loan [loan_id=" + loan_id + ", end_date= " + end_date + ", installment="
