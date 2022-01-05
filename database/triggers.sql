@@ -82,6 +82,9 @@ FOR EACH ROW
 DECLARE
     v_type_name transaction_type.type_name%TYPE;
     v_transfer_in_id transaction_type.transaction_type_id%TYPE;
+    v_target_curr currencies.exchange_rate%TYPE;
+    v_own_curr currencies.exchange_rate%TYPE;
+    v_amount transaction_history.amount%TYPE;
 BEGIN
     SELECT TYPE_NAME INTO v_type_name
     FROM transaction_type 
@@ -90,7 +93,14 @@ BEGIN
     FROM transaction_type
     WHERE type_name like 'transfer_in';
     IF v_type_name like 'transfer_out' THEN
-        UPDATE SERVICES_INFO SET BALANCE = BALANCE + :new.AMOUNT 
+        SELECT exchange_rate INTO v_own_curr FROM v_bank_accounts WHERE bank_account_id = :new.bank_account_id;
+        SELECT exchange_rate INTO v_target_curr FROM v_bank_accounts WHERE bank_account_id = :new.target_acc_no;
+        IF v_own_curr <> v_target_curr THEN
+            v_amount := F_CONVERT_ACC_CURRENCY(:new.amount, v_own_curr, v_target_curr);
+        ELSE
+            v_amount := :new.amount;
+        END IF;
+        UPDATE SERVICES_INFO SET BALANCE = BALANCE + v_amount
         WHERE SERVICE_INFO_ID = 
             (SELECT SERVICE_INFO_ID 
             FROM BANK_ACCOUNTS 
@@ -98,31 +108,5 @@ BEGIN
         INSERT INTO TRANSACTION_HISTORY (TRANSACTION_ID, AMOUNT, "Date", BANK_ACCOUNT_ID, TRANSACTION_TYPE_TYPE_ID, TARGET_ACC_NO)
         VALUES ("Z08"."ISEQ$$_271389".nextval -1, :new.amount, :new."Date", :new.target_acc_no, v_transfer_in_id, :new.bank_account_id);
         :new.transaction_id := :new.transaction_id + 1;
-    END IF;
-END;
-
--- trigger used to delete personal data and convert services info of certain client to be unusable
-CREATE OR REPLACE TRIGGER t_delete_client
-BEFORE DELETE ON CLIENTS
-FOR EACH ROW
-DECLARE
-    v_count NUMBER;
-    v_NULL_ID NUMBER;
-BEGIN
-    SELECT count(service_info_id) INTO v_count 
-    FROM services_info 
-    WHERE client_id = :old.client_id AND balance > 0;
-    SELECT PERSONAL_DATA_ID INTO v_NULL_ID
-    FROM personal_data 
-    WHERE name = 'NULL' AND surname = 'NULL';
-    
-    IF v_count > 0 THEN
-        raise_application_error(-20002, 'Client cannot be deleted! He still has ongoing services!');
-    ELSE
-        UPDATE clients 
-        SET personal_data_data_id = v_NULL_ID, employees_employee_id = NULL 
-        WHERE CLIENT_ID = :old.client_id;
-        DELETE FROM personal_data
-        WHERE personal_data_id = :old.personal_data_data_id;
     END IF;
 END;
