@@ -61,17 +61,19 @@ DECLARE
 BEGIN
     SELECT employee_id INTO v_assistant 
     FROM v_needs_work;
-    SELECT name INTO v_profession 
-    FROM professions 
-    WHERE profession_id = 
-        (SELECT professions_profession_id 
-        FROM employees 
-        WHERE employee_id = :new.employees_employee_id);
 
     IF :new.employees_employee_id IS NULL THEN
         :new.employees_employee_id := v_assistant;
-    ELSIF v_profession NOT LIKE 'assistant' THEN 
-        :new.employees_employee_id := v_assistant;
+    ELSE
+        SELECT name INTO v_profession 
+        FROM professions 
+        WHERE profession_id = 
+            (SELECT professions_profession_id 
+            FROM employees 
+            WHERE employee_id = :new.employees_employee_id);
+        IF v_profession NOT LIKE 'assistant' THEN 
+            :new.employees_employee_id := v_assistant;
+        END IF;
     END IF;
 END;
 
