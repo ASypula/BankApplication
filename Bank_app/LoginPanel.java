@@ -80,16 +80,15 @@ public class LoginPanel extends JPanel {
         Icon polFlag = new ImageIcon("Flags/flag_Poland.png");
         JButton polButton = new JButton(polFlag);
         polButton.addActionListener(e -> changeLanguage("Pol"));
-        polButton.setPreferredSize(new Dimension(50, 30));
+        polButton.setPreferredSize(new Dimension(45, 30));
         c.gridx = 1;
         c.gridy = 0;
         this.add(polButton, c);
 
-        //Icon engFlag = new ImageIcon("Flags/flag_UK.png");
-        ImageIcon engFlag = new ImageIcon(getClass().getResource("Flags/flag_UK.png"));
+        Icon engFlag = new ImageIcon("Flags/flag_UK.png");
         JButton engButton = new JButton(engFlag);
         engButton.addActionListener(e -> changeLanguage("Eng"));
-        engButton.setPreferredSize(new Dimension(20, 20));
+        engButton.setPreferredSize(new Dimension(45, 30));
         c.gridx = 2;
         c.gridy = 0;
         this.add(engButton, c);
@@ -97,7 +96,8 @@ public class LoginPanel extends JPanel {
         Icon japFlag = new ImageIcon("Flags/flag_Japan.png");
         JButton japButton = new JButton(japFlag);
         japButton.addActionListener(e -> changeLanguage("Jap"));
-        japButton.setPreferredSize(new Dimension(20, 20));
+        japButton.setIcon(japFlag);
+        japButton.setPreferredSize(new Dimension(45, 30));
         c.gridx = 3;
         c.gridy = 0;
         this.add(japButton, c);
