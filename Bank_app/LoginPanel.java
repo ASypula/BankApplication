@@ -77,20 +77,27 @@ public class LoginPanel extends JPanel {
 
         c.weightx = 0.05;
 
-        WhiteButton polButton = new WhiteButton("Polski");
+        Icon polFlag = new ImageIcon("Flags/flag_Poland.png");
+        JButton polButton = new JButton(polFlag);
         polButton.addActionListener(e -> changeLanguage("Pol"));
+        polButton.setPreferredSize(new Dimension(50, 30));
         c.gridx = 1;
         c.gridy = 0;
         this.add(polButton, c);
 
-        WhiteButton engButton = new WhiteButton("English");
+        //Icon engFlag = new ImageIcon("Flags/flag_UK.png");
+        ImageIcon engFlag = new ImageIcon(getClass().getResource("Flags/flag_UK.png"));
+        JButton engButton = new JButton(engFlag);
         engButton.addActionListener(e -> changeLanguage("Eng"));
+        engButton.setPreferredSize(new Dimension(20, 20));
         c.gridx = 2;
         c.gridy = 0;
         this.add(engButton, c);
 
-        WhiteButton japButton = new WhiteButton("日本");
+        Icon japFlag = new ImageIcon("Flags/flag_Japan.png");
+        JButton japButton = new JButton(japFlag);
         japButton.addActionListener(e -> changeLanguage("Jap"));
+        japButton.setPreferredSize(new Dimension(20, 20));
         c.gridx = 3;
         c.gridy = 0;
         this.add(japButton, c);
