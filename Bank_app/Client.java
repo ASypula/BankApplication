@@ -17,6 +17,10 @@ public class Client extends PersonalData {
 	public Employee getEmployee() throws SQLException, WrongId {
 		return new Employee(this.employees_id);
 	}
+	public void addBankAccount(String currency_abbr, String account_no, String Acc_Type_name, int interest_rate, int accum_period) throws SQLException, WrongId {
+		BankAccount a1 = new BankAccount(currency_abbr, account_no, Acc_Type_name, client_id, interest_rate, accum_period, 0/*balance*/);
+		a1.insert();
+	}
 	public List<Loan> getLoans() throws SQLException {
 		Statement statement = Main.conn.createStatement();
 		String query = "SELECT loan_id, end_date, installment, initial_value, balance, start_date, interest, accum_period, client_id, currency_id, abbreviation FROM v_loans where client_id = "+this.client_id;
