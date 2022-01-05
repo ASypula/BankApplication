@@ -1,3 +1,4 @@
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -101,6 +102,12 @@ public class Employee extends PersonalData {
 		ResultSet results = statement.executeQuery(query2);
 		results.next();
 		this.employee_id = results.getString(1);
+	}
+
+	public void removeClient(String client_id) throws SQLException {
+		CallableStatement cs = Main.conn.prepareCall("call P_DELETE_CLIENT (?)");
+		cs.setInt(1, Integer.parseInt(client_id));
+		cs.execute();
 	}
 
 	public static String getProfessionId(String professionName) throws SQLException {

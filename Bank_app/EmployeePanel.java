@@ -112,7 +112,14 @@ public class EmployeePanel extends JPanel {
                 clientPanel.add(clientAccountsLabel, c);
 
                 WhiteButton removeClientButton = new WhiteButton(dict.getText("remove_client"));
-                removeClientButton.addActionListener(e -> AppDialog.wipDialog(parent));
+                removeClientButton.addActionListener(e -> {
+                    try {
+                        employee.removeClient(client.getClient_id());
+                        parent.changeToEmployee(employee);
+                    } catch (SQLException ex) {
+                        System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                    }
+                });
                 c.anchor = GridBagConstraints.FIRST_LINE_END;
                 c.gridx = 1;
                 c.gridy = 1;
