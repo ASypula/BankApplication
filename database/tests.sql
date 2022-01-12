@@ -104,13 +104,13 @@ WHERE personal_data_id IN (
     ))));
 	
 =======================================================
-Test dzialania triggera ustawiającego domyslna date konca kredytu
+Test dzialania triggera ustawiajacego domyslna date konca kredytu
 
 INSERT INTO SERVICES_INFO (BALANCE, ACCUM_PERIOD, INTEREST, CLIENT_ID)
 VALUES (30000, 3, 5, 11);
 INSERT INTO LOANS (INSTALLMENT, INITIAL_VALUE, SERVICE_INFO_ID)
 VALUES (1000, 30000, 8)
--- 8 jest w ramach testu, może to byc inna wartosc przy wlasciwym testowaniu
+-- 8 jest w ramach testu, moze to byc inna wartosc przy wlasciwym testowaniu
 
 ========================================================
 Test dodawania drugiego rekordu przy przelewach miedzy dwoma kontami
@@ -188,7 +188,7 @@ END;
 
 
 ===========================================================
-Test sprawdzający datę kiedy powinna nastapic kolejnsa splata raty kredytu - zakladamy ze raty powinny byc splacane co miesiac od daty zalozenia
+Test sprawdzajacy date kiedy powinna nastapic kolejnsa splata raty kredytu - zakladamy ze raty powinny byc splacane co miesiac od daty zalozenia
 
 DECLARE 
     v_val        DATE;
@@ -202,5 +202,119 @@ END;
 
 
 ===========================================================
+Test dzialania triggera liczacego ilosc pracownikow 
+
+DECLARE 
+    v_pd_id NUMBER;
+    v_emp_no NUMBER;
+BEGIN
+
+    SELECT employees_no INTO v_emp_no FROM bank_branches WHERE bank_branch_id = 2;
+    dbms_output.put_line('Oddzial 2 ma ' || v_emp_no || ' pracownikow');
 
 
+    INSERT INTO PERSONAL_DATA (NAME, SURNAME, PESEL, PHONE_NO, HASHED_PSWD, ADDRESSES_ADDRESS_ID) 
+    VALUES ('Tester', 'Testujacy', '11111111111', '111111111', 'Test', 1);
+    
+    SELECT personal_data_id INTO v_pd_id FROM personal_data WHERE name like 'Tester';
+    
+    INSERT INTO EMPLOYEES (SALARY, PROFESSIONS_PROFESSION_ID, PERSONAL_DATA_DATA_ID, BRANCH_ID)
+    VALUES (5000, 4, v_pd_id, 2);
+    
+    SELECT employees_no INTO v_emp_no FROM bank_branches WHERE bank_branch_id = 2;
+    dbms_output.put_line('Oddzial 2 ma ' || v_emp_no || ' pracownikow');
+    
+    DELETE FROM employees WHERE personal_data_data_id = v_pd_id;
+    
+    SELECT employees_no INTO v_emp_no FROM bank_branches WHERE bank_branch_id = 2;
+    dbms_output.put_line('Oddzial 2 ma ' || v_emp_no || ' pracownikow');
+    
+    ROLLBACK;
+    
+END;
+
+
+===========================================================
+Test dzialania triggera sprawdzajacego poprawnosc pensji
+
+DECLARE 
+    v_pd_id NUMBER;
+BEGIN
+    INSERT INTO PERSONAL_DATA (NAME, SURNAME, PESEL, PHONE_NO, HASHED_PSWD, ADDRESSES_ADDRESS_ID) 
+    VALUES ('Tester', 'Testujacy', '11111111111', '111111111', 'Test', 1);
+    
+    SELECT personal_data_id INTO v_pd_id FROM personal_data WHERE name like 'Tester';
+    
+    INSERT INTO EMPLOYEES (SALARY, PROFESSIONS_PROFESSION_ID, PERSONAL_DATA_DATA_ID, BRANCH_ID)
+    VALUES (80000, 4, v_pd_id, 2);
+    
+    ROLLBACK;
+END;
+
+
+===========================================================
+Test triggera ustawiajacego waluty dla transakcji
+
+DECLARE 
+    v_currency VARCHAR2(5);
+    v_new_rec  VARCHAR2(5);
+BEGIN
+    SELECT abbreviation INTO v_currency FROM v_bank_accounts  WHERE BANK_ACCOUNT_ID = 1;
+    dbms_output.put_line('Waluta tego konta to '|| v_currency );
+    
+    INSERT INTO TRANSACTION_HISTORY (AMOUNT, BANK_ACCOUNT_ID, TRANSACTION_TYPE_TYPE_ID)
+    VALUES (100, 1, 2);
+    
+    SELECT CURRENCY INTO v_new_rec FROM TRANSACTION_HISTORY WHERE bank_account_id = 1 
+    ORDER BY ("Date") DESC FETCH FIRST 1 ROWS ONLY;
+    
+    dbms_output.put_line('Waluta ostatniej transakcji to '|| v_new_rec );
+
+
+    SELECT abbreviation INTO v_currency FROM v_bank_accounts  WHERE BANK_ACCOUNT_ID = 2;
+    dbms_output.put_line('Waluta tego konta to '|| v_currency );
+    
+    INSERT INTO TRANSACTION_HISTORY (AMOUNT, BANK_ACCOUNT_ID, TRANSACTION_TYPE_TYPE_ID)
+    VALUES (100, 2, 2);
+    
+    SELECT CURRENCY INTO v_new_rec FROM TRANSACTION_HISTORY WHERE bank_account_id = 2 
+    ORDER BY ("Date") DESC FETCH FIRST 1 ROWS ONLY;
+    
+    dbms_output.put_line('Waluta ostatniej transakcji to '|| v_new_rec );
+    
+    ROLLBACK;
+END;
+
+
+===========================================================
+Test triggera ustawiajacego waluty dla wplat rat kredytu
+DECLARE 
+    v_currency VARCHAR2(5);
+    v_new_rec  VARCHAR2(5);
+BEGIN
+    SELECT abbreviation INTO v_currency FROM v_loans WHERE loan_ID = 1;
+    dbms_output.put_line('Waluta tego kredytu to '|| v_currency );
+    
+    INSERT INTO PAYMENT_HISTORY (AMOUNT, LOAN_ID)
+    VALUES (100, 1);
+    
+    SELECT CURRENCY INTO v_new_rec FROM PAYMENT_HISTORY WHERE loan_id = 1 
+    ORDER BY Payment_Date DESC FETCH FIRST 1 ROWS ONLY;
+    
+    dbms_output.put_line('Waluta ostatniej wplaty to '|| v_new_rec );
+    
+    
+    
+    SELECT abbreviation INTO v_currency FROM v_loans WHERE loan_ID = 2;
+    dbms_output.put_line('Waluta tego kredytu to '|| v_currency );
+    
+    INSERT INTO PAYMENT_HISTORY (AMOUNT, LOAN_ID)
+    VALUES (100, 2);
+    
+    SELECT CURRENCY INTO v_new_rec FROM PAYMENT_HISTORY WHERE loan_id = 2 
+    ORDER BY Payment_Date DESC FETCH FIRST 1 ROWS ONLY;
+    
+    dbms_output.put_line('Waluta ostatniej wplaty to '|| v_new_rec );
+    
+    ROLLBACK;
+END;
