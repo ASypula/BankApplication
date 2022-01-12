@@ -156,5 +156,14 @@ public class CardsClientPanel extends JPanel {
             c.weighty = 0.8;
             this.add(cardsPanel, c);
         }
+
+        c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.LAST_LINE_END;
+        c.gridx = 0;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridy = 3;
+        c.weighty = 0.02;
+        c.gridheight = 1;
+        this.add(new LanguageButtonsPanel(parent, "cardsClient", client), c);
     }
 }

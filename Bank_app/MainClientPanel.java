@@ -351,5 +351,17 @@ public class MainClientPanel extends JPanel {
             c.gridy = 3;
             this.add(showFullButton, c);
         }
+
+        c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.LAST_LINE_END;
+        c.gridx = 0;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        if(accounts.isEmpty())
+            c.gridy = 3;
+        else
+            c.gridy = 4;
+        c.weighty = 0.02;
+        c.gridheight = 1;
+        this.add(new LanguageButtonsPanel(parent, "mainClient", client), c);
     }
 }

@@ -103,5 +103,14 @@ public class HelpClientPanel extends JPanel {
         c.gridx = 0;
         c.gridy = 5;
         this.add(emailLabel, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.LAST_LINE_END;
+        c.gridx = 0;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridy = 6;
+        c.weighty = 0.02;
+        c.gridheight = 1;
+        this.add(new LanguageButtonsPanel(parent, "helpClient", client), c);
     }
 }

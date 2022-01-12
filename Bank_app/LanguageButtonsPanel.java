@@ -15,6 +15,10 @@ public class LanguageButtonsPanel extends JPanel{
         switch (panel) {
             case "login" -> parent.changeToLogin();
             case "mainClient" -> parent.changeToMainClient((Client) person);
+            case "cardsClient" -> parent.changeToCardsClient((Client) person);
+            case "loansClient" -> parent.changeToLoansClient((Client) person);
+            case "depositsClient" -> parent.changeToDepositsClient((Client) person);
+            case "helpClient" -> parent.changeToHelpClient((Client) person);
             case "employee" -> parent.changeToEmployee((Employee) person);
         }
     }
