@@ -38,7 +38,7 @@ AFTER DELETE ON EMPLOYEES
 FOR EACH ROW
 BEGIN 
     UPDATE bank_branches 
-    SET employees_no = employees_no + 1
+    SET employees_no = employees_no - 1
     WHERE bank_branch_id = :old.branch_id;
 END;
 
