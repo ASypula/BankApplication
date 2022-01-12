@@ -112,3 +112,27 @@ BEGIN
         :new.transaction_id := :new.transaction_id + 1;
     END IF;
 END;
+
+-- trigger creates new unique bank account number on insert
+create or replace TRIGGER T_ADD_BANK_ACCOUNT
+BEFORE INSERT ON BANK_ACCOUNTS
+FOR EACH ROW
+BEGIN
+    :new.ACCOUNT_NO := F_FIND_UNIQUE_ACC_NO;
+END;
+
+
+-- trigger adds abbreviation of currency used during payment
+create or replace TRIGGER T_PAYMENT_HISTORY 
+BEFORE INSERT ON PAYMENT_HISTORY
+FOR EACH ROW 
+DECLARE 
+    v_currency CURRENCIES.ABBREVIATION%TYPE;
+BEGIN
+    SELECT ABBREVIATION INTO v_currency 
+    FROM v_loans 
+    WHERE loan_id = :new.loan_id;
+
+    :new.currency := v_currency;
+END;
+
