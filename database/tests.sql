@@ -1,7 +1,7 @@
 																	TESTY
 
 ===============================================
-Test działania procedury do zmiany kursu walut:
+Test dzialania procedury do zmiany kursu walut:
 
 alter session set NLS_NUMERIC_CHARACTERS='.,'; 
 
@@ -10,7 +10,7 @@ SELECT NAME, EXCHANGE_RATE FROM CURRENCIES;
 
 
 ================================================
-Test działania przewalutowywania:
+Test dzialania przewalutowywania:
 
 alter session set NLS_NUMERIC_CHARACTERS='.,'; 
 
@@ -64,7 +64,7 @@ BEGIN
 END;
 
 ====================================================
-Wybierz klientow pracownikow ktorzy mieszkaja w tym samym mieście co przypisany im asystent
+Wybierz klientow pracownikow ktorzy mieszkaja w tym samym miescie co przypisany im asystent
 
 SELECT e.name||' '||e.surname as asystent, c.name||' '||c.surname as klient, e.city_name
 FROM (
@@ -130,3 +130,77 @@ WHERE c.client_id IN (
     FROM services_info s JOIN loans l on l.service_info_id = s.service_info_id
     WHERE s.balance = F_YEAR_INSTALLMENTS(l.loan_id) 
     );
+
+
+==========================================================
+Test dzialania funkcji do przewalutowywania 
+
+DECLARE 
+    v_curr_1   NUMBER := 4.1834;
+    v_curr_2   NUMBER := 2.5731;
+    amount     NUMBER := 100;
+    new_amount NUMBER;
+BEGIN
+    new_amount := f_convert_acc_currency(amount, v_curr_1, v_curr_2);
+    dbms_output.put_line('Waluta o kursie '|| v_curr_1 || ' zostala zamieniona na walute o kursie '|| v_curr_2 ||'. Ilosc ' || amount || ' zostala zamieniona na '||new_amount);
+END;
+
+
+===========================================================
+Test dzialania funkcji generujacej nowy kod ktory moze posluzyc za nowy numer konta
+
+DECLARE 
+    v_acc_no BANK_ACCOUNTS.account_no%TYPE; 
+BEGIN
+    v_acc_no := f_generate_code;
+    dbms_output.put_line('Nowy kod od zostal wygenerowany '|| v_acc_no);
+    v_acc_no := f_generate_code;
+    dbms_output.put_line('Nowy kod od zostal wygenerowany '|| v_acc_no);
+    v_acc_no := f_generate_code;
+    dbms_output.put_line('Nowy kod od zostal wygenerowany '|| v_acc_no);
+    v_acc_no := f_generate_code;
+    dbms_output.put_line('Nowy kod od zostal wygenerowany '|| v_acc_no);
+END;
+
+===========================================================
+Test dzialania funkcji znajdujacej nowy unikalny numer konta
+
+DECLARE 
+    v_acc_no    BANK_ACCOUNTS.account_no%TYPE; 
+    v_other_acc NUMBER;
+BEGIN
+    v_acc_no := f_find_unique_acc_no;
+    dbms_output.put_line('Wygenrerowany kod to '|| v_acc_no );
+    SELECT count(account_no) INTO v_other_acc FROM BANK_ACCOUNTS WHERE account_no = v_acc_no;
+    dbms_output.put_line('Ilosc innych kont o takim samym kodzie wynosi '|| v_other_acc );
+END;
+
+
+===========================================================
+Test funkcji zwracajacej wartosc ostatniej transakcji danego klienta 
+
+DECLARE 
+    v_val NUMBER;
+BEGIN
+    v_val := f_last_transact_val(1);
+    dbms_output.put_line('Ostatnia transakcja tego klienta wynosila '|| v_val );
+END;
+
+
+===========================================================
+Test sprawdzający datę kiedy powinna nastapic kolejnsa splata raty kredytu - zakladamy ze raty powinny byc splacane co miesiac od daty zalozenia
+
+DECLARE 
+    v_val        DATE;
+    v_start_date DATE;
+    v_loan_id    NUMBER := 1;
+BEGIN
+    v_val := f_next_installment(v_loan_id);
+    SELECT START_DATE INTO v_start_date FROM V_LOANS WHERE LOAN_ID = v_loan_id;
+    dbms_output.put_line('Dzisiaj jest '|| CURRENT_DATE ||' Kredyt zostal zalozony ' || v_start_date || ' Nastepna rata powinna byc splacona w dniu '|| v_val );
+END;
+
+
+===========================================================
+
+
