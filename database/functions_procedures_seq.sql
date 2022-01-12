@@ -141,3 +141,44 @@ BEGIN
         WHERE personal_data_id = v_pd_id;
     END IF;
 END;
+
+
+-- Function generates unique account number code  
+create or replace FUNCTION f_FIND_UNIQUE_ACC_NO
+RETURN VARCHAR2
+AS
+    v_code VARCHAR2(19);
+    v_check NUMBER := 0;
+BEGIN
+    v_code := F_GENERATE_CODE();
+    SELECT count(account_no) INTO v_check FROM bank_accounts WHERE account_no = v_code;
+    WHILE v_check <> 0 LOOP
+        v_code := F_GENERATE_CODE();
+        SELECT count(account_no) INTO v_check FROM bank_accounts WHERE account_no = v_code;
+    END LOOP;
+
+    RETURN v_code;
+END;
+
+-- Function generates random account number code
+create or replace FUNCTION F_GENERATE_CODE 
+RETURN VARCHAR2
+AS
+    v_numb NUMBER;
+    v_segment VARCHAR2(4);
+    v_code VARCHAR2(19);
+BEGIN
+    v_numb    := floor(dbms_random.value(1,9999));
+    v_code    := lpad(v_numb, 4, '0');
+    v_numb    := floor(dbms_random.value(1,9999));
+    v_segment := lpad(v_numb, 4, '0');
+    v_code    := v_code || ' ' || v_segment;
+    v_numb    := floor(dbms_random.value(1,9999));
+    v_segment := lpad(v_numb, 4, '0');
+    v_code    := v_code || ' ' || v_segment;
+    v_numb    := floor(dbms_random.value(1,9999));
+    v_segment := lpad(v_numb, 4, '0');
+    v_code    := v_code || ' ' || v_segment;
+
+    RETURN v_code;
+END;
