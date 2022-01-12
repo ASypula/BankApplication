@@ -145,5 +145,16 @@ public class EmployeePanel extends JPanel {
                 this.add(clientsPanel, c);
             }
         }
+
+        c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.LAST_LINE_END;
+        c.gridx = 0;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        if(!clients.isEmpty())
+            c.gridy = 4;
+        else
+            c.gridy = 2;
+        c.weighty = 0.02;
+        this.add(new LanguageButtonsPanel(parent, "employee", employee), c);
     }
 }

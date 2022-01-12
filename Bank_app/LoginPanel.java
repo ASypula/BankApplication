@@ -41,7 +41,7 @@ public class LoginPanel extends JPanel {
                     try {
                         Employee emp = Employee.getEmployeeFromPersonalDataId(login);
                         parent.changeToEmployee(emp);
-                    } catch (WrongId ex) {}
+                    } catch (WrongId ignored) {}
                 }
             }
         }
@@ -162,5 +162,4 @@ public class LoginPanel extends JPanel {
         );
         loginDetPan.add(newEmployeeButton);
     }
-
 }
