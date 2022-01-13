@@ -15,7 +15,7 @@ public class LoanCalculatorDialog extends AppDialog {
     private final Dictionary dict;
 
     LoanCalculatorDialog(AppFrame mowner) {
-        super(mowner, "Dodaj konto bankowe", 500, 300);
+        super(mowner, "Kalkulator kredytu", 500, 300);
         owner = mowner;
         dict = owner.dict;
 
