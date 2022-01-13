@@ -43,10 +43,17 @@ public class LoansClientPanel extends JPanel {
         c.gridwidth = 1;
         this.add(loansLabel, c);
 
+        WhiteButton loanCalcButton = new WhiteButton("Kalkulator kredytu");
+        loanCalcButton.addActionListener(e -> new LoanCalculatorDialog(parent));
+        c.anchor = GridBagConstraints.EAST;
+        c.gridx = 1;
+        c.gridy = 1;
+        this.add(loanCalcButton, c);
+
         WhiteButton newLoanButton = new WhiteButton(dict.getText("new_credit"));
         newLoanButton.addActionListener(e -> AppDialog.contactEmployeeDialog(parent));
         c.anchor = GridBagConstraints.EAST;
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 1;
         this.add(newLoanButton, c);
 
@@ -144,11 +151,4 @@ public class LoansClientPanel extends JPanel {
         c.gridheight = 1;
         this.add(new LanguageButtonsPanel(parent, "loansClient", client), c);
     }
-    
-    // public void predictedLoan() {
-    //     // value -> loan amount chosen/given by the customer
-    //     // months_no -> number of months during which customer will be paying off the loan
-    //     double total_sum = Loan.newLoanTotal(value);
-    //     double interest = Loan.newInstallment(months_no, total_sum);
-    // }
 }
