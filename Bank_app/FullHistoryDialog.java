@@ -8,7 +8,7 @@ public class FullHistoryDialog extends AppDialog {
     private Dictionary dict;
 
     public FullHistoryDialog(AppFrame mparent, java.util.List<BankAccount> bankAccounts) {
-        super(mparent, mparent.dict.getText("full_history"), 400, 400);
+        super(mparent, mparent.dict.getText("full_history"), 600, 400);
         parent = mparent;
         dict = parent.dict;
         try {

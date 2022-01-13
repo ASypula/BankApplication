@@ -55,7 +55,10 @@ public class HistoryPanel extends JPanel {
             c.gridy = 2;
             transactionPanel.add(tranDateLabel, c);
 
-            JLabel tranAmountLabel = new JLabel(Integer.toString(transaction.getAmount()));
+            JLabel tranAmountLabel = new JLabel(
+                    Integer.toString(transaction.getAmount()) + " " +
+                            transaction.getCurrency_abbr()
+            );
             tranAmountLabel.setFont(new Font("Dialog", Font.BOLD, 16));
             c.anchor = GridBagConstraints.EAST;
             c.gridx = 1;

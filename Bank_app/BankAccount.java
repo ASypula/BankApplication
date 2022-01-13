@@ -33,7 +33,7 @@ public class BankAccount extends Account {
 	
 	public List<Transaction> getTransactions() throws SQLException {
 		Statement statement = Main.conn.createStatement();
-		String query = "SELECT transaction_id, amount, \"Date\", bank_account_id, transaction_type_type_id, target_acc_no FROM transaction_history" +
+		String query = "SELECT transaction_id, amount, \"Date\", bank_account_id, transaction_type_type_id, target_acc_no, currency FROM transaction_history" +
 				" WHERE bank_account_id = " + this.account_id + "ORDER BY transaction_id DESC";
 		ResultSet results = statement.executeQuery(query);
 		List<Transaction> accounts = new ArrayList<Transaction>();
@@ -70,7 +70,7 @@ public class BankAccount extends Account {
 		else
 			throw new WrongId("transfer_out");
 
-		query = "SELECT bank_account_id FROM bank_accounts WHERE account_no = " + bank_accounts_receiver_no;
+		query = "SELECT bank_account_id FROM bank_accounts WHERE account_no = '" + bank_accounts_receiver_no + "'";
 		results = statement.executeQuery(query);
 		if (results.next())
 			return transfer(trans_type_id, amount, results.getString(1));

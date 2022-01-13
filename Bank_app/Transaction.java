@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Transaction {
-	private String transaction_id, transaction_type_id, bank_account_id, target_acc_id;
+	private String transaction_id, transaction_type_id, bank_account_id, target_acc_id, currency_abbr;
 	java.sql.Date date;
 	private int amount;
 	static Map<Integer, String> transaction_types = new HashMap<Integer, String>();
@@ -17,19 +17,21 @@ public class Transaction {
 		this.bank_account_id = results.getString(4);
 		this.transaction_type_id = results.getString(5);
 		this.target_acc_id = results.getString(6);
+		this.currency_abbr = results.getString(7);
 	}
 	
-	public Transaction(String transaction_id, String transaction_type_id, String bank_account_id, int amount, Date date, String target_acc_no) {
+	public Transaction(String transaction_id, String transaction_type_id, String bank_account_id, int amount, Date date, String target_acc_no, String currency_abbr) {
 		this.transaction_id = transaction_id;
 		this.date = date;
 		this.transaction_type_id = transaction_type_id;
 		this.bank_account_id = bank_account_id;
 		this.amount = amount;
 		this.target_acc_id = target_acc_no;
+		this.currency_abbr = currency_abbr;
 	}
 
 	public Transaction(String transaction_id, String transaction_type_id, String bank_account_id,
-			int amount, String target_acc_no) {
+			int amount, String target_acc_no, String currency_abbr) {
 		this.transaction_id = transaction_id;
 		java.util.Date date = new java.util.Date();
 		this.date = new java.sql.Date(date.getTime());
@@ -37,6 +39,7 @@ public class Transaction {
 		this.bank_account_id = bank_account_id;
 		this.amount = amount;
 		this.target_acc_id = target_acc_no;
+		this.currency_abbr = currency_abbr;
 	}
 	
 	public Transaction(String transaction_type_id, String bank_account_id,
@@ -74,7 +77,7 @@ public class Transaction {
 		Statement statement = Main.conn.createStatement();
 		if (transaction_id != null)
 		statement.executeQuery("INSERT INTO transaction_history VALUES ("+transaction_id+", "+amount+", DATE '"+date+"', "+bank_account_id+","+transaction_type_id+","+ target_acc_id +" )");
-		else //INSERT INTO transaction_history(amount, "Date",BANK_ACCOUNTS_ACCOUNT_ID,TRANSACTION_TYPE_TYPE_ID) VALUES (21,TO_DATE('06-07-2021', 'DD-MM-YYYY'), 1, 2);
+		else
 		statement.executeQuery("INSERT INTO transaction_history(amount, \"Date\",BANK_ACCOUNT_ID,TRANSACTION_TYPE_TYPE_ID, TARGET_ACC_NO) VALUES ("+amount+", DATE '"+date+"', "+bank_account_id+","+transaction_type_id+","+ target_acc_id +" )");
 	}
 	
@@ -96,6 +99,9 @@ public class Transaction {
 	}
 	public String getTarget_acc_id() {
 		return target_acc_id;
+	}
+	public String getCurrency_abbr() {
+		return currency_abbr;
 	}
 	@Override
 	public String toString() {
