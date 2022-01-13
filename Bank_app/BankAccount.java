@@ -20,6 +20,16 @@ public class BankAccount extends Account {
 		}
 		return account_types.get(i);
 	}
+
+	public static List<String> getNotDepositAccountTypes() throws SQLException {
+		List<String> types = new ArrayList<String>();
+		Statement statement = Main.conn.createStatement();
+		ResultSet results = statement.executeQuery("SELECT name FROM account_types WHERE name NOT LIKE '%deposit'");
+		while (results.next()) {
+			types.add(results.getString(1));
+		}
+		return types;
+	}
 	
 	public List<Transaction> getTransactions() throws SQLException {
 		Statement statement = Main.conn.createStatement();
@@ -142,9 +152,11 @@ public class BankAccount extends Account {
 		statement.executeQuery("INSERT INTO SERVICES_INFO(BALANCE,ACCUM_PERIOD,INTEREST,CLIENT_ID,CURRENCY_ID,STATUS) VALUES ("+balance+","+accum_period+","+interest_rate+","+client_id+","+currency_id+", (null) )");
 		ResultSet results = statement.executeQuery("Select service_info_id from SERVICES_INFO where CLIENT_ID = "+client_id+" and BALANCE = "+balance+"  and ACCUM_PERIOD = " + accum_period + "  and INTEREST ="+interest_rate );
 		results.next(); String service_info_id = results.getString(1);
-		statement.executeQuery(/*may del ACCOUNT_NO in fut ->*/"INSERT INTO BANK_ACCOUNTS(ACCOUNT_NO,ACCOUNT_TYPES_TYPE_ID,SERVICE_INFO_ID) VALUES (" +account_no /*may del in fut*/ +","+ account_types_f_id + "," + service_info_id +")");
-		results = statement.executeQuery("Select BANK_ACCOUNT_ID from BANK_ACCOUNTS where ACCOUNT_NO= '"+account_no+"'");
-		results.next(); this.account_id = results.getString(1);
+		statement.executeQuery("INSERT INTO BANK_ACCOUNTS(ACCOUNT_TYPES_TYPE_ID,SERVICE_INFO_ID) VALUES (" + account_types_f_id + "," + service_info_id +")");
+		results = statement.executeQuery("Select BANK_ACCOUNT_ID, ACCOUNT_NO from BANK_ACCOUNTS where SERVICE_INFO_ID = '"+service_info_id+"'");
+		results.next();
+		this.account_id = results.getString(1);
+		this.account_no = results.getString(2);
 	}
 	public void balanceInc(int i) throws SQLException {
 		balance += i;

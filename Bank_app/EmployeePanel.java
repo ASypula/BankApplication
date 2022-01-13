@@ -111,6 +111,13 @@ public class EmployeePanel extends JPanel {
                 c.gridy = 2;
                 clientPanel.add(clientAccountsLabel, c);
 
+                WhiteButton addAccountButton = new WhiteButton("Dodaj konto");
+                addAccountButton.addActionListener(e -> new NewBankAccountDialog(parent, employee, client));
+                c.anchor = GridBagConstraints.FIRST_LINE_END;
+                c.gridx = 1;
+                c.gridy = 1;
+                clientPanel.add(addAccountButton, c);
+
                 WhiteButton removeClientButton = new WhiteButton(dict.getText("remove_client"));
                 removeClientButton.addActionListener(e -> {
                     try {
@@ -120,9 +127,8 @@ public class EmployeePanel extends JPanel {
                         System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
                     }
                 });
-                c.anchor = GridBagConstraints.FIRST_LINE_END;
-                c.gridx = 1;
-                c.gridy = 1;
+                c.gridx = 2;
+                c.gridy = 2;
                 clientPanel.add(removeClientButton, c);
 
                 clientsPanel.add(clientPanel);
@@ -136,7 +142,7 @@ public class EmployeePanel extends JPanel {
             c.gridwidth = GridBagConstraints.REMAINDER;
             c.weighty = 0.8;
 
-            if (clients.size() > 6) {
+            if (clients.size() > 5) {
                 JScrollPane clientsScroll = new JScrollPane(clientsPanel);
                 c.fill = GridBagConstraints.BOTH;
                 this.add(clientsScroll, c);
