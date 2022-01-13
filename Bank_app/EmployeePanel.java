@@ -111,7 +111,7 @@ public class EmployeePanel extends JPanel {
                 c.gridy = 2;
                 clientPanel.add(clientAccountsLabel, c);
 
-                WhiteButton addAccountButton = new WhiteButton("Dodaj konto");
+                WhiteButton addAccountButton = new WhiteButton(dict.getText("add_bank_acc"));
                 addAccountButton.addActionListener(e -> new NewBankAccountDialog(parent, employee, client));
                 c.anchor = GridBagConstraints.FIRST_LINE_END;
                 c.gridx = 1;

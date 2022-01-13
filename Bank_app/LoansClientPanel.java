@@ -43,7 +43,7 @@ public class LoansClientPanel extends JPanel {
         c.gridwidth = 1;
         this.add(loansLabel, c);
 
-        WhiteButton loanCalcButton = new WhiteButton("Kalkulator kredytu");
+        WhiteButton loanCalcButton = new WhiteButton(dict.getText("credit_calculator"));
         loanCalcButton.addActionListener(e -> new LoanCalculatorDialog(parent));
         c.anchor = GridBagConstraints.EAST;
         c.gridx = 1;

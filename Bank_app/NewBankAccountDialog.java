@@ -16,7 +16,7 @@ public class NewBankAccountDialog extends AppDialog {
     private final Dictionary dict;
 
     NewBankAccountDialog(AppFrame mowner, Employee emp, Client cli) {
-        super(mowner, "Dodaj konto bankowe", 200, 200);
+        super(mowner, mowner.dict.getText("add_bank_acc"), 200, 200);
         owner = mowner;
         employee = emp;
         client = cli;
@@ -52,7 +52,7 @@ public class NewBankAccountDialog extends AppDialog {
         addAccPan.add(accountTypeCb);
 
         Box currencyBox = Box.createHorizontalBox();
-        JLabel currencyLabel = new JLabel("Waluta");
+        JLabel currencyLabel = new JLabel(dict.getText("currency"));
         currencyBox.add(Box.createRigidArea(new Dimension(10, 0)));
         currencyBox.add(currencyLabel);
         currencyBox.add(Box.createHorizontalGlue());

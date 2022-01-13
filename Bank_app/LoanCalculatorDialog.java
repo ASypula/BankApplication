@@ -15,7 +15,7 @@ public class LoanCalculatorDialog extends AppDialog {
     private final Dictionary dict;
 
     LoanCalculatorDialog(AppFrame mowner) {
-        super(mowner, "Kalkulator kredytu", 500, 300);
+        super(mowner, mowner.dict.getText("credit_calculator"), 500, 300);
         owner = mowner;
         dict = owner.dict;
 
@@ -68,7 +68,7 @@ public class LoanCalculatorDialog extends AppDialog {
         loanCalcPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
         Box totalBox = Box.createHorizontalBox();
-        totalLabel = new JLabel("Całkowity koszt: " + "-");
+        totalLabel = new JLabel(dict.getText("total_cost") + "-");
         totalBox.add(Box.createRigidArea(new Dimension(150, 0)));
         totalBox.add(totalLabel);
         totalBox.add(Box.createHorizontalGlue());
@@ -86,13 +86,13 @@ public class LoanCalculatorDialog extends AppDialog {
 
         if (period == 0) {
             installmentLabel.setText(dict.getText("installment_amount") + "-");
-            totalLabel.setText("Całkowity koszt: " + "-");
+            totalLabel.setText(dict.getText("total_cost") + "-");
         } else {
             double total = (double) Math.round(Loan.newLoanTotal(amount) * 100) / 100;
             double installment = (double) Math.round(Loan.newInstallment(period * 12, total) * 100) / 100;
 
             installmentLabel.setText(dict.getText("installment_amount") + installment);
-            totalLabel.setText("Całkowity koszt: " + total);
+            totalLabel.setText(dict.getText("total_cost") + total);
         }
     }
 }
