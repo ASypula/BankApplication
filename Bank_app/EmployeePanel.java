@@ -125,6 +125,7 @@ public class EmployeePanel extends JPanel {
                         parent.changeToEmployee(employee);
                     } catch (SQLException ex) {
                         System.err.format("SQL State: %s\n%s", ex.getSQLState(), ex.getMessage());
+                        AppDialog.cannotRemoveDialog(parent, dict);
                     }
                 });
                 c.gridx = 2;

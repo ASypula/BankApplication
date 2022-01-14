@@ -18,6 +18,19 @@ public class AppDialog extends JDialog {
         this.getContentPane().setBackground(owner.bgColor);
     }
 
+    public static void cannotRemoveDialog(AppFrame parent, Dictionary dict) {
+        AppDialog cantRemoveDialog = new AppDialog(parent, "Błąd przy usuwaniu", 160, 150);
+        JLabel cantRemoveText = new JLabel(
+                "<html><div style='text-align: center;'>" +
+                        "Nie można usunąć konta."+ "<br />"+
+                        "Klient wciąż ma środki na koncie." + "<br />" +
+                        "</html>",
+                SwingConstants.CENTER
+        );
+        cantRemoveDialog.add(cantRemoveText);
+        cantRemoveDialog.setVisible(true);
+    }
+
     public static void wrongMailDialog(AppFrame parent, Dictionary dict) {
         AppDialog wrongLoginDialog = new AppDialog(parent, dict.getText("invalid_data"), 160, 150);
         JLabel wrongLoginText = new JLabel(
